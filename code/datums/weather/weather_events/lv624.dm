@@ -1,7 +1,7 @@
 /datum/weather_event/light_rain
 	name = "Light Rain"
 	display_name = "Light Rain"
-	length = 8 MINUTES
+	length_char = 8 MINUTES
 	fullscreen_type = /atom/movable/screen/fullscreen/weather/low
 
 	turf_overlay_icon_state = "strata_storm"
@@ -17,7 +17,7 @@
 /datum/weather_event/heavy_rain
 	name = "Heavy Rain"
 	display_name = "Heavy Rain"
-	length = 12 MINUTES
+	length_char = 12 MINUTES
 	fullscreen_type = /atom/movable/screen/fullscreen/weather/medium
 
 	turf_overlay_icon_state = "strata_storm"

@@ -9,7 +9,7 @@ GLOBAL_LIST_FILE_LOAD(custom_items, "config/custom_items.txt")
 /proc/EquipCustomItems(mob/living/carbon/human/M)
 	for(var/line in GLOB.custom_items)
 		// split & clean up
-		var/list/Entry = splittext(line, ":")
+		var/list/Entry = splittext_char(line, ":")
 		for(var/i = 1 to Entry.len)
 			Entry[i] = trim(Entry[i])
 
@@ -17,7 +17,7 @@ GLOBAL_LIST_FILE_LOAD(custom_items, "config/custom_items.txt")
 			continue;
 
 		if(Entry[1] == M.ckey && Entry[2] == M.real_name)
-			var/list/Paths = splittext(Entry[3], ",")
+			var/list/Paths = splittext_char(Entry[3], ",")
 			for(var/P in Paths)
 				var/ok = 0  // 1 if the item was placed successfully
 				P = trim(P)

@@ -586,7 +586,7 @@
 
 /obj/item/explosive/grenade/metal_foam/prime()
 	var/datum/effect_system/foam_spread/s = new()
-	s.set_up(12, get_turf(src), metal_foam = foam_metal_type) //Metalfoam 1 for aluminum foam, 2 for iron foam (Stronger), 12 amt = 2 tiles radius (5 tile length diamond)
+	s.set_up(12, get_turf(src), metal_foam = foam_metal_type) //Metalfoam 1 for aluminum foam, 2 for iron foam (Stronger), 12 amt = 2 tiles radius (5 tile length_char diamond)
 	s.start()
 	qdel(src)
 

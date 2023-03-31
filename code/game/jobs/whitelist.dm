@@ -32,11 +32,11 @@ GLOBAL_LIST_FILE_LOAD(alien_whitelist, "config/alienwhitelist.txt")
 		return 0
 	if(M && species)
 		for (var/s in GLOB.alien_whitelist)
-			if(findtext(lowertext(s),"[lowertext(M.key)] - [species]"))
+			if(findtext_char(lowertext(s),"[lowertext(M.key)] - [species]"))
 				return 1
-			//if(findtext(lowertext(s),"[lowertext(M.key)] - [species] Elder")) //Unnecessary.
+			//if(findtext_char(lowertext(s),"[lowertext(M.key)] - [species] Elder")) //Unnecessary.
 			// return 1
-			if(findtext(lowertext(s),"[lowertext(M.key)] - All"))
+			if(findtext_char(lowertext(s),"[lowertext(M.key)] - All"))
 				return 1
 	return 0
 

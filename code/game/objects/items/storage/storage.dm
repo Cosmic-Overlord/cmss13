@@ -215,9 +215,9 @@ var/list/global/item_storage_box_cache = list()
 
 /obj/item/storage/proc/space_orient_objs(list/obj/item/display_contents)
 	var/baseline_max_storage_space = 21 //should be equal to default backpack capacity
-	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
-	var/stored_cap_width = 4 //length of sprite for start and end of the box representing the stored item
-	var/storage_width = min(round(258 * max_storage_space/baseline_max_storage_space, 1), 284) //length of sprite for the box representing total storage space
+	var/storage_cap_width = 2 //length_char of sprite for start and end of the box representing total storage space
+	var/stored_cap_width = 4 //length_char of sprite for start and end of the box representing the stored item
+	var/storage_width = min(round(258 * max_storage_space/baseline_max_storage_space, 1), 284) //length_char of sprite for the box representing total storage space
 
 	click_border_start.Cut()
 	click_border_end.Cut()
@@ -295,11 +295,11 @@ var/list/global/item_storage_box_cache = list()
 			return TRUE
 
 		// examining or taking something out of the storage screen by clicking on item border overlay
-		var/list/screen_loc_params = splittext(mods["screen-loc"], ",")
-		var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+		var/list/screen_loc_params = splittext_char(mods["screen-loc"], ",")
+		var/list/screen_loc_X = splittext_char(screen_loc_params[1],":")
 		var/click_x = text2num(screen_loc_X[1])*32+text2num(screen_loc_X[2]) - 144
 
-		for(var/i in 1 to length(S.click_border_start))
+		for(var/i in 1 to length_char(S.click_border_start))
 			if(S.click_border_start[i] <= click_x && click_x <= S.click_border_end[i])
 				I = LAZYACCESS(S.contents, i)
 				if(I && I.Adjacent(user)) //Catches pulling items out of nested storage.
@@ -384,7 +384,7 @@ var/list/global/item_storage_box_cache = list()
 	for(var/A in cant_hold)
 		if(ispath(type_to_hold, A))
 			return FALSE
-	if(length(can_hold))
+	if(length_char(can_hold))
 		for(var/A in can_hold)
 			if(ispath(type_to_hold, A))
 				return TRUE
@@ -542,7 +542,7 @@ W is always an item. stop_warning prevents messaging. user may be null.**/
 
 /obj/item/storage/attack_hand(mob/user, mods)
 	if (loc == user)
-		if((mods && mods["alt"] || storage_flags & STORAGE_USING_DRAWING_METHOD) && ishuman(user) && length(contents)) //Alt mod can reach attack_hand through the clicked() override.
+		if((mods && mods["alt"] || storage_flags & STORAGE_USING_DRAWING_METHOD) && ishuman(user) && length_char(contents)) //Alt mod can reach attack_hand through the clicked() override.
 			var/obj/item/I
 			if(storage_flags & STORAGE_USING_FIFO_DRAWING)
 				I = contents[1]
@@ -603,7 +603,7 @@ W is always an item. stop_warning prevents messaging. user may be null.**/
 		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 
-	if(!length(contents))
+	if(!length_char(contents))
 		to_chat(user, SPAN_WARNING("[src] is already empty."))
 		return
 
@@ -644,7 +644,7 @@ W is always an item. stop_warning prevents messaging. user may be null.**/
 	if (use_sound)
 		playsound(loc, use_sound, 25, TRUE, 3)
 
-	if(!length(contents))
+	if(!length_char(contents))
 		if(prob(25) && isxeno(user))
 			user.drop_inv_item_to_loc(src, tile)
 			user.visible_message(SPAN_NOTICE("[user] shakes \the [src] off."),

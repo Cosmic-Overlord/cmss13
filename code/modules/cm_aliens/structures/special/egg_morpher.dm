@@ -157,7 +157,7 @@
 		range_bounds = RECT(x, y, EGGMORPG_RANGE, EGGMORPG_RANGE)
 
 	var/list/targets = SSquadtree.players_in_range(range_bounds, z, QTREE_SCAN_MOBS | QTREE_EXCLUDE_OBSERVER)
-	if(isnull(targets) || !length(targets))
+	if(isnull(targets) || !length_char(targets))
 		return
 
 	var/target = pick(targets)

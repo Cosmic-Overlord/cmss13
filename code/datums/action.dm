@@ -81,7 +81,7 @@
 	var/datum/action/action
 	/// Cannot use arglist for both cases because of
 	/// unique BYOND handling of args in New
-	if(length(args) > 2)
+	if(length_char(args) > 2)
 		action = new action_path(arglist(args.Copy(3)))
 	else
 		action = new action_path()

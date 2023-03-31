@@ -13,7 +13,7 @@
 	for (var/obj/structure/machinery/camera/C in cameranet.cameras)
 		if (C.bugged && C.status)
 			cameras.Add(C)
-	if (length(cameras) == 0)
+	if (length_char(cameras) == 0)
 		to_chat(usr, SPAN_DANGER("No bugged functioning cameras found."))
 		return
 

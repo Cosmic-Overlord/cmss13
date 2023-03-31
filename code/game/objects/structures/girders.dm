@@ -352,8 +352,8 @@
 		icon_state = "[icon_state]_damaged"
 		density = FALSE
 	else
-		var/underscore_position =  findtext(icon_state,"_")
-		var/new_state = copytext(icon_state, 1, underscore_position)
+		var/underscore_position =  findtext_char(icon_state,"_")
+		var/new_state = copytext_char(icon_state, 1, underscore_position)
 		icon_state = new_state
 		density = TRUE
 

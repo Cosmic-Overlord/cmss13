@@ -52,7 +52,7 @@
 
 	if(welded)
 		vent_icon += "welded"
-	else if(length(connected_to))
+	else if(length_char(connected_to))
 		vent_icon += "on"
 	else
 		vent_icon += "off"

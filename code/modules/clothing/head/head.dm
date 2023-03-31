@@ -187,7 +187,7 @@
 		var/squad_name = lowertext(wearer.assigned_squad.name)
 		if("headband[squad_name]" in valid_icon_states)
 			squad_color = squad_name
-	icon_state = replacetext(initial(dummy_icon_state), "%SQUAD%", squad_color)
+	icon_state = replacetext_char(initial(dummy_icon_state), "%SQUAD%", squad_color)
 
 /obj/item/clothing/head/headband/rambo
 	desc = "It flutters in the face of the wind, defiant and unrestrained, like the man who wears it."
@@ -302,7 +302,7 @@
 	if(!slot == WEAR_HEAD)
 		return
 
-	if(length(pockets.contents) && (flags_marine_hat & HAT_GARB_OVERLAY))
+	if(length_char(pockets.contents) && (flags_marine_hat & HAT_GARB_OVERLAY))
 		for(var/obj/garb_object in pockets.contents)
 			if(garb_object.type in allowed_hat_items)
 				var/garb_state = allowed_hat_items[garb_object.type]

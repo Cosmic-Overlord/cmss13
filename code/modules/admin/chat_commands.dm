@@ -10,5 +10,5 @@
 	if(!results)
 		return "Query produced no output"
 	var/list/text_res = results.Copy(1, 3)
-	var/list/refs = length(results) > 3 ? results.Copy(4) : null
+	var/list/refs = length_char(results) > 3 ? results.Copy(4) : null
 	return "[text_res.Join("\n")][refs ? "\nRefs: [refs.Join(" ")]" : ""]"

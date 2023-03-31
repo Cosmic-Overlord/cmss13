@@ -66,7 +66,7 @@
 	if(!xeno_keys)
 		return
 
-	for(var/index in 1 to length(xeno_keys))
+	for(var/index in 1 to length_char(xeno_keys))
 		var/list/info = xeno_keys[index]
 		if(info["nicknumber"] == X.nicknumber)
 

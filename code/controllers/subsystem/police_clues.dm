@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(clues)
 	return ..()
 
 /datum/controller/subsystem/clues/fire(resumed = FALSE)
-	if(!resumed && length(prints_list))
+	if(!resumed && length_char(prints_list))
 		currentrun = prints_list.Copy()
 
 	while(currentrun.len)

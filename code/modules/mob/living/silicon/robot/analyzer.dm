@@ -46,7 +46,7 @@
 		var/mob/living/silicon/robot/H = M
 		var/list/damaged = H.get_damaged_components(1,1,1)
 		user.show_message(SPAN_NOTICE("Localized Damage:"),1)
-		if(length(damaged)>0)
+		if(length_char(damaged)>0)
 			for(var/datum/robot_component/org in damaged)
 				var/organ_name = capitalize(org.name)
 				var/organ_destroyed_msg = (org.installed == -1) ? "<font color='red'><b>DESTROYED</b></font> ":""
@@ -62,7 +62,7 @@
 		var/mob/living/carbon/human/H = M
 		var/list/damaged = H.get_damaged_limbs(1,1)
 		user.show_message(SPAN_NOTICE("Localized Damage, Brute/Electronics:"),1)
-		if(length(damaged)>0)
+		if(length_char(damaged)>0)
 			for(var/obj/limb/org in damaged)
 				var/msg_display_name = "[capitalize(org.display_name)]" // Here for now until we purge this useless shitcode
 				var/msg_brute_dmg = "[(org.brute_dam > 0) ? SPAN_DANGER("[org.brute_dam]") : "0"]"

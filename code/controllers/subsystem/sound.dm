@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(sound)
 				run_hearers |= SSquadtree.players_in_range(zone, run_template.z)
 			if(MC_TICK_CHECK)
 				return
-		while(length(run_hearers)) // Output sound to hearers
+		while(length_char(run_hearers)) // Output sound to hearers
 			var/client/C = run_hearers[run_hearers.len]
 			run_hearers.len--
 			if(C && C.soundOutput)

@@ -239,7 +239,7 @@ var/global/cas_tracking_id_increment = 0 //this var used to assign unique tracki
 /datum/game_mode/proc/generate_corpses()
 	var/list/obj/effect/landmark/corpsespawner/gamemode_spawn_corpse = GLOB.corpse_spawns.Copy()
 	while(corpses_to_spawn--)
-		if(!length(gamemode_spawn_corpse))
+		if(!length_char(gamemode_spawn_corpse))
 			break
 		var/obj/effect/landmark/corpsespawner/spawner = pick(gamemode_spawn_corpse)
 		var/turf/spawnpoint = get_turf(spawner)

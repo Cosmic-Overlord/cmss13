@@ -264,7 +264,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/afk_admins = jointext(admin_counts["afk"], ", ")
 	var/other_admins = jointext(admin_counts["noflags"], ", ")
 	var/admin_text = ""
-	var/player_count = "**Total**: [length(GLOB.clients)]"
+	var/player_count = "**Total**: [length_char(GLOB.clients)]"
 	if(stealth_admins)
 		admin_text += "**Stealthed**: [stealth_admins]\n"
 	if(afk_admins)
@@ -281,8 +281,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		"ADMINS" = admin_text,
 	)
 	if(CONFIG_GET(string/adminhelp_ahelp_link))
-		var/ahelp_link = replacetext(CONFIG_GET(string/adminhelp_ahelp_link), "$RID", SSperf_logging.round?.id)
-		ahelp_link = replacetext(ahelp_link, "$TID", id)
+		var/ahelp_link = replacetext_char(CONFIG_GET(string/adminhelp_ahelp_link), "$RID", SSperf_logging.round?.id)
+		ahelp_link = replacetext_char(ahelp_link, "$TID", id)
 		embed.url = ahelp_link
 	return embed
 
@@ -321,8 +321,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	var/list/webhook_info = list()
 	if(istext(message_or_embed))
-		var/message_content = replacetext(replacetext(message_or_embed, "\proper", ""), "\improper", "")
-		message_content = GLOB.has_discord_embeddable_links.Replace(replacetext(message_content, "`", ""), " ```$1``` ")
+		var/message_content = replacetext_char(replacetext_char(message_or_embed, "\proper", ""), "\improper", "")
+		message_content = GLOB.has_discord_embeddable_links.Replace(replacetext_char(message_content, "`", ""), " ```$1``` ")
 		webhook_info["content"] = message_content
 	else
 		var/datum/discord_embed/embed = message_or_embed
@@ -631,8 +631,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/datum/discord_embed/embed = new()
 		embed.title = "Ticket #[id]"
 		if(CONFIG_GET(string/adminhelp_ahelp_link))
-			var/ahelp_link = replacetext(CONFIG_GET(string/adminhelp_ahelp_link), "$RID", SSperf_logging.round.id)
-			ahelp_link = replacetext(ahelp_link, "$TID", id)
+			var/ahelp_link = replacetext_char(CONFIG_GET(string/adminhelp_ahelp_link), "$RID", SSperf_logging.round.id)
+			ahelp_link = replacetext_char(ahelp_link, "$TID", id)
 			embed.url = ahelp_link
 		embed.description = "[key_name(usr)] has sent an action to this ticket. Action ID: [action]"
 		if(webhook_sent == WEBHOOK_URGENT)
@@ -732,7 +732,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 /datum/admin_help_ui_handler/ui_data(mob/user)
 	. = list()
 	var/list/admins = get_admin_counts(R_BAN)
-	.["adminCount"] = length(admins["present"])
+	.["adminCount"] = length_char(admins["present"])
 
 /datum/admin_help_ui_handler/ui_static_data(mob/user)
 	. = list()
@@ -757,7 +757,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 	var/message = sanitize_text(trim(params["message"]))
 	var/urgent = !!params["urgent"]
 	var/list/admins = get_admin_counts(R_BAN)
-	if(length(admins["present"]) != 0 || jobban_isbanned(usr, "Urgent Adminhelp") != null)
+	if(length_char(admins["present"]) != 0 || jobban_isbanned(usr, "Urgent Adminhelp") != null)
 		urgent = FALSE
 
 	if(user_client.adminhelptimerid)
@@ -921,19 +921,19 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
  * * msg - the message being scanned
  */
 /proc/check_asay_links(msg)
-	var/list/msglist = splittext(msg, " ") //explode the input msg into a list
+	var/list/msglist = splittext_char(msg, " ") //explode the input msg into a list
 	var/list/pinged_admins = list() // if we ping any admins, store them here so we can ping them after
 	var/modified = FALSE // did we find anything?
 
 	var/i = 0
 	for(var/word in msglist)
 		i++
-		if(!length(word))
+		if(!length_char(word))
 			continue
 
 		switch(word[1])
 			if("@")
-				var/stripped_word = ckey(copytext(word, 2))
+				var/stripped_word = ckey(copytext_char(word, 2))
 
 				// first we check if it's a ckey of an admin
 				var/client/client_check = GLOB.directory[stripped_word]
@@ -953,7 +953,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 				modified = TRUE
 
 			if("#") // check if we're linking a ticket
-				var/possible_ticket_id = text2num(copytext(word, 2))
+				var/possible_ticket_id = text2num(copytext_char(word, 2))
 				if(!possible_ticket_id)
 					continue
 

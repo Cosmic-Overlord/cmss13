@@ -29,12 +29,12 @@
 /datum/db/query/brsql/read_single()
 	if(status >= DB_QUERY_FINISHED) //broken or finished
 		return
-	
+
 	status = DB_QUERY_STARTED
 	var/job_result = rustg_sql_check_query(job_id)
 	if(job_result == RUSTG_JOB_NO_RESULTS_YET)
 		return
-	
+
 	var/result = json_decode(job_result)
 	switch(result["status"])
 		if("ok")
@@ -45,7 +45,7 @@
 				var/list/col_list = list()
 				for(var/col in columns)
 					col_list.Add(col["name"])
-				var/col_len = length(col_list)
+				var/col_len = length_char(col_list)
 				for(var/row in result["rows"])
 					var/adapted_row = list()
 					for(var/i = 1; i<=col_len; i++)

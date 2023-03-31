@@ -258,7 +258,7 @@
 
 	// If we sent a ticket, but nobody has responded, send another one instead.
 	// Not worth opening a menu when there's nothing to read, you're only going to want to send.
-	if (length(current_ticket.admins_involved - client?.ckey) == 0)
+	if (length_char(current_ticket.admins_involved - client?.ckey) == 0)
 		return FALSE
 
 	return TRUE

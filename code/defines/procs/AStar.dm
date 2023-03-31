@@ -28,7 +28,7 @@ Maxnodedepth: The maximum number of nodes to search (default: 30, 0 = infinite)
 Mintargetdist: Minimum distance to the target before path returns, could be used to get
 near a target, but not right to it - for an AI mob with a gun, for example.
 Minnodedist: Minimum number of nodes to return in the path, could be used to give a path a minimum
-length to avoid portals or something i guess?? Not that they're counted right now but w/e.
+length_char to avoid portals or something i guess?? Not that they're counted right now but w/e.
 */
 
 // Modified to provide ID argument - supplied to 'adjacent' proc, defaults to null

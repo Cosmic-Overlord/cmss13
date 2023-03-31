@@ -47,7 +47,7 @@ HELP TO PROC TYPEPATH SHORTCUTS (Purely based on the path in the code)
 	if (thingtocall)
 		object = thingtocall
 	delegate = proctocall
-	if (length(args) > 2)
+	if (length_char(args) > 2)
 		arguments = args.Copy(3)
 
 /proc/ImmediateInvokeAsync(thingtocall, proctocall, ...)
@@ -56,7 +56,7 @@ HELP TO PROC TYPEPATH SHORTCUTS (Purely based on the path in the code)
 	if (!thingtocall)
 		return
 
-	var/list/calling_arguments = length(args) > 2 ? args.Copy(3) : null
+	var/list/calling_arguments = length_char(args) > 2 ? args.Copy(3) : null
 
 	if (thingtocall == GLOBAL_PROC)
 		call(proctocall)(arglist(calling_arguments))
@@ -67,8 +67,8 @@ HELP TO PROC TYPEPATH SHORTCUTS (Purely based on the path in the code)
 	if (!object)
 		return
 	var/list/calling_arguments = arguments
-	if (length(args))
-		if (length(arguments))
+	if (length_char(args))
+		if (length_char(arguments))
 			calling_arguments = calling_arguments + args //not += so that it creates a new list so the arguments list stays clean
 		else
 			calling_arguments = args
@@ -82,8 +82,8 @@ HELP TO PROC TYPEPATH SHORTCUTS (Purely based on the path in the code)
 	if (!object)
 		return
 	var/list/calling_arguments = arguments
-	if (length(args))
-		if (length(arguments))
+	if (length_char(args))
+		if (length_char(arguments))
 			calling_arguments = calling_arguments + args //not += so that it creates a new list so the arguments list stays clean
 		else
 			calling_arguments = args
@@ -96,14 +96,14 @@ HELP TO PROC TYPEPATH SHORTCUTS (Purely based on the path in the code)
 /datum/callback/dynamic/New(proctocall, ...)
 	object = null
 	delegate = proctocall
-	if (length(args) > 1)
+	if (length_char(args) > 1)
 		arguments = args.Copy(2)
 
 /datum/callback/dynamic/Invoke(...)
 	var/list/calling_arguments = arguments
-	if (length(args))
+	if (length_char(args))
 		object = args[1]
-		if (length(arguments))
+		if (length_char(arguments))
 			calling_arguments = calling_arguments + args.Copy(2)
 		else
 			calling_arguments = args.Copy(2)
@@ -114,9 +114,9 @@ HELP TO PROC TYPEPATH SHORTCUTS (Purely based on the path in the code)
 /datum/callback/dynamic/InvokeAsync(...)
 	set waitfor = FALSE
 	var/list/calling_arguments = arguments
-	if (length(args))
+	if (length_char(args))
 		object = args[1]
-		if (length(arguments))
+		if (length_char(arguments))
 			calling_arguments = calling_arguments + args.Copy(2)
 		else
 			calling_arguments = args.Copy(2)

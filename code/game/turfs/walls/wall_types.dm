@@ -988,7 +988,7 @@
 
 		if(MW.group && !(MW.group in found_structures))
 			found_structures += MW.group
-			current_walls += length(MW.group.walls)
+			current_walls += length_char(MW.group.walls)
 
 	if(current_walls > max_walls)
 		found_structures = null

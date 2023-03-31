@@ -87,7 +87,7 @@
 	message += "\n"
 	if(display_additional_stats)
 		message += SPAN_INFO("Its display reads - Kills: [kills] | Shots: [shots].")
-	if(length(nickname) > 0)
+	if(length_char(nickname) > 0)
 		message += SPAN_INFO("\nIt has been assigned the name: [nickname]")
 	. += message
 
@@ -206,7 +206,7 @@
 		// we need to ask what to do
 		var/list/multitool_actions = list()
 		var/obj/item/device/multitool/tool = O
-		if(encryptable && !linked_laptop && length(tool.encryption_keys) > 0)
+		if(encryptable && !linked_laptop && length_char(tool.encryption_keys) > 0)
 			multitool_actions += "encrypt"
 		if(encryptable && linked_laptop)
 			multitool_actions += "decrypt"
@@ -214,9 +214,9 @@
 			multitool_actions += "disassemble"
 
 		var/result = null
-		if(length(multitool_actions) > 1)
+		if(length_char(multitool_actions) > 1)
 			result = tgui_input_list(user, "What do you want to do with the multitool", "Multitool interaction", multitool_actions)
-		else if (length(multitool_actions) == 1)
+		else if (length_char(multitool_actions) == 1)
 			result = multitool_actions[1]
 
 		if(!result)
@@ -240,7 +240,7 @@
 			if("decrypt")
 				// unregister
 				var/loaded_key = linked_laptop.serial_number
-				if(length(tool.encryption_keys) == 0)
+				if(length_char(tool.encryption_keys) == 0)
 					to_chat(user, SPAN_NOTICE("\The [src] is encrypted. To use \the [tool] it must be paired with the laptop [linked_laptop.serial_number]."))
 				if(tool.encryption_keys[loaded_key])
 					to_chat(user, SPAN_NOTICE("Attempting decryption of [src]."))

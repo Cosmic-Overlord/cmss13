@@ -96,7 +96,7 @@
 			components += component.type
 		var/list/names = list()
 		names += "---Components---"
-		if(length(components))
+		if(length_char(components))
 			names += sort_list(components, GLOBAL_PROC_REF(cmp_typepaths_asc))
 		names += "---Elements---"
 		// We have to list every element here because there is no way to know what element is on this object without doing some sort of hack.

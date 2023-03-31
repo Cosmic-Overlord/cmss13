@@ -257,12 +257,12 @@
 
 //Returns whether or not a player is a guest using their ckey as an input
 /proc/IsGuestKey(key)
-	if (findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
+	if (findtext_char(key, "Guest-", 1, 7) != 1) //was findtextEx
 		return 0
 
-	var/i = 7, ch, len = length(key)
+	var/i = 7, ch, len = length_char(key)
 
-	if(copytext(key, 7, 8) == "W") //webclient
+	if(copytext_char(key, 7, 8) == "W") //webclient
 		i++
 
 	for (, i <= len, ++i)
@@ -886,7 +886,7 @@
 	return toReturn
 
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
-/proc/can_see(atom/source, atom/target, length=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
+/proc/can_see(atom/source, atom/target, length_char=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
 	var/turf/target_turf = get_turf(target)
 	var/steps = 0
@@ -898,7 +898,7 @@
 		return FALSE
 
 	while(current != target_turf)
-		if(steps > length) return FALSE
+		if(steps > length_char) return FALSE
 		if(!current || current.opacity) return FALSE
 		for(var/atom/A in current)
 			if(A && A.opacity) return FALSE
@@ -1248,7 +1248,7 @@ var/global/image/action_purple_power_up
 
 	// Fix it up with /area/var/related due to lighting shenanigans
 	var/list/area/LA
-	if(!length(A.related))
+	if(!length_char(A.related))
 		LA = list(A)
 	else LA = A.related
 	for(var/area/Ai in LA)
@@ -1336,7 +1336,7 @@ var/global/image/action_purple_power_up
 						X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 
 					/* Quick visual fix for some weird shuttle corner artefacts when on transit space tiles */
-					if(direction && findtext(X.icon_state, "swall_s"))
+					if(direction && findtext_char(X.icon_state, "swall_s"))
 
 						// Spawn a new shuttle corner object
 						var/obj/corner = new()
@@ -1344,7 +1344,7 @@ var/global/image/action_purple_power_up
 						corner.density = TRUE
 						corner.anchored = TRUE
 						corner.icon = X.icon
-						corner.icon_state = replacetext(X.icon_state, "_s", "_f")
+						corner.icon_state = replacetext_char(X.icon_state, "_s", "_f")
 						corner.tag = "delete me"
 						corner.name = "wall"
 
@@ -1363,7 +1363,7 @@ var/global/image/action_purple_power_up
 						// Reset the shuttle corners
 						if(O.tag == "delete me")
 							X.icon = 'icons/turf/shuttle.dmi'
-							X.icon_state = replacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
+							X.icon_state = replacetext_char(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
 							X.name = "wall"
 							qdel(O) // prevents multiple shuttle corners from stacking
 							continue
@@ -1521,7 +1521,7 @@ var/list/WALLITEMS = list(
 	return 0
 
 /proc/format_text(text)
-	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
+	return replacetext_char(replacetext_char(text,"\proper ",""),"\improper ","")
 
 /proc/getline(atom/M, atom/N, include_from_atom = TRUE)//Ultra-Fast Bresenham Line-Drawing Algorithm
 	var/px=M.x //starting x
@@ -1784,7 +1784,7 @@ var/list/WALLITEMS = list(
 #define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##datum, NAMEOF(##datum, ##var), ##var_value)
 
 /proc/___callbackvarset(list_or_datum, var_name, var_value)
-	if(length(list_or_datum))
+	if(length_char(list_or_datum))
 		list_or_datum[var_name] = var_value
 		return
 	var/datum/D = list_or_datum
@@ -1848,7 +1848,7 @@ var/list/WALLITEMS = list(
 	sortTim(GLOB.sorted_areas, GLOBAL_PROC_REF(cmp_name_asc))
 
 /atom/proc/GetAllContentsIgnoring(list/ignore_typecache)
-	if(!length(ignore_typecache))
+	if(!length_char(ignore_typecache))
 		return GetAllContents()
 	var/list/processing = list(src)
 	var/list/assembled = list()

@@ -86,7 +86,7 @@
 
 	var/datum/reagent/to_add = O.reagents.reagent_list[1]
 
-	if(!istype(to_add) || (length(reagents.reagent_list) && flamer_chem != to_add.id) || length(O.reagents.reagent_list) > 1)
+	if(!istype(to_add) || (length_char(reagents.reagent_list) && flamer_chem != to_add.id) || length_char(O.reagents.reagent_list) > 1)
 		to_chat(user, SPAN_WARNING("You can't mix fuel mixtures!"))
 		return
 

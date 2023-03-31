@@ -53,7 +53,7 @@ var/jobban_keylist[0] //to store the keys & ranks
 	log_admin("Loading jobban_rank")
 	S["runonce"] >> jobban_runonce
 
-	if (!length(jobban_keylist))
+	if (!length_char(jobban_keylist))
 		jobban_keylist=list()
 		log_admin("jobban_keylist was empty")
 

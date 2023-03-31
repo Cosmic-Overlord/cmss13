@@ -22,7 +22,7 @@
 	for(var/path in common_dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) == "/") // Ignore directories.
+			if(copytext_char(filename, length_char(filename)) == "/") // Ignore directories.
 				continue
 			if(!fexists(path + filename))
 				continue
@@ -32,7 +32,7 @@
 	for(var/path in uncommon_dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) == "/") // Ignore directories.
+			if(copytext_char(filename, length_char(filename)) == "/") // Ignore directories.
 				continue
 			if(!fexists(path + filename))
 				continue
@@ -97,7 +97,7 @@
 	for(var/path in common_dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) == "/") // Ignore directories.
+			if(copytext_char(filename, length_char(filename)) == "/") // Ignore directories.
 				continue
 			if(!fexists(path + filename))
 				continue
@@ -114,7 +114,7 @@
 		filenames = filename
 	for(var/asset in filenames)
 		if(!(asset in assets))
-			var/key = copytext(asset, 7)
+			var/key = copytext_char(asset, 7)
 			assets += list(key)
 			var/datum/asset_cache_item/ACI = SSassets.cache[key]
 			if(ACI)
@@ -173,7 +173,7 @@
 
 		var/icon_file = 'icons/mob/hud/actions_xeno.dmi'
 		var/icon_state = initial(RC.construction_name)
-		var/icon_name = replacetext(icon_state, " ", "-")
+		var/icon_name = replacetext_char(icon_state, " ", "-")
 
 		if (sprites[icon_name])
 			continue
@@ -285,7 +285,7 @@
 	)
 
 	var/i
-	for(i = 1; i < length(squads); i++)
+	for(i = 1; i < length_char(squads); i++)
 		var/squad = squads[i]
 		var/color = squad_colors[i]
 		for(var/iref in icon_data)
@@ -339,7 +339,7 @@
 				item = new k()
 				I = icon(item.icon, item.icon_state, SOUTH)
 				qdel(item)
-		var/imgid = replacetext(replacetext("[k]", "/obj/item/", ""), "/", "-")
+		var/imgid = replacetext_char(replacetext_char("[k]", "/obj/item/", ""), "/", "-")
 
 		Insert(imgid, I)
 	return ..()
@@ -353,7 +353,7 @@
 	var/icon_states_list = icon_states(icon_file)
 	for(var/obj/effect/alien/resin/fruit/fruit as anything in typesof(/obj/effect/alien/resin/fruit))
 		var/icon_state = initial(fruit.mature_icon_state)
-		var/icon_name = replacetext(icon_state, " ", "-")
+		var/icon_name = replacetext_char(icon_state, " ", "-")
 
 		if (sprites[icon_name])
 			continue

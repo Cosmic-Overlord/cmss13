@@ -30,7 +30,7 @@
 
 /obj/item/storage/box/implant/picker/proc/select_implants(mob/user)
 	while(picks_left)
-		if(!length(pickable))
+		if(!length_char(pickable))
 			picks_left = 0
 			break
 		var/list/options = list()

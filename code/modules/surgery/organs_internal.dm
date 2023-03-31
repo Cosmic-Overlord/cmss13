@@ -58,7 +58,7 @@ and organ transplant code which may come in handy in future but haven't been edi
 		else
 			toolname = "the poultice"
 
-	if(length(damaged_organs) > 1)
+	if(length_char(damaged_organs) > 1)
 		user.affected_message(target,
 			SPAN_NOTICE("You begin treating the damaged organs in [target]'s [surgery.affected_limb.display_name] with [toolname]."),
 			SPAN_NOTICE("[user] begins to treat the damaged organs in your [surgery.affected_limb.display_name] with [toolname]."),

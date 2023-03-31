@@ -181,7 +181,7 @@ their unique feature is that a direct hit will buff your damage and firerate
 	if(!current_mag.current_rounds && !in_chamber) update_icon()
 
 /obj/item/weapon/gun/lever_action/proc/unload_bullet(mob/user)
-	if(isnull(current_mag) || !length(current_mag.chamber_contents))
+	if(isnull(current_mag) || !length_char(current_mag.chamber_contents))
 		return
 	var/obj/item/ammo_magazine/handful/new_handful = retrieve_bullet(current_mag.chamber_contents[current_mag.chamber_position])
 
@@ -211,7 +211,7 @@ their unique feature is that a direct hit will buff your damage and firerate
 		add_to_internal_mag(user,mag_caliber) //This will check the other conditions.
 
 /obj/item/weapon/gun/lever_action/proc/ready_lever_action_internal_mag()
-	if(isnull(current_mag) || !length(current_mag.chamber_contents))
+	if(isnull(current_mag) || !length_char(current_mag.chamber_contents))
 		return
 	if(current_mag.current_rounds > 0)
 		ammo = GLOB.ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]

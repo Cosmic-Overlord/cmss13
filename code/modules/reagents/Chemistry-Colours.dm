@@ -1,8 +1,8 @@
 /proc/mix_color_from_reagents(list/reagent_list)
-	if(!reagent_list || !length(reagent_list))
+	if(!reagent_list || !length_char(reagent_list))
 		return 0
 
-	var/contents = length(reagent_list)
+	var/contents = length_char(reagent_list)
 	var/list/weight = new /list(contents)
 	var/list/redcolor = new /list(contents)
 	var/list/greencolor = new /list(contents)
@@ -22,11 +22,11 @@
 	for(i=1; i<=contents; i++)
 		var/datum/reagent/re = reagent_list[i]
 		var/hue = re.color
-		if(length(hue) != 7)
+		if(length_char(hue) != 7)
 			return 0
-		redcolor[i]=hex2num(copytext(hue,2,4))
-		greencolor[i]=hex2num(copytext(hue,4,6))
-		bluecolor[i]=hex2num(copytext(hue,6,8))
+		redcolor[i]=hex2num(copytext_char(hue,2,4))
+		greencolor[i]=hex2num(copytext_char(hue,4,6))
+		bluecolor[i]=hex2num(copytext_char(hue,6,8))
 
 	//mix all the colors
 	var/red = mixOneColor(weight,redcolor)
@@ -38,10 +38,10 @@
 	return finalcolor
 
 /proc/mixOneColor(list/weight, list/color)
-	if (!weight || !color || length(weight)!=length(color))
+	if (!weight || !color || length_char(weight)!=length_char(color))
 		return 0
 
-	var/contents = length(weight)
+	var/contents = length_char(weight)
 	var/i
 
 	//normalize weights
@@ -66,7 +66,7 @@
 	return mixedcolor
 
 /proc/mix_burn_colors(list/reagent_list)
-	var/contents = length(reagent_list)
+	var/contents = length_char(reagent_list)
 	var/list/weight = new /list(contents)
 	var/list/redcolor = new /list(contents)
 	var/list/greencolor = new /list(contents)
@@ -78,11 +78,11 @@
 		weight[i] = max(re.volume,1) * re.burncolormod
 		//fill the lists of colours
 		var/hue = re.burncolor
-		if(length(hue) != 7)
+		if(length_char(hue) != 7)
 			return 0
-		redcolor[i]=hex2num(copytext(hue,2,4))
-		greencolor[i]=hex2num(copytext(hue,4,6))
-		bluecolor[i]=hex2num(copytext(hue,6,8))
+		redcolor[i]=hex2num(copytext_char(hue,2,4))
+		greencolor[i]=hex2num(copytext_char(hue,4,6))
+		bluecolor[i]=hex2num(copytext_char(hue,6,8))
 
 	//mix all the colors
 	var/red = mixOneColor(weight,redcolor)
@@ -92,4 +92,4 @@
 	//assemble all the pieces
 	var/finalcolor = rgb(red, green, blue)
 	return finalcolor
-	
+

@@ -8,12 +8,26 @@
 	full_name = "IC Say"
 	keybind_signal = COMSIG_KB_CLIENT_SAY_DOWN
 
+/datum/keybinding/client/communication/say/down(client/user)
+	. = ..()
+	if(.)
+		return
+	winset(user, null, "command=[user.tgui_say_create_open_command(SAY_CHANNEL)]")
+	return TRUE
+
 /datum/keybinding/client/communication/ooc
 	hotkey_keys = list("O")
 	classic_keys = list("F2")
 	name = OOC_CHANNEL
 	full_name = "Out Of Character Say (OOC)"
 	keybind_signal = COMSIG_KB_CLIENT_OOC_DOWN
+
+/datum/keybinding/client/communication/ooc/down(client/user)
+	. = ..()
+	if(.)
+		return
+	winset(user, null, "command=[user.tgui_say_create_open_command(OOC_CHANNEL)]")
+	return TRUE
 
 /datum/keybinding/client/communication/looc
 	hotkey_keys = list("L")
@@ -22,12 +36,25 @@
 	full_name = "Local Out Of Character Say (OOC)"
 	keybind_signal = COMSIG_KB_CLIENT_LOOC_DOWN
 
+/datum/keybinding/client/communication/looc/down(client/user)
+	. = ..()
+	if(.)
+		return
+	winset(user, null, "command=[user.tgui_say_create_open_command(LOOC_CHANNEL)]")
+	return TRUE
 /datum/keybinding/client/communication/me
 	hotkey_keys = list("M")
 	classic_keys = list("F4")
 	name = ME_CHANNEL
 	full_name = "Custom Emote (/Me)"
 	keybind_signal = COMSIG_KB_CLIENT_ME_DOWN
+
+/datum/keybinding/client/communication/me/down(client/user)
+	. = ..()
+	if(.)
+		return
+	winset(user, null, "command=[user.tgui_say_create_open_command(ME_CHANNEL)]")
+	return TRUE
 
 /datum/keybinding/client/communication/whisper
 	hotkey_keys = list("Unbound")
@@ -41,6 +68,13 @@
 	name = COMMS_CHANNEL
 	full_name = "IC Comms (;)"
 	keybind_signal = COMSIG_KG_CLIENT_RADIO_DOWN
+
+/datum/keybinding/client/communication/radio/down(client/user)
+	. = ..()
+	if(.)
+		return
+	winset(user, null, "command=[user.tgui_say_create_open_command(COMMS_CHANNEL)]")
+	return TRUE
 
 /datum/keybinding/client/communication/mod_say
 	hotkey_keys = list("Unbound")

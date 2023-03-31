@@ -25,8 +25,8 @@
 #define BRSQL_COUNT_COLUMN_NAME "total"
 #define BRSQL_ROOT_NAME "__root"
 #define BRSQL_ROOT_ALIAS "T_root"
-#define COPY_FROM_START(T, loc) copytext(T, 1, loc)
-#define COPY_AFTER_FOUND(T, loc) copytext(T, loc+1)
+#define COPY_FROM_START(T, loc) copytext_char(T, 1, loc)
+#define COPY_AFTER_FOUND(T, loc) copytext_char(T, loc+1)
 
 /datum/db/adapter/brsql_adapter
 	var/list/issue_log
@@ -103,16 +103,16 @@
 /datum/db/adapter/brsql_adapter/insert_table(table_name, list/values, datum/callback/CB, sync = FALSE)
 	if(!sync)
 		set waitfor = 0
-	var/length = values.len
+	var/length_char = values.len
 	var/list/qpars = list()
 	var/query_inserttable = getquery_insert_table(table_name, values, qpars)
-	var/datum/callback/callback = CALLBACK(src, TYPE_PROC_REF(/datum/db/adapter/brsql_adapter, after_insert_table), CB, length, table_name)
+	var/datum/callback/callback = CALLBACK(src, TYPE_PROC_REF(/datum/db/adapter/brsql_adapter, after_insert_table), CB, length_char, table_name)
 	if(sync)
 		SSdatabase.create_parametric_query_sync(query_inserttable, qpars, callback)
 	else
 		SSdatabase.create_parametric_query(query_inserttable, qpars, callback)
 
-/datum/db/adapter/brsql_adapter/proc/after_insert_table(datum/callback/CB, length, table_name, uid, list/results, datum/db/query/brsql/query)
+/datum/db/adapter/brsql_adapter/proc/after_insert_table(datum/callback/CB, length_char, table_name, uid, list/results, datum/db/query/brsql/query)
 	CB.Invoke(query.last_insert_id)
 
 
@@ -610,9 +610,9 @@
 
 /datum/db/adapter/brsql_adapter/proc/savetext2fields(text)
 	var/list/result = list()
-	var/list/split1 = splittext(text, ",")
+	var/list/split1 = splittext_char(text, ",")
 	for(var/field in split1)
-		var/list/split2 = splittext(field, ":")
+		var/list/split2 = splittext_char(field, ":")
 		result[split2[1]] = text2num(split2[2])
 	return result
 
@@ -711,7 +711,7 @@
 		var/filter_text = get_filter(view.root_filter, field_alias, post_pflds)
 		query_text += "AND ([filter_text]) "
 
-	var/order_length = length(view.order_by)
+	var/order_length = length_char(view.order_by)
 
 	if(order_length)
 		var/order_text = "ORDER BY "
@@ -728,7 +728,7 @@
 			index_order++
 		query_text += order_text
 
-	var/group_length = length(view.group_by)
+	var/group_length = length_char(view.group_by)
 
 	if(group_length)
 		var/group_text = "GROUP BY "

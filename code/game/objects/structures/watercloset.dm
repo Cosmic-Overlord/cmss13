@@ -40,7 +40,7 @@
 
 	if(!open)
 		if(cistern)
-			if(!length(contents))
+			if(!length_char(contents))
 				to_chat(user, SPAN_NOTICE("The cistern is empty."))
 				return
 			else

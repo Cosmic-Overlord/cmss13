@@ -40,7 +40,7 @@
 	if(!labels_left)
 		to_chat(user, SPAN_WARNING("No labels left."))
 		return
-	if(length(A.name) + length(label) > 64)
+	if(length_char(A.name) + length_char(label) > 64)
 		to_chat(user, SPAN_WARNING("Label too big."))
 		return
 	if(isliving(A) || istype(A, /obj/item/holder))
@@ -58,7 +58,7 @@
 	if(isturf(A))
 		to_chat(user, SPAN_WARNING("The label won't stick to that."))
 		return
-	if(!label || !length(label))
+	if(!label || !length_char(label))
 		remove_label(A, user)
 		return
 
@@ -86,8 +86,8 @@
 	if(mode)
 		to_chat(user, SPAN_NOTICE("You turn on \the [src]."))
 		//Now let them choose the text.
-		var/str = copytext(reject_bad_text(input(user,"Label text?", "Set label", "")), 1, MAX_NAME_LEN)
-		if(!str || !length(str))
+		var/str = copytext_char(reject_bad_text(input(user,"Label text?", "Set label", "")), 1, MAX_NAME_LEN)
+		if(!str || !length_char(str))
 			to_chat(user, SPAN_NOTICE("Label text cleared. You can now remove labels."))
 			label = null
 			return

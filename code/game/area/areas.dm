@@ -465,7 +465,7 @@
 	return flags
 
 /area/proc/reg_in_areas_in_z()
-	if(!length(contents))
+	if(!length_char(contents))
 		return
 
 	var/list/areas_in_z = SSmapping.areas_in_z

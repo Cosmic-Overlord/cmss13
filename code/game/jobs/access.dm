@@ -22,7 +22,7 @@
 	. = list()
 	if(!access_text)
 		return
-	var/list/split = splittext(access_text,";")
+	var/list/split = splittext_char(access_text,";")
 	for(var/x in split)
 		var/n = text2num(x)
 		if(n)

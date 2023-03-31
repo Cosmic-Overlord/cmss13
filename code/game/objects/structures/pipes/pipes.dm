@@ -100,7 +100,7 @@
 		if(!(target in connected_to))
 			continue
 
-		if(!QDELETED(target) && (isnull(best_connected_pipe) || length(target.connected_to) > length(best_connected_pipe.connected_to)))
+		if(!QDELETED(target) && (isnull(best_connected_pipe) || length_char(target.connected_to) > length_char(best_connected_pipe.connected_to)))
 			best_connected_pipe = target
 	return best_connected_pipe
 

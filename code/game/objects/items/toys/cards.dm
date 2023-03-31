@@ -33,7 +33,7 @@
 
 /obj/item/toy/deck/get_examine_text(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("There are <b>[length(cards)]</b> cards remaining in the deck.")
+	. += SPAN_NOTICE("There are <b>[length_char(cards)]</b> cards remaining in the deck.")
 
 /obj/item/toy/deck/proc/populate_deck()
 	var/card_id = 1
@@ -83,7 +83,7 @@
 	..()
 
 /obj/item/toy/deck/update_icon()
-	var/cards_length = length(cards)
+	var/cards_length = length_char(cards)
 	if(cards_length == max_cards) icon_state = base_icon
 	else if(!cards_length) icon_state = "[base_icon]_empty"
 	else icon_state = "[base_icon]_open"
@@ -102,7 +102,7 @@
 
 	var/mob/living/carbon/human/user = usr
 
-	if(!length(cards))
+	if(!length_char(cards))
 		to_chat(usr, SPAN_WARNING("There are no cards in the deck."))
 		return
 
@@ -128,13 +128,13 @@
 
 	var/mob/living/carbon/human/user = usr
 
-	var/cards_length = length(cards)
+	var/cards_length = length_char(cards)
 	if(!cards_length)
 		to_chat(user, SPAN_WARNING("There are no cards in the deck."))
 		return
 
 	var/num_cards = tgui_input_number(user, "How many cards do you want to draw? ([cards_length] remaining)", "Card Drawing", 1, cards_length, 1)
-	cards_length = length(cards)
+	cards_length = length_char(cards)
 	if(!cards_length)
 		to_chat(user, SPAN_WARNING("There are no cards in the deck."))
 		return
@@ -173,7 +173,7 @@
 
 	var/mob/living/carbon/human/user = usr
 
-	var/cards_length = length(cards)
+	var/cards_length = length_char(cards)
 	if(!cards_length)
 		to_chat(user, SPAN_WARNING("There are no cards in the deck."))
 		return
@@ -200,7 +200,7 @@
 	if(usr.stat || !Adjacent(usr))
 		return
 
-	if(!length(cards))
+	if(!length_char(cards))
 		to_chat(usr, SPAN_WARNING("There are no cards in the deck."))
 		return
 
@@ -213,7 +213,7 @@
 	if(!usr || QDELETED(src) || !Adjacent(usr) || !M || QDELETED(M))
 		return
 
-	if(!length(cards))
+	if(!length_char(cards))
 		to_chat(usr, SPAN_WARNING("There are no cards in the deck."))
 		return
 
@@ -237,7 +237,7 @@
 /obj/item/toy/deck/attack_self(mob/user)
 	..()
 	var/list/newcards = list()
-	for(var/i = 1 to length(cards))
+	for(var/i = 1 to length_char(cards))
 		var/datum/playing_card/P = pick_n_take(cards)
 		newcards += P
 	cards = newcards
@@ -250,7 +250,7 @@
 	if(!ishuman(over) || get_dist(usr, over) > 3)
 		return
 
-	if(!length(cards))
+	if(!length_char(cards))
 		to_chat(usr, SPAN_WARNING("There are no cards in the deck."))
 		return
 
@@ -271,7 +271,7 @@
 /obj/item/toy/handcard/get_examine_line(mob/user)
 	. = ..()
 	if(!concealed)
-		. += " ([length(cards)] card\s)"
+		. += " ([length_char(cards)] card\s)"
 
 /obj/item/toy/handcard/aceofspades
 	icon_state = "spades_ace"
@@ -316,7 +316,7 @@
 		return
 
 	//fuck any qsorts and merge sorts. This needs to be brutally easy
-	var/cards_length = length(cards)
+	var/cards_length = length_char(cards)
 	for(var/i = 1 to cards_length)
 		for(var/k = 2 to cards_length)
 			if(cards[i].sort_index > cards[k].sort_index)
@@ -330,15 +330,15 @@
 /obj/item/toy/handcard/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/toy/handcard))
 		var/obj/item/toy/handcard/H = O
-		var/cards_length = length(H.cards)
+		var/cards_length = length_char(H.cards)
 		for(var/datum/playing_card/P in H.cards)
 			cards += P
 		qdel(O)
 		if(pile_state)
 			if(concealed)
-				user.visible_message(SPAN_NOTICE("\The [user] adds [cards_length > 1 ? "their hand" : "a card"] to \the [src]."), SPAN_NOTICE("You add [cards_length > 1 ? "your hand" : "<b>[cards[length(cards)].name]</b>"] to the \the [src]."))
+				user.visible_message(SPAN_NOTICE("\The [user] adds [cards_length > 1 ? "their hand" : "a card"] to \the [src]."), SPAN_NOTICE("You add [cards_length > 1 ? "your hand" : "<b>[cards[length_char(cards)].name]</b>"] to the \the [src]."))
 			else
-				user.visible_message(SPAN_NOTICE("\The [user] adds [cards_length > 1 ? "their hand" : "<b>[cards[length(cards)].name]</b>"] to \the [src]."), SPAN_NOTICE("You add [cards_length > 1 ? "your hand" : "<b>[cards[length(cards)].name]</b>"] to \the [src]."))
+				user.visible_message(SPAN_NOTICE("\The [user] adds [cards_length > 1 ? "their hand" : "<b>[cards[length_char(cards)].name]</b>"] to \the [src]."), SPAN_NOTICE("You add [cards_length > 1 ? "your hand" : "<b>[cards[length_char(cards)].name]</b>"] to \the [src]."))
 		else
 			if(loc != user)
 				user.put_in_hands(src)
@@ -364,19 +364,19 @@
 		H.cards += card
 		cards -= card
 		H.update_icon()
-		if(!length(cards))
+		if(!length_char(cards))
 			qdel(src)
 		else
 			update_icon()
 		return
 	else if(pile_state)
 		var/obj/item/toy/handcard/H = get_or_make_user_hand(user, src)
-		var/datum/playing_card/P = cards[length(cards)]
+		var/datum/playing_card/P = cards[length_char(cards)]
 		H.cards += P
 		cards -= P
 		H.update_icon()
 		user.visible_message(SPAN_NOTICE("<b>[user]</b> draws a card from \the [src]."), SPAN_NOTICE("You draw <b>[P.name]</b> from \the [src]."))
-		if(!length(cards))
+		if(!length_char(cards))
 			qdel(src)
 		else
 			update_icon()
@@ -396,11 +396,11 @@
 
 /obj/item/toy/handcard/get_examine_text(mob/user)
 	. = ..()
-	if(length(cards))
-		. += SPAN_NOTICE("It has <b>[length(cards)]</b> cards.")
+	if(length_char(cards))
+		. += SPAN_NOTICE("It has <b>[length_char(cards)]</b> cards.")
 		if(pile_state)
 			if(!concealed)
-				. += SPAN_NOTICE("The top card is <b>[cards[length(cards)].name]</b>.")
+				. += SPAN_NOTICE("The top card is <b>[cards[length_char(cards)].name]</b>.")
 		else if(loc == user)
 			var/card_names = list()
 			for(var/datum/playing_card/P as anything in cards)
@@ -409,7 +409,7 @@
 
 
 /obj/item/toy/handcard/update_icon(direction = 0)
-	var/cards_length = length(cards)
+	var/cards_length = length_char(cards)
 	if(pile_state)
 		if(concealed)
 			name = "draw pile"

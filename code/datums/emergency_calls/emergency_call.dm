@@ -256,7 +256,7 @@
 	if(shuttle && auto_shuttle_launch)
 		var/obj/structure/machinery/computer/shuttle/ert/comp = shuttle.getControlConsole()
 		var/list/lzs = comp.get_landing_zones()
-		if(!length(lzs))
+		if(!length_char(lzs))
 			warning("Auto shuttle launch set for ert [name] but no lzs allowed.")
 			return
 

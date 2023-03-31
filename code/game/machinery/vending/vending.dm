@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 /obj/structure/machinery/vending/Initialize(mapload, ...)
 	. = ..()
 	LAZYADD(GLOB.total_vending_machines, src)
-	src.slogan_list = splittext(src.product_slogans, ";")
+	src.slogan_list = splittext_char(src.product_slogans, ";")
 
 	// So not all machines speak at the exact same time.
 	// The first time this machine says something will be at slogantime + this random value,
@@ -672,7 +672,7 @@ GLOBAL_LIST_EMPTY_TYPED(total_vending_machines, /obj/structure/machinery/vending
 
 	for (var/datum/data/vending_product/record as anything in records)
 		var/list/static_record = list(
-			path = replacetext(replacetext("[record.product_path]", "/obj/item/", ""), "/", "-"),
+			path = replacetext_char(replacetext_char("[record.product_path]", "/obj/item/", ""), "/", "-"),
 			name = record.product_name,
 			price = record.price,
 			max_amount = record.max_amount,

@@ -349,7 +349,7 @@
 
 		if("CMB")
 			var/body = "<body>"
-			
+
 			for(var/text in GLOB.CMBFaxes)
 				body += text
 				body += "<br><br>"
@@ -390,10 +390,10 @@
 			hives += list("[hive.name]" = hive.hivenumber)
 			last_hive_checked = hive
 
-	if(!length(hives))
+	if(!length_char(hives))
 		to_chat(src, SPAN_ALERT("There seem to be no hives at the moment."))
 		return
-	else if(length(hives) > 1) // More than one hive, display an input menu for that
+	else if(length_char(hives) > 1) // More than one hive, display an input menu for that
 		var/faction = tgui_input_list(src, "Select which hive to award", "Hive Choice", hives, theme="hive_status")
 		if(!faction)
 			to_chat(src, SPAN_ALERT("Hive choice error. Aborting."))
@@ -754,10 +754,10 @@
 	if(!create_humans_html)
 		var/equipment_presets = jointext(GLOB.gear_name_presets_list, ";")
 		create_humans_html = file2text('html/create_humans.html')
-		create_humans_html = replacetext(create_humans_html, "null /* object types */", "\"[equipment_presets]\"")
-		create_humans_html = replacetext(create_humans_html, "/* href token */", RawHrefToken(forceGlobal = TRUE))
+		create_humans_html = replacetext_char(create_humans_html, "null /* object types */", "\"[equipment_presets]\"")
+		create_humans_html = replacetext_char(create_humans_html, "/* href token */", RawHrefToken(forceGlobal = TRUE))
 
-	show_browser(user, replacetext(create_humans_html, "/* ref src */", "\ref[src]"), "Create Humans", "create_humans", "size=450x630")
+	show_browser(user, replacetext_char(create_humans_html, "/* ref src */", "\ref[src]"), "Create Humans", "create_humans", "size=450x630")
 
 /client/proc/create_humans()
 	set name = "Create Humans"
@@ -771,11 +771,11 @@
 		var/hive_types = jointext(ALL_XENO_HIVES, ";")
 		var/xeno_types = jointext(ALL_XENO_CASTES, ";")
 		create_xenos_html = file2text('html/create_xenos.html')
-		create_xenos_html = replacetext(create_xenos_html, "null /* hive paths */", "\"[hive_types]\"")
-		create_xenos_html = replacetext(create_xenos_html, "null /* xeno paths */", "\"[xeno_types]\"")
-		create_xenos_html = replacetext(create_xenos_html, "/* href token */", RawHrefToken(forceGlobal = TRUE))
+		create_xenos_html = replacetext_char(create_xenos_html, "null /* hive paths */", "\"[hive_types]\"")
+		create_xenos_html = replacetext_char(create_xenos_html, "null /* xeno paths */", "\"[xeno_types]\"")
+		create_xenos_html = replacetext_char(create_xenos_html, "/* href token */", RawHrefToken(forceGlobal = TRUE))
 
-	show_browser(user, replacetext(create_xenos_html, "/* ref src */", "\ref[src]"), "Create Xenos", "create_xenos", "size=450x630")
+	show_browser(user, replacetext_char(create_xenos_html, "/* ref src */", "\ref[src]"), "Create Xenos", "create_xenos", "size=450x630")
 
 /client/proc/create_xenos()
 	set name = "Create Xenos"

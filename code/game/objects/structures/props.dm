@@ -969,7 +969,7 @@
 
 /obj/structure/prop/invuln/overhead_pipe/Initialize(mapload)
 	. = ..()
-	desc = "This is a section of the pipe network that carries water (and less pleasant fluids) throughout the [is_mainship_level(z) ? copytext(MAIN_SHIP_NAME, 5) : "colony"]."
+	desc = "This is a section of the pipe network that carries water (and less pleasant fluids) throughout the [is_mainship_level(z) ? copytext_char(MAIN_SHIP_NAME, 5) : "colony"]."
 
 ///Decorative fire.
 /obj/structure/prop/invuln/fire
@@ -996,7 +996,7 @@
 
 /obj/structure/prop/invuln/pipe_water/Initialize(mapload)
 	. = ..()
-	desc = "The [is_mainship_level(z) ? copytext(MAIN_SHIP_NAME, 5) : "colony"] has sprung a leak!"
+	desc = "The [is_mainship_level(z) ? copytext_char(MAIN_SHIP_NAME, 5) : "colony"] has sprung a leak!"
 
 /obj/structure/prop/invuln/lattice_prop
 	desc = "A lightweight support lattice."
@@ -1046,7 +1046,7 @@
 			dogtag_blood = popleft(dog.fallen_blood_types)
 			fallen_list_cross += dogtag_name
 			update_icon()
-			if(!length(dog.fallen_names))
+			if(!length_char(dog.fallen_names))
 				qdel(dog)
 			else
 				return
@@ -1091,7 +1091,7 @@
 		user.visible_message(SPAN_NOTICE("[user] begins to [action_msg] [src]."),\
 			SPAN_NOTICE("You begin to [action_msg] [src]."), null, 4)
 
-		if(!do_after(user, length(message) * time_multiplier, INTERRUPT_ALL, BUSY_ICON_GENERIC))
+		if(!do_after(user, length_char(message) * time_multiplier, INTERRUPT_ALL, BUSY_ICON_GENERIC))
 			to_chat(user, SPAN_WARNING("You were interrupted!"))
 		else
 			user.visible_message(SPAN_NOTICE("[user] uses \his [W.name] to [action_msg] [src]."),\

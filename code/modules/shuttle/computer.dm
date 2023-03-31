@@ -153,7 +153,7 @@
 	.["flight_time"] = ert.timeLeft(0)
 	.["is_disabled"] = disabled
 
-	var/door_count = length(ert.external_doors)
+	var/door_count = length_char(ert.external_doors)
 	var/locked_count = 0
 	for(var/obj/structure/machinery/door/airlock/air as anything in ert.external_doors)
 		if(air.locked)

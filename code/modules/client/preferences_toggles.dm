@@ -281,7 +281,7 @@
 	for (var/pref_button in pref_buttons)
 		dat += "[pref_button]\n"
 
-	var/height = 50+22*length(pref_buttons)
+	var/height = 50+22*length_char(pref_buttons)
 
 	show_browser(src, dat, "Toggle Preferences", "togglepreferences", "size=475x[height]")
 
@@ -423,7 +423,7 @@
 		"Meta" = "strings/metatips.txt"
 	)
 	var/list/tip_list = file2list(types_to_pick[picked_type])
-	if(length(types_to_pick[picked_type]))
+	if(length_char(types_to_pick[picked_type]))
 		message = SAFEPICK(tip_list)
 	else
 		CRASH("receive_random_tip() failed: empty list")

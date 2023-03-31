@@ -110,7 +110,7 @@
 	return DOCKING_SUCCESS
 
 /obj/docking_port/mobile/proc/preflight_check(list/old_turfs, list/new_turfs, list/areas_to_move, rotation)
-	for(var/i in 1 to length(old_turfs))
+	for(var/i in 1 to length_char(old_turfs))
 		CHECK_TICK
 		var/turf/oldT = old_turfs[i]
 		var/turf/newT = new_turfs[i]

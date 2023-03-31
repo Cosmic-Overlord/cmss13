@@ -2002,7 +2002,7 @@ Defined in conflicts.dm of the #defines folder.
 		to_chat(user, SPAN_WARNING("It's empty!"))
 		return
 
-	var/obj/item/explosive/grenade/nade = loaded_grenades[length(loaded_grenades)] //Grab the last-inserted one. Or the only one, as the case may be.
+	var/obj/item/explosive/grenade/nade = loaded_grenades[length_char(loaded_grenades)] //Grab the last-inserted one. Or the only one, as the case may be.
 	loaded_grenades.Remove(nade)
 	current_rounds--
 
@@ -2375,7 +2375,7 @@ Defined in conflicts.dm of the #defines folder.
 		to_chat(user, SPAN_WARNING("\The [gun] needs a flamer tank installed!"))
 		return
 
-	if(!length(gun.current_mag.reagents.reagent_list))
+	if(!length_char(gun.current_mag.reagents.reagent_list))
 		to_chat(user, SPAN_WARNING("\The [gun] doesn't have enough fuel to launch a projectile!"))
 		return
 

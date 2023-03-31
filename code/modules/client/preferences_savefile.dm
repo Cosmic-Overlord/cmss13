@@ -14,7 +14,7 @@
 		for(var/ckey in preferences_datums)
 			var/datum/preferences/D = preferences_datums[ckey]
 			if(D == src)
-				var/delpath = "data/player_saves/[copytext(ckey,1,2)]/[ckey]/"
+				var/delpath = "data/player_saves/[copytext_char(ckey,1,2)]/[ckey]/"
 				if(delpath && fexists(delpath))
 					fdel(delpath)
 				break
@@ -85,7 +85,7 @@
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey) return
-	path = "data/player_saves/[copytext(ckey,1,2)]/[ckey]/[filename]"
+	path = "data/player_saves/[copytext_char(ckey,1,2)]/[ckey]/[filename]"
 	savefile_version = SAVEFILE_VERSION_MAX
 
 /proc/sanitize_keybindings(value)
@@ -94,7 +94,7 @@
 		base_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
 	for(var/key in base_bindings)
 		base_bindings[key] = base_bindings[key] & GLOB.keybindings_by_name
-		if(!length(base_bindings[key]))
+		if(!length_char(base_bindings[key]))
 			base_bindings -= key
 	return base_bindings
 
@@ -614,22 +614,22 @@
 	var/list/notadded = list()
 	for(var/name in GLOB.keybindings_by_name)
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
-		if(length(user_binds[kb.name]))
+		if(length_char(user_binds[kb.name]))
 			continue // key is unbound and or bound to something
 		var/addedbind = FALSE
 		if(hotkeys)
 			for(var/hotkeytobind in kb.hotkey_keys)
-				if(!length(key_bindings[hotkeytobind]))
+				if(!length_char(key_bindings[hotkeytobind]))
 					LAZYADD(key_bindings[hotkeytobind], kb.name)
 					addedbind = TRUE
 		else
 			for(var/classickeytobind in kb.classic_keys)
-				if(!length(key_bindings[classickeytobind]))
+				if(!length_char(key_bindings[classickeytobind]))
 					LAZYADD(key_bindings[classickeytobind], kb.name)
 					addedbind = TRUE
 		if(!addedbind)
 			notadded += kb
-	if(length(notadded))
+	if(length_char(notadded))
 		addtimer(CALLBACK(src, PROC_REF(announce_conflict), notadded), 5 SECONDS)
 
 /datum/preferences/proc/announce_conflict(list/notadded)

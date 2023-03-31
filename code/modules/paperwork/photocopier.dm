@@ -201,8 +201,8 @@
 	else //no toner? shitty copies for you!
 		copy.info = "<font color = #808080>"
 	var/copied = original.info
-	copied = replacetext(copied, "<font face=\"[copy.deffont]\" color=", "<font face=\"[copy.deffont]\" nocolor=") //state of the art techniques in action
-	copied = replacetext(copied, "<font face=\"[copy.crayonfont]\" color=", "<font face=\"[copy.crayonfont]\" nocolor=") //This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
+	copied = replacetext_char(copied, "<font face=\"[copy.deffont]\" color=", "<font face=\"[copy.deffont]\" nocolor=") //state of the art techniques in action
+	copied = replacetext_char(copied, "<font face=\"[copy.crayonfont]\" color=", "<font face=\"[copy.crayonfont]\" nocolor=") //This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
 	copy.info += copied
 	copy.info += "</font>"
 	copy.name = original.name // -- Doohl
@@ -217,9 +217,9 @@
 	//Iterates through stamps and puts a matching gray overlay onto the copy
 	var/image/img //
 	for (var/j = 1, j <= original.ico.len, j++)
-		if (findtext(original.ico[j], "cap") || findtext(original.ico[j], "cent"))
+		if (findtext_char(original.ico[j], "cap") || findtext_char(original.ico[j], "cent"))
 			img = image('icons/obj/items/paper.dmi', "paper_stamp-circle")
-		else if (findtext(original.ico[j], "deny"))
+		else if (findtext_char(original.ico[j], "deny"))
 			img = image('icons/obj/items/paper.dmi', "paper_stamp-x")
 		else
 			img = image('icons/obj/items/paper.dmi', "paper_stamp-dots")

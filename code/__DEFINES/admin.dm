@@ -6,7 +6,7 @@
 	var/turf/T = get_turf(src)
 	return T ? "[area_name ? "[get_area_name(T, TRUE)] " : " "]([T.x],[T.y],[T.z])" : "nonexistent location"
 
-///Max length of a keypress command before it's considered to be a forged packet/bogus command
+///Max length_char of a keypress command before it's considered to be a forged packet/bogus command
 #define MAX_KEYPRESS_COMMANDLENGTH 16
 ///Maximum keys that can be bound to one button
 #define MAX_COMMANDS_PER_KEY 5
@@ -14,7 +14,7 @@
 #define MAX_KEYS_PER_KEYBIND 3
 ///Max amount of keypress messages per second over two seconds before client is autokicked
 #define MAX_KEYPRESS_AUTOKICK 75
-///Length of held key buffer
+///length_char of held key buffer
 #define HELD_KEY_BUFFER_LENGTH 15
 
 ///This note is used by staff for disciplinary record keeping.

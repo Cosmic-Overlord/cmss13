@@ -67,8 +67,8 @@ SUBSYSTEM_DEF(objectives)
 			if(MC_TICK_CHECK)
 				return
 
-	while(length(current_active_run))
-		var/datum/cm_objective/O = current_active_run[length(current_active_run)]
+	while(length_char(current_active_run))
+		var/datum/cm_objective/O = current_active_run[length_char(current_active_run)]
 
 		current_active_run.len--
 		O.process()
@@ -108,8 +108,8 @@ SUBSYSTEM_DEF(objectives)
 	corpsewar.generate_corpses(CORPSES_TO_SPAWN)
 
 /datum/controller/subsystem/objectives/proc/generate_objectives()
-	if(!length(GLOB.objective_landmarks_close) || !length(GLOB.objective_landmarks_medium) \
-	|| !length(GLOB.objective_landmarks_far)   || !length(GLOB.objective_landmarks_science))
+	if(!length_char(GLOB.objective_landmarks_close) || !length_char(GLOB.objective_landmarks_medium) \
+	|| !length_char(GLOB.objective_landmarks_far)   || !length_char(GLOB.objective_landmarks_science))
 		//The map doesn't have the correct landmarks, so we generate nothing, hoping the map has normal objectives
 		return
 
@@ -140,25 +140,25 @@ SUBSYSTEM_DEF(objectives)
 	for(var/key in GLOB.objective_landmarks_close)
 		if(GLOB.objective_landmarks_close[key])
 			relative_document_ratio_close++
-	relative_document_ratio_close /= length(GLOB.objective_landmarks_close)
+	relative_document_ratio_close /= length_char(GLOB.objective_landmarks_close)
 
 	var/relative_document_ratio_medium = 0
 	for(var/key in GLOB.objective_landmarks_medium)
 		if(GLOB.objective_landmarks_medium[key])
 			relative_document_ratio_medium++
-	relative_document_ratio_medium /= length(GLOB.objective_landmarks_medium)
+	relative_document_ratio_medium /= length_char(GLOB.objective_landmarks_medium)
 
 	var/relative_document_ratio_far = 0
 	for(var/key in GLOB.objective_landmarks_far)
 		if(GLOB.objective_landmarks_far[key])
 			relative_document_ratio_far++
-	relative_document_ratio_far /= length(GLOB.objective_landmarks_far)
+	relative_document_ratio_far /= length_char(GLOB.objective_landmarks_far)
 
 	var/relative_document_ratio_science = 0
 	for(var/key in GLOB.objective_landmarks_science)
 		if(GLOB.objective_landmarks_science[key])
 			relative_document_ratio_science++
-	relative_document_ratio_science /= length(GLOB.objective_landmarks_science)
+	relative_document_ratio_science /= length_char(GLOB.objective_landmarks_science)
 
 	//Intel
 	for(var/i=0;i<paper_scraps;i++)

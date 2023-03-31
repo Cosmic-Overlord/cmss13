@@ -110,7 +110,7 @@
 		interior.update_passenger_count()
 
 		var/humans_inside = 0
-		if(length(interior.role_reserved_slots))
+		if(length_char(interior.role_reserved_slots))
 			for(var/datum/role_reserved_slots/RRS in interior.role_reserved_slots)
 				humans_inside += RRS.taken
 		humans_inside += interior.passengers_taken_slots

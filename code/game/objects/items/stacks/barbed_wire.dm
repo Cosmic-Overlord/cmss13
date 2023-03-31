@@ -1,10 +1,10 @@
 
 /obj/item/stack/barbed_wire
 	name = "barbed wire"
-	desc = "A spiky length of wire."
+	desc = "A spiky length_char of wire."
 	icon = 'icons/obj/items/marine-items.dmi'
 	icon_state = "barbed_wire"
-	singular_name = "length"
+	singular_name = "length_char"
 	w_class = SIZE_SMALL
 	force = 0
 	throwforce = 5

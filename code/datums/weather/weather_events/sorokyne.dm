@@ -2,7 +2,7 @@
 /datum/weather_event/snow
 	name = "Snow"
 	display_name = "Snow"
-	length = 10 MINUTES
+	length_char = 10 MINUTES
 	fullscreen_type = /atom/movable/screen/fullscreen/weather/low
 	turf_overlay_icon_state = "strata_snowing"
 
@@ -16,7 +16,7 @@
 /datum/weather_event/snowstorm
 	name = "Snowstorm"
 	display_name = "Snowstorm"
-	length = 6 MINUTES
+	length_char = 6 MINUTES
 	fullscreen_type = /atom/movable/screen/fullscreen/weather/medium
 	turf_overlay_icon_state = "strata_storm"
 
@@ -30,7 +30,7 @@
 /datum/weather_event/blizzard
 	name = "Blizzard"
 	display_name = "Blizzard"
-	length = 4 MINUTES
+	length_char = 4 MINUTES
 	fullscreen_type = /atom/movable/screen/fullscreen/weather/high
 	turf_overlay_icon_state = "strata_blizzard"
 

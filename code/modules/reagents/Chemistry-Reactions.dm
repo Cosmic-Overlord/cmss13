@@ -36,7 +36,7 @@
 				for(var/B in required_reagents)
 					if(C.required_reagents.Find(B))
 						matches++
-				if(matches >= length(required_reagents))
+				if(matches >= length_char(required_reagents))
 					return TRUE
 
 // As funny as it may sound, spawning a chemical which's recipe is Bicaridine, Tramadol and Kelotane that instantly kills or cripple marine is not nice.

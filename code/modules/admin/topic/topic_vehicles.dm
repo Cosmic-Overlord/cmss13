@@ -43,7 +43,7 @@
 		return
 	var/list/targets = get_multi_vehicles_admin()
 
-	alert("[length(targets)], [targets[1]] and [targets[targets[1]]]","Warning", "OK")
+	alert("[length_char(targets)], [targets[1]] and [targets[targets[1]]]","Warning", "OK")
 
 	var/choice = tgui_input_list(usr, "Select a vehicle.", "Repair Vehicle", targets)
 	var/obj/vehicle/multitile/Vehicle = targets[choice]

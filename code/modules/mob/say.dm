@@ -6,7 +6,7 @@
 	src.talked_sum = max(0, src.talked_sum - cpm_budget)
 	// Figure out how much we can say
 	var/max_budget = CHAT_CPM_PERIOD / (60 SECONDS) * CHAT_CPM_ALLOWED
-	var/cost = max(CHAT_CPM_MINIMUM, length(text))
+	var/cost = max(CHAT_CPM_MINIMUM, length_char(text))
 	src.talked_at = world.time
 	if(src.talked_sum + cost > max_budget)
 		to_chat(src, SPAN_NOTICE("You just said something, take a breath."))
@@ -32,8 +32,8 @@
 	if(picksay_cooldown > world.time)
 		return
 
-	var/list/possible_phrases = splittext(message, ";")
-	if(length(possible_phrases))
+	var/list/possible_phrases = splittext_char(message, ";")
+	if(length_char(possible_phrases))
 		say_verb(pick(possible_phrases))
 		picksay_cooldown = world.time + 1.5 SECONDS
 
@@ -100,7 +100,7 @@
 		else if(M.client && M.client.admin_holder && (M.client.admin_holder.rights & R_MOD) && M.client.prefs && (M.client.prefs.toggles_chat & CHAT_DEAD) ) // Show the message to admins/mods with deadchat toggled on
 			to_chat(M, "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[message]\"</span></span>") //Admins can hear deadchat, if they choose to, no matter if they're blind/deaf or not.
 
-	if(length(langchat_listeners))
+	if(length_char(langchat_listeners))
 		langchat_speech(message, langchat_listeners, GLOB.all_languages, skip_language_check = TRUE)
 
 /mob/proc/say_understands(mob/other, datum/language/speaking = null)
@@ -141,7 +141,7 @@ for it but just ignore it.
 
 /mob/proc/say_quote(message, datum/language/speaking = null)
 		var/verb = "says"
-		var/ending = copytext(message, length(message))
+		var/ending = copytext_char(message, length_char(message))
 		if(ending=="!")
 				verb=pick("exclaims","shouts","yells")
 		else if(ending=="?")
@@ -158,7 +158,7 @@ for it but just ignore it.
 	return get_turf(src)
 
 /mob/proc/say_test(text)
-	var/ending = copytext(text, length(text))
+	var/ending = copytext_char(text, length_char(text))
 	if (ending == "?")
 		return "1"
 	else if (ending == "!")
@@ -169,11 +169,11 @@ for it but just ignore it.
 //returns the message mode string or null for no message mode.
 //standard mode is the mode returned for the special ';' radio code.
 /mob/proc/parse_message_mode(message, standard_mode="headset")
-	if(length(message) >= 1 && copytext(message,1,2) == ";")
+	if(length_char(message) >= 1 && copytext_char(message,1,2) == ";")
 		return standard_mode
 
-	if(length(message) >= 2)
-		var/channel_prefix = copytext(message, 1 ,3)
+	if(length_char(message) >= 2)
+		var/channel_prefix = copytext_char(message, 1 ,3)
 		return department_radio_keys[channel_prefix]
 
 	return null
@@ -181,8 +181,8 @@ for it but just ignore it.
 //parses the language code (e.g. :j) from text, such as that supplied to say.
 //returns the language object only if the code corresponds to a language that src can speak, otherwise null.
 /mob/proc/parse_language(message)
-	if(length(message) >= 2)
-		var/language_prefix = lowertext(copytext(message, 1 ,3))
+	if(length_char(message) >= 2)
+		var/language_prefix = lowertext(copytext_char(message, 1 ,3))
 		var/datum/language/L = GLOB.all_languages[GLOB.language_keys[language_prefix]]
 		if (can_speak(L))
 			return L

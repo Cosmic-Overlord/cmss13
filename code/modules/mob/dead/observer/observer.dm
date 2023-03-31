@@ -444,7 +444,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, "<span style='color: red;'>You have no body.</span>")
 		return
 
-	if(mind.original.key && copytext(mind.original.key,1,2)!="@") //makes sure we don't accidentally kick any clients
+	if(mind.original.key && copytext_char(mind.original.key,1,2)!="@") //makes sure we don't accidentally kick any clients
 		to_chat(src, "<span style='color: red;'>Another consciousness is in your body...It is resisting you.</span>")
 		return
 
@@ -700,10 +700,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			hives += list("[hive.name]" = hive.hivenumber)
 			last_hive_checked = hive
 
-	if(!length(hives))
+	if(!length_char(hives))
 		to_chat(src, SPAN_ALERT("There seem to be no living hives at the moment"))
 		return
-	else if(length(hives) == 1) // Only one hive, don't need an input menu for that
+	else if(length_char(hives) == 1) // Only one hive, don't need an input menu for that
 		last_hive_checked.hive_ui.open_hive_status(src)
 	else
 		faction = tgui_input_list(src, "Select which hive status menu to open up", "Hive Choice", hives, theme="hive_status")
@@ -756,13 +756,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	var/list/zombie_list = list()
-	if(length(GLOB.zombie_landmarks))
+	if(length_char(GLOB.zombie_landmarks))
 		zombie_list += list("Underground Zombie" = "Underground Zombie")
 	for(var/mob/living/carbon/human/A in GLOB.zombie_list)
 		if(!A.client && A.stat != DEAD) // Only living zombies
 			zombie_list += list(A.real_name = A)
 
-	if(!length(zombie_list))
+	if(!length_char(zombie_list))
 		to_chat(src, SPAN_DANGER("There are no available zombies."))
 		return
 
@@ -774,7 +774,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(choice == "Underground Zombie")
-		if(!length(GLOB.zombie_landmarks))
+		if(!length_char(GLOB.zombie_landmarks))
 			to_chat(src, SPAN_WARNING("Sorry, the last underground zombie just got taken."))
 			return
 		var/obj/effect/landmark/zombie/spawn_point = pick(GLOB.zombie_landmarks)

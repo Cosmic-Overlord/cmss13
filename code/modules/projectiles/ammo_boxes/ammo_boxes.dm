@@ -45,7 +45,7 @@
 
 /obj/item/ammo_box/proc/deploy_ammo_box(mob/user, turf/T)
 	user.drop_held_item()
-	
+
 //---------------------FIRE HANDLING PROCS
 /obj/item/ammo_box/flamer_fire_act(severity, datum/cause_data/flame_cause_data)
 	if(burning)
@@ -154,7 +154,7 @@
 	if(handfuls)
 		var/obj/item/ammo_magazine/AM = locate(/obj/item/ammo_magazine) in contents
 		return AM?.current_rounds
-	return length(contents)
+	return length_char(contents)
 
 /obj/item/ammo_box/magazine/deploy_ammo_box(mob/living/user, turf/T)
 	if(burning)

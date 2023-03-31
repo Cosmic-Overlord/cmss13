@@ -174,10 +174,10 @@
 //Stolen from status_display
 /obj/structure/machinery/door_display/proc/texticon(tn, px = 0, py = 0)
 	var/image/I = image('icons/obj/structures/machinery/status_display.dmi', "blank")
-	var/len = length(tn)
+	var/len = length_char(tn)
 
 	for(var/d = 1 to len)
-		var/char = copytext(tn, len-d+1, len-d+2)
+		var/char = copytext_char(tn, len-d+1, len-d+2)
 		if(char == " ")
 			continue
 		var/image/ID = image('icons/obj/structures/machinery/status_display.dmi', icon_state = char)

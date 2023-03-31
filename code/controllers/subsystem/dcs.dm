@@ -33,7 +33,7 @@ PROCESSING_SUBSYSTEM_DEF(dcs)
 	var/datum/element/eletype = arguments[1]
 	var/list/fullid = list("[eletype]")
 	var/list/named_arguments = list()
-	for(var/i in initial(eletype.id_arg_index) to length(arguments))
+	for(var/i in initial(eletype.id_arg_index) to length_char(arguments))
 		var/key = arguments[i]
 		var/value
 		if(istext(key))
@@ -48,7 +48,7 @@ PROCESSING_SUBSYSTEM_DEF(dcs)
 		else
 			fullid += "[key]"
 
-	if(length(named_arguments))
+	if(length_char(named_arguments))
 		named_arguments = sortList(named_arguments)
 		fullid += named_arguments
 	return list2params(fullid)

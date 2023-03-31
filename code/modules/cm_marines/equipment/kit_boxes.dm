@@ -171,10 +171,10 @@
 		return
 
 	var/allowed_roles
-	if(length(allowed_roles_list))
+	if(length_char(allowed_roles_list))
 		allowed_roles = ""
 		for(var/role in allowed_roles_list)
-			if(length(allowed_roles))
+			if(length_char(allowed_roles))
 				allowed_roles += ", "
 			allowed_roles += SPAN_HELPFUL("[role]")
 	else
@@ -196,7 +196,7 @@
 	return
 
 /obj/item/spec_kit/proc/can_use(mob/living/carbon/human/user)
-	if(!length(allowed_roles_list))
+	if(!length_char(allowed_roles_list))
 		return TRUE
 
 	for(var/allowed_role in allowed_roles_list)

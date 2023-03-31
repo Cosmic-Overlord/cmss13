@@ -15,7 +15,7 @@
 	var/list/factions = GLOB.faction_datums
 	if(!user)
 		var/list/all_equipment = list()
-		for (var/i in 1 to length(factions))
+		for (var/i in 1 to length_char(factions))
 			var/datum/faction/F = get_faction(factions[i])
 			var/list/equipment = F.get_antag_guns_sorted_equipment()
 			if(LAZYLEN(equipment))

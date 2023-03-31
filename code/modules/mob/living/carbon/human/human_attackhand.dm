@@ -297,7 +297,7 @@
 		if(limb_surgeries)
 			status += "undergoing [limb_surgeries]"
 
-		if(!length(status))
+		if(!length_char(status))
 			status += "OK"
 
 		var/postscript

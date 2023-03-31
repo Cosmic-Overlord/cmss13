@@ -585,7 +585,7 @@
 			true_desc += " truly worthy human, no doubt descended from many storied warriors. [capitalize(their)] arms were soaked to the elbows with the life-blood of many."
 			worth = 2
 
-	if(length(biography))
+	if(length_char(biography))
 		true_desc += " [scalpee.real_name] was [english_list(biography, final_comma_text = ",")]."
 
 	if(scalpee.hunter_data.hunter == user) //You don't get your name on it unless you hunted them yourself.

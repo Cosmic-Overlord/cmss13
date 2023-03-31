@@ -296,7 +296,7 @@ var/datum/controller/supply/supply_controller = new()
 	var/x_coord = deobfuscate_x(x_supply)
 	var/y_coord = deobfuscate_y(y_supply)
 	var/z_coord = SSmapping.levels_by_trait(ZTRAIT_GROUND)
-	if(length(z_coord))
+	if(length_char(z_coord))
 		z_coord = z_coord[1]
 	else
 		z_coord = 1 // fuck it
@@ -958,7 +958,7 @@ var/datum/controller/supply/supply_controller = new()
 			return
 
 		var/timeout = world.time + 600
-		//var/reason = copytext(sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text),1,MAX_MESSAGE_LEN)
+		//var/reason = copytext_char(sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text),1,MAX_MESSAGE_LEN)
 		var/reason = "*None Provided*"
 		if(world.time > timeout) return
 		if(!reason) return

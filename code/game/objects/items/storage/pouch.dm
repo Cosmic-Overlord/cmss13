@@ -14,7 +14,7 @@
 
 /obj/item/storage/pouch/update_icon()
 	overlays.Cut()
-	if(!length(contents))
+	if(!length_char(contents))
 		return TRUE //For the pistol pouch to know it's empty.
 	if(content_watchers && flap) //If it has a flap and someone's looking inside it, don't close the flap.
 		return
@@ -29,7 +29,7 @@
 			overlays += "+[icon_state]_full"
 		return
 
-	else if(length(contents) <= storage_slots * 0.5)
+	else if(length_char(contents) <= storage_slots * 0.5)
 		overlays += "+[icon_state]_half"
 	else
 		overlays += "+[icon_state]_full"
@@ -382,7 +382,7 @@
 
 /obj/item/storage/pouch/pistol/command/update_icon()
 	overlays.Cut()
-	if(!length(contents))
+	if(!length_char(contents))
 		return
 	if(content_watchers) //Opened flaps.
 		if(binos)
@@ -397,10 +397,10 @@
 
 /obj/item/storage/pouch/pistol/command/attack_hand(mob/user, mods) //Mostly copied from gunbelt.
 	if(current_gun && ishuman(user) && loc == user)
-		if(mods && mods["alt"] && length(contents) > 1) //Withdraw the most recently inserted nongun item if possible.
-			var/obj/item/I = contents[length(contents)]
+		if(mods && mods["alt"] && length_char(contents) > 1) //Withdraw the most recently inserted nongun item if possible.
+			var/obj/item/I = contents[length_char(contents)]
 			if(isgun(I))
-				I = contents[length(contents) - 1]
+				I = contents[length_char(contents) - 1]
 			I.attack_hand(user)
 		else
 			current_gun.attack_hand(user)
@@ -991,7 +991,7 @@
 
 /obj/item/storage/pouch/pressurized_reagent_canister/update_icon()
 	overlays.Cut()
-	if(length(contents))
+	if(length_char(contents))
 		overlays += "+[icon_state]_full"
 	if(inner)
 		//tint the inner display based on what chemical is inside
@@ -1328,7 +1328,7 @@
 	if(!content_watchers)
 		icon_state = "[base_icon_state]_closed"
 	else
-		switch(min(length(contents), 2))
+		switch(min(length_char(contents), 2))
 			if(2)
 				icon_state = "[base_icon_state]_2"
 				var/obj/item/device/cassette_tape/first_tape = contents[1]
@@ -1360,7 +1360,7 @@
 	var/draw_sound = 'sound/weapons/gun_rifle_draw.ogg'
 
 /obj/item/storage/pouch/machete/update_icon()
-	if(length(contents))
+	if(length_char(contents))
 		icon_state = "[initial(icon_state)]_full"
 	else
 		icon_state = initial(icon_state)

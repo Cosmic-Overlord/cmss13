@@ -188,7 +188,7 @@
 	var/weak_ref = WEAKREF(dropped_object)
 
 	if(!(weak_ref in remembered_dropped_objects))
-		if(length(remembered_dropped_objects) >= MAXIMUM_DROPPED_OBJECTS_REMEMBERED)
+		if(length_char(remembered_dropped_objects) >= MAXIMUM_DROPPED_OBJECTS_REMEMBERED)
 			popleft(remembered_dropped_objects)
 		remembered_dropped_objects += weak_ref
 

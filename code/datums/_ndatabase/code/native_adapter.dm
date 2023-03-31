@@ -93,8 +93,8 @@
 
 /datum/db/adapter/native_adapter/insert_table(table_name, list/values, datum/callback/CB, sync = FALSE)
 	set waitfor = 0
-	var/length = values.len
-	var/startid = internal_request_insert_allocation(table_name, length)
+	var/length_char = values.len
+	var/startid = internal_request_insert_allocation(table_name, length_char)
 	var/list/qpars = list()
 	var/query_inserttable = getquery_insert_table(table_name, values, startid, qpars)
 	if(!CB.arguments)
@@ -439,9 +439,9 @@
 
 /datum/db/adapter/native_adapter/proc/savetext2fields(text)
 	var/list/result = list()
-	var/list/split1 = splittext(text, ",")
+	var/list/split1 = splittext_char(text, ",")
 	for(var/field in split1)
-		var/list/split2 = splittext(field, ":")
+		var/list/split2 = splittext_char(field, ":")
 		result[split2[1]] = text2num(split2[2])
 	return result
 
@@ -539,7 +539,7 @@
 		var/filter_text = get_filter(view.root_filter, field_alias, post_pflds)
 		query_text += "AND ([filter_text]) "
 
-	var/order_length = length(view.order_by)
+	var/order_length = length_char(view.order_by)
 
 	if(order_length)
 		var/order_text = "ORDER BY "
@@ -556,7 +556,7 @@
 			index_order++
 		query_text += order_text
 
-	var/group_length = length(view.group_by)
+	var/group_length = length_char(view.group_by)
 
 	if(group_length)
 		var/group_text = "GROUP BY "

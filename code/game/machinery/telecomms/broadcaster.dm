@@ -209,7 +209,7 @@
 
 
 	/* ###### Begin formatting and sending the message ###### */
-	if (length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled) || length(heard_gibberish))
+	if (length_char(heard_masked) || length_char(heard_normal) || length_char(heard_voice) || length_char(heard_garbled) || length_char(heard_gibberish))
 
 		/* --- Some miscellaneous variables to format the string output --- */
 		var/part_a = "<span class='[SSradio.get_frequency_span(display_freq)]'><span class='name'>" // goes in the actual output
@@ -233,28 +233,28 @@
 		/* ###### Send the message ###### */
 
 		/* --- Process all the mobs that heard a masked voice (understood) --- */
-		if (length(heard_masked))
+		if (length_char(heard_masked))
 			for (var/mob/R in heard_masked)
 				R.hear_radio(message,verbage, speaking, part_a, part_b, M, 0, name, volume)
 
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
-		if (length(heard_normal))
+		if (length_char(heard_normal))
 			for (var/mob/R in heard_normal)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 0, realname, volume)
 
 		/* --- Process all the mobs that heard the voice normally (did not understand) --- */
-		if (length(heard_voice))
+		if (length_char(heard_voice))
 			for (var/mob/R in heard_voice)
 				R.hear_radio(message,verbage, speaking, part_a, part_b, M,0, vname, 0)
 
 		/* --- Process all the mobs that heard a garbled voice (did not understand) --- */
 			// Displays garbled message (ie "f*c* **u, **i*er!")
-		if (length(heard_garbled))
+		if (length_char(heard_garbled))
 			for (var/mob/R in heard_garbled)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1, vname, 0)
 
 
 		/* --- Complete gibberish. Usually happens when there's a compressed message --- */
-		if (length(heard_gibberish))
+		if (length_char(heard_gibberish))
 			for (var/mob/R in heard_gibberish)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1, 0)

@@ -18,9 +18,9 @@ SUBSYSTEM_DEF(techtree)
 	var/list/tech_trees = subtypesof(/datum/techtree)
 	var/list/tech_nodes = subtypesof(/datum/tech)
 
-	if(!length(tech_trees))
+	if(!length_char(tech_trees))
 		log_admin(SPAN_DANGER("Error setting up tech trees, no datums found."))
-	if(!length(tech_nodes))
+	if(!length_char(tech_nodes))
 		log_admin(SPAN_DANGER("Error setting up tech nodes, no datums found."))
 
 	for(var/T in tech_trees)

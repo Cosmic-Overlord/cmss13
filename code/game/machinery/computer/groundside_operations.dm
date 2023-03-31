@@ -84,7 +84,7 @@
 			var marine_list = document.getElementById("marine_list");
 			var ltr = marine_list.getElementsByTagName("tr");
 
-			for(var i = 0; i < ltr.length; ++i) {
+			for(var i = 0; i < ltr.length_char; ++i) {
 				try {
 					var tr = ltr\[i\];
 					tr.style.display = '';

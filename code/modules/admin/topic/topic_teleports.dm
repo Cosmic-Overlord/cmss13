@@ -183,7 +183,7 @@
 
 			//Figure out which object they might be trying to fetch
 			for(var/path in types)
-				if(findtext("[path]", item))
+				if(findtext_char("[path]", item))
 					matches += path
 
 			if(matches.len==0)

@@ -516,7 +516,7 @@ This function completely restores a damaged organ to perfect condition.
 	if(status & (LIMB_ROBOT|LIMB_SYNTHSKIN))
 		return
 
-	if(length(bleeding_effects_list))
+	if(length_char(bleeding_effects_list))
 		if(!internal)
 			for(var/datum/effects/bleeding/external/B in bleeding_effects_list)
 				B.add_on(damage_amount ? damage_amount : W.damage)
@@ -729,8 +729,8 @@ This function completely restores a damaged organ to perfect condition.
 
 
 /obj/limb/proc/update_overlays()
-	var/brutestate = copytext(damage_state, 1, 2)
-	var/burnstate = copytext(damage_state, 2)
+	var/brutestate = copytext_char(damage_state, 1, 2)
+	var/burnstate = copytext_char(damage_state, 2)
 	if(brutestate != "0")
 		wound_overlay.icon_state = "grayscale_[brutestate]"
 		overlays += wound_overlay

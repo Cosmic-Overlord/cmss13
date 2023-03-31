@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/fire(resumed = FALSE)
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
-			if(Master.initializations_finished_with_no_players_logged_in && !length(GLOB.clients))
+			if(Master.initializations_finished_with_no_players_logged_in && !length_char(GLOB.clients))
 				return
 			if(isnull(start_at))
 				start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
@@ -209,7 +209,7 @@ SUBSYSTEM_DEF(ticker)
 	//Configure mode and assign player to special mode stuff
 	if (!(mode.flags_round_type & MODE_NO_SPAWN))
 		var/roles_to_roll = null
-		if(length(mode.roles_to_roll))
+		if(length_char(mode.roles_to_roll))
 			roles_to_roll = mode.roles_to_roll
 		RoleAuthority.setup_candidates_and_roles(roles_to_roll) //Distribute jobs
 		if(mode.flags_round_type & MODE_NEW_SPAWN)
@@ -399,7 +399,7 @@ SUBSYSTEM_DEF(ticker)
 
 			if(M.client)
 				var/client/C = M.client
-				if(C.player_data && C.player_data.playtime_loaded && length(C.player_data.playtimes) == 0)
+				if(C.player_data && C.player_data.playtime_loaded && length_char(C.player_data.playtimes) == 0)
 					msg_admin_niche("NEW PLAYER: <b>[key_name(player, 1, 1, 0)] (<A HREF='?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];ahelp=adminmoreinfo;extra=\ref[player]'>?</A>)</b>. IP: [player.lastKnownIP], CID: [player.computer_id]")
 	QDEL_IN(player, 5)
 
@@ -428,7 +428,7 @@ SUBSYSTEM_DEF(ticker)
 				EquipCustomItems(player)
 			if(player.client)
 				var/client/C = player.client
-				if(C.player_data && C.player_data.playtime_loaded && length(C.player_data.playtimes) == 0)
+				if(C.player_data && C.player_data.playtime_loaded && length_char(C.player_data.playtimes) == 0)
 					msg_admin_niche("NEW PLAYER: <b>[key_name(player, 1, 1, 0)] (<A HREF='?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];ahelp=adminmoreinfo;extra=\ref[player]'>?</A>)</b>. IP: [player.lastKnownIP], CID: [player.computer_id]")
 				if(C.player_data && C.player_data.playtime_loaded && ((round(C.get_total_human_playtime() DECISECONDS_TO_HOURS, 0.1)) <= 5))
 					msg_sea(("NEW PLAYER: <b>[key_name(player, 0, 1, 0)]</b> only has [(round(C.get_total_human_playtime() DECISECONDS_TO_HOURS, 0.1))] hours as a human. Current role: [get_actual_job_name(player)] - Current location: [get_area(player)]"), TRUE)
@@ -441,7 +441,7 @@ SUBSYSTEM_DEF(ticker)
 	var/message
 	var/tip_file = pick("strings/xenotips.txt", "strings/marinetips.txt", "strings/metatips.txt", 15;"strings/memetips.txt")
 	var/list/tip_list = file2list(tip_file)
-	if(length(tip_file))
+	if(length_char(tip_file))
 		message = pick(tip_list)
 	else
 		CRASH("send_tip_of_the_round() failed somewhere")

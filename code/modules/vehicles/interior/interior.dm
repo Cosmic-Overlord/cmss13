@@ -108,7 +108,7 @@
 	forbidden_atoms = list()
 	if(isVehicleMultitile(exterior))
 		var/obj/vehicle/multitile/V = exterior
-		if(length(V.forbidden_atoms))
+		if(length_char(V.forbidden_atoms))
 			forbidden_atoms = V.forbidden_atoms
 
 /datum/interior/proc/get_passengers()
@@ -136,7 +136,7 @@
 	xenos_taken_slots = 0
 	revivable_dead_taken_slots = 0
 
-	if(length(V.role_reserved_slots))
+	if(length_char(V.role_reserved_slots))
 		role_reserved_slots = list()
 		role_reserved_slots = V.role_reserved_slots.Copy()
 		for(var/datum/role_reserved_slots/RRS in role_reserved_slots)
@@ -161,7 +161,7 @@
 					role_slot_taken = TRUE
 
 			//if we have any special roles slots, we check them first
-			if(length(role_reserved_slots))
+			if(length_char(role_reserved_slots))
 				for(var/datum/role_reserved_slots/RRS in role_reserved_slots)
 					//check each category if it has our role. We stop after we find role to avoid checking others.
 					if(RRS.roles.Find(H.job))
@@ -220,7 +220,7 @@
 				revivable_dead_taken_slots++
 				role_slot_taken = TRUE
 
-		if(!role_slot_taken && length(role_reserved_slots))
+		if(!role_slot_taken && length_char(role_reserved_slots))
 			for(var/datum/role_reserved_slots/RRS in role_reserved_slots)
 				//check each category if it has our role. We stop after we find role to avoid checking others.
 				if(RRS.roles.Find(H.job))

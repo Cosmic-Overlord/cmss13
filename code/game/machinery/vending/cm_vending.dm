@@ -1054,7 +1054,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 	var/obj/structure/machinery/cm_vending/vending_machine = vendor
 	var/list/ui_listed_products = vending_machine.get_listed_products(user)
 
-	for (var/i in 1 to length(ui_listed_products))
+	for (var/i in 1 to length_char(ui_listed_products))
 		var/list/myprod = ui_listed_products[i] //we take one list from listed_products
 
 		var/p_name = myprod[1] //taking it's name
@@ -1066,7 +1066,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 
 		var/is_category = item_ref == null
 
-		var/imgid = replacetext(replacetext("[item_ref]", "/obj/item/", ""), "/", "-")
+		var/imgid = replacetext_char(replacetext_char("[item_ref]", "/obj/item/", ""), "/", "-")
 		//forming new list with index, name, amount, available or not, color and add it to display_list
 
 		var/display_item = list(
@@ -1100,7 +1100,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 	var/list/ui_listed_products = vending_machine.get_listed_products(user)
 	var/list/ui_categories = list()
 
-	for (var/i in 1 to length(ui_listed_products))
+	for (var/i in 1 to length_char(ui_listed_products))
 		var/list/myprod = ui_listed_products[i] //we take one list from listed_products
 		var/p_amount = myprod[2] //amount left
 		ui_categories += list(p_amount)
@@ -1135,7 +1135,7 @@ GLOBAL_LIST_INIT(cm_vending_gear_corresponding_types_list, list(
 		else if(vending_machine.use_points)
 			points = H.marine_points
 
-	for (var/i in 1 to length(ui_listed_products))
+	for (var/i in 1 to length_char(ui_listed_products))
 		var/list/myprod = ui_listed_products[i] //we take one list from listed_products
 		var/prod_available = FALSE
 		var/p_cost = myprod[2]

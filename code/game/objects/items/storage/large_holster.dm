@@ -20,7 +20,7 @@
 	base_icon = icon_state
 
 /obj/item/storage/large_holster/update_icon()
-	if(length(contents))
+	if(length_char(contents))
 		icon_state = "[base_icon]_full"
 	else
 		icon_state = base_icon
@@ -164,7 +164,7 @@
 	..()
 
 /obj/item/storage/large_holster/m39/update_icon()
-	item_state = length(contents) ? "[base_icon]_full" : base_icon
+	item_state = length_char(contents) ? "[base_icon]_full" : base_icon
 
 	var/mob/living/carbon/human/user = loc
 	if(istype(user))
@@ -215,7 +215,7 @@
 
 /obj/item/storage/large_holster/fuelpack/update_icon()
 	overlays -= flamer_overlay
-	if(length(contents))
+	if(length_char(contents))
 		overlays += flamer_overlay
 
 	var/mob/living/carbon/human/user = loc
@@ -235,7 +235,7 @@
 /obj/item/storage/large_holster/fuelpack/get_mob_overlay(mob/user_mob, slot)
 	var/image/ret = ..()
 	if(slot == WEAR_BACK)
-		if(length(contents))
+		if(length_char(contents))
 			var/image/weapon_holstered = overlay_image('icons/mob/humans/onmob/back.dmi', "+m240t", color, RESET_COLOR)
 			ret.overlays += weapon_holstered
 

@@ -180,10 +180,10 @@
 	)
 
 	var/list/local_items = list()
-	for (var/i=1 to length(item_quants))
+	for (var/i=1 to length_char(item_quants))
 		var/item_index = item_quants[i]
 		var/list/item_list = item_quants[item_index]
-		var/count = length(item_list)
+		var/count = length_char(item_list)
 		if(count < 1)
 			continue
 
@@ -192,7 +192,7 @@
 		var/item_path = example.type
 		var/item_desc = example.desc
 
-		var/imgid = replacetext(replacetext("[item_path]", "/obj/item/", ""), "/", "-")
+		var/imgid = replacetext_char(replacetext_char("[item_path]", "/obj/item/", ""), "/", "-")
 
 		var/item_type = "other"
 		if(ispath(item_path, /obj/item/reagent_container/glass/bottle/))
@@ -214,10 +214,10 @@
 
 	var/list/networked_items = list()
 	if(is_in_network())
-		for (var/i=1 to length(chemical_data.shared_item_storage))
+		for (var/i=1 to length_char(chemical_data.shared_item_storage))
 			var/item_index = chemical_data.shared_item_storage[i]
 			var/list/item_list = chemical_data.shared_item_storage[item_index]
-			var/count = length(item_list)
+			var/count = length_char(item_list)
 			if(count < 1)
 				continue
 			var/obj/example = item_list[1]
@@ -225,7 +225,7 @@
 			var/item_path = example.type
 			var/item_desc = example.desc
 
-			var/imgid = replacetext(replacetext("[item_path]", "/obj/item/", ""), "/", "-")
+			var/imgid = replacetext_char(replacetext_char("[item_path]", "/obj/item/", ""), "/", "-")
 
 			var/item_type = "other"
 			if(ispath(item_path, /obj/item/reagent_container/glass/bottle/))
@@ -282,7 +282,7 @@
 			var/item_index = target_list[index]
 			var/list/item_list = target_list[item_index]
 
-			var/count = length(item_list)
+			var/count = length_char(item_list)
 
 			if(count <= 0)
 				return FALSE
@@ -317,7 +317,7 @@
 
 			var/item_index = source[index]
 			var/list/item_list = source[item_index]
-			var/count = length(item_list)
+			var/count = length_char(item_list)
 
 			if(count <= 0)
 				return FALSE
@@ -438,7 +438,7 @@
 
 	for (var/O in item_quants)
 		var/list/item_list = item_quants[O]
-		if(length(item_list) <= 0) //Try to use a record that actually has something to dump.
+		if(length_char(item_list) <= 0) //Try to use a record that actually has something to dump.
 			continue
 		var/obj/target_item = item_quants[1]
 		item_list.Remove(target_item)

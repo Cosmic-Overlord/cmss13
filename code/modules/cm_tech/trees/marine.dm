@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(marine_leaders)
 
 /datum/techtree/marine/proc/setup_leader(datum/source)
 	SIGNAL_HANDLER
-	if(length(GLOB.marine_leaders))
+	if(length_char(GLOB.marine_leaders))
 		var/mob/M = GLOB.marine_leaders[JOB_CO]
 		if(!M)
 			M = GLOB.marine_leaders[JOB_XO]

@@ -15,7 +15,7 @@
 #define BINARY_INSERT(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE) \
 	do {\
 		var/list/__BIN_LIST = LIST;\
-		var/__BIN_CTTL = length(__BIN_LIST);\
+		var/__BIN_CTTL = length_char(__BIN_LIST);\
 		if(!__BIN_CTTL) {\
 			__BIN_LIST += INPUT;\
 		} else {\
@@ -67,7 +67,7 @@
 		return L
 
 //Return either pick(list) or null if list is not of type /list or is empty
-#define SAFEPICK(L) (length(L) ? pick(L) : null)
+#define SAFEPICK(L) (length_char(L) ? pick(L) : null)
 
 ///sort any value in a list
 /proc/sort_list(list/list_to_sort, cmp=/proc/cmp_text_asc)

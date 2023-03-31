@@ -23,11 +23,11 @@
 
 	var/list/potential_spawners = list()
 	for(var/priority = 1 to LOWEST_SPAWN_PRIORITY)
-		if(length(GLOB.survivor_spawns_by_priority["[priority]"]))
+		if(length_char(GLOB.survivor_spawns_by_priority["[priority]"]))
 			for(var/obj/effect/landmark/survivor_spawner/spawner as anything in GLOB.survivor_spawns_by_priority["[priority]"])
 				if(spawner.check_can_spawn(H))
 					potential_spawners += spawner
-			if(length(potential_spawners))
+			if(length_char(potential_spawners))
 				break
 	var/obj/effect/landmark/survivor_spawner/picked_spawner = pick(potential_spawners)
 	H.forceMove(get_turf(picked_spawner))
@@ -41,7 +41,7 @@
 
 	H.name = H.get_visible_name()
 
-	if(length(picked_spawner.intro_text))
+	if(length_char(picked_spawner.intro_text))
 		intro_text = picked_spawner.intro_text
 
 	if(picked_spawner.story_text)
@@ -96,7 +96,7 @@
 										*/
 
 	var/random_name = pick(random_name(FEMALE), random_name(MALE))
-	var/temp_story = "<b>Your story thus far</b>: " + replacetext(pick(survivor_story), "{name}", "[random_name]")
+	var/temp_story = "<b>Your story thus far</b>: " + replacetext_char(pick(survivor_story), "{name}", "[random_name]")
 	to_chat(H, temp_story)
 	H.mind.memory += temp_story
 
@@ -112,7 +112,7 @@
 			if(MAX_SURVIVOR_PER_TYPE[preferred_variant] != -1 && SSticker.mode.survivors_by_type_amounts[preferred_variant] && SSticker.mode.survivors_by_type_amounts[preferred_variant] >= MAX_SURVIVOR_PER_TYPE[preferred_variant])
 				preferred_variant = ANY_SURVIVOR
 
-		var/list/survivor_types = preferred_variant != ANY_SURVIVOR && length(SSmapping.configs[GROUND_MAP].survivor_types_by_variant[preferred_variant]) ? SSmapping.configs[GROUND_MAP].survivor_types_by_variant[preferred_variant] : SSmapping.configs[GROUND_MAP].survivor_types
+		var/list/survivor_types = preferred_variant != ANY_SURVIVOR && length_char(SSmapping.configs[GROUND_MAP].survivor_types_by_variant[preferred_variant]) ? SSmapping.configs[GROUND_MAP].survivor_types_by_variant[preferred_variant] : SSmapping.configs[GROUND_MAP].survivor_types
 		arm_equipment(equipping_human, pick(survivor_types), FALSE, TRUE)
 
 		SSticker.mode.survivors_by_type_amounts[preferred_variant] += 1
@@ -144,7 +144,7 @@ AddTimelock(/datum/job/civilian/survivor, list(
 			if(MAX_SURVIVOR_PER_TYPE[preferred_variant] != -1 && SSticker.mode.survivors_by_type_amounts[preferred_variant] && SSticker.mode.survivors_by_type_amounts[preferred_variant] >= MAX_SURVIVOR_PER_TYPE[preferred_variant])
 				preferred_variant = ANY_SURVIVOR
 
-		var/list/synth_survivor_types = preferred_variant != ANY_SURVIVOR && length(SSmapping.configs[GROUND_MAP].synth_survivor_types_by_variant[preferred_variant]) ? SSmapping.configs[GROUND_MAP].synth_survivor_types_by_variant[preferred_variant] : SSmapping.configs[GROUND_MAP].synth_survivor_types
+		var/list/synth_survivor_types = preferred_variant != ANY_SURVIVOR && length_char(SSmapping.configs[GROUND_MAP].synth_survivor_types_by_variant[preferred_variant]) ? SSmapping.configs[GROUND_MAP].synth_survivor_types_by_variant[preferred_variant] : SSmapping.configs[GROUND_MAP].synth_survivor_types
 		arm_equipment(equipping_human, pick(synth_survivor_types), FALSE, TRUE)
 
 		SSticker.mode.survivors_by_type_amounts[preferred_variant] += 1

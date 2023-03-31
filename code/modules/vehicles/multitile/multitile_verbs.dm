@@ -285,7 +285,7 @@
 	var/new_nickname = stripped_input(user, "Enter a unique IC name or a callsign to add to your vehicle's name. [MAX_NAME_LEN] characters maximum. \n\nIMPORTANT! This is an IC nickname/callsign for your vehicle and you will be punished for putting in meme names.\nSINGLE USE ONLY.", "Name your vehicle", null, MAX_NAME_LEN)
 	if(!new_nickname)
 		return
-	if(length(new_nickname) > MAX_NAME_LEN)
+	if(length_char(new_nickname) > MAX_NAME_LEN)
 		alert(user, "Name [new_nickname] is over [MAX_NAME_LEN] characters limit. Try again.", "Naming vehicle failed", "Ok")
 		return
 	if(alert(user, "Vehicle's name will be [V.name + "\"[new_nickname]\""]. Confirm?", "Confirmation?", "Yes", "No") != "Yes")

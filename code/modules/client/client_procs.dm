@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 		return
 
 	//search the href for script injection
-	if(findtext(href,"<script",1,0) )
+	if(findtext_char(href,"<script",1,0) )
 		world.log << "Attempted use of scripts within a topic call, by [src]"
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		//del(usr)
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 	// Change the way they should download resources.
 	var/static/next_external_rsc = 0
 	var/list/external_rsc_urls = CONFIG_GET(keyed_list/external_rsc_urls)
-	if(length(external_rsc_urls))
+	if(length_char(external_rsc_urls))
 		next_external_rsc = WRAP(next_external_rsc+1, 1, external_rsc_urls.len+1)
 		preload_rsc = external_rsc_urls[next_external_rsc]
 
@@ -420,7 +420,7 @@ GLOBAL_LIST_INIT(whitelisted_client_procs, list(
 
 
 	var/file = file2text("config/donators.txt")
-	var/lines = splittext(file, "\n")
+	var/lines = splittext_char(file, "\n")
 
 	for(var/line in lines)
 		if(src.ckey == line)

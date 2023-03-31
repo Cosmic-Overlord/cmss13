@@ -61,7 +61,7 @@
 		if(z_level_to_compare_from == user.z)
 			object_choices += O
 
-	if(!length(object_choices))
+	if(!length_char(object_choices))
 		to_chat(user, SPAN_WARNING("There are nothing of interest to track."))
 		return
 

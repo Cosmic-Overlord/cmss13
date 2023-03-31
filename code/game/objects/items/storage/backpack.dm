@@ -234,7 +234,7 @@
 	refill_santa_bag()
 
 /obj/item/storage/backpack/santabag/proc/refill_santa_bag(mob/living/user)
-	var/current_items = length(contents)
+	var/current_items = length_char(contents)
 	var/total_to_refill = storage_slots - current_items
 	for(var/total_storage_slots in 1 to total_to_refill)
 		new /obj/item/m_gift(src)

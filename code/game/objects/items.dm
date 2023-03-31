@@ -401,7 +401,7 @@ cases. Override_icon_state should be a list.*/
 
 	var/list/verbs_to_remove = list()
 	for(var/v in verbs)
-		if(length(user.item_verbs[v]) == 1)
+		if(length_char(user.item_verbs[v]) == 1)
 			if(user.item_verbs[v][1] == src)
 				verbs_to_remove += v
 		LAZYREMOVE(user.item_verbs[v], src)

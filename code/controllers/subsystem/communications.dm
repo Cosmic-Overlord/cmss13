@@ -280,7 +280,7 @@ SUBSYSTEM_DEF(radio)
 	if(frequency)
 		frequency.remove_listener(device)
 
-		if(!length(frequency.devices))
+		if(!length_char(frequency.devices))
 			qdel(frequency)
 			frequencies -= f_text
 
@@ -301,14 +301,14 @@ SUBSYSTEM_DEF(radio)
 	//Returns lists of Z levels that have comms
 	var/list/target_zs = SSmapping.levels_by_trait(ZTRAIT_ADMIN)
 	var/list/extra_zs = SSmapping.levels_by_trait(ZTRAIT_AWAY)
-	if(length(extra_zs))
+	if(length_char(extra_zs))
 		target_zs += extra_zs
 	for(var/obj/structure/machinery/telecomms/T as anything in tcomm_machines_ground)
-		if(!length(T.freq_listening) || (frequency in T.freq_listening))
+		if(!length_char(T.freq_listening) || (frequency in T.freq_listening))
 			target_zs += SSmapping.levels_by_trait(ZTRAIT_GROUND)
 			break
 	for(var/obj/structure/machinery/telecomms/T as anything in tcomm_machines_almayer)
-		if(!length(T.freq_listening) || (frequency in T.freq_listening))
+		if(!length_char(T.freq_listening) || (frequency in T.freq_listening))
 			target_zs += SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
 			target_zs += SSmapping.levels_by_trait(ZTRAIT_RESERVED)
 			break

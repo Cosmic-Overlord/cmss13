@@ -91,7 +91,7 @@
 		return
 	if (href_list["type"])
 		if (href_list["type"] == "E")
-			if ((l_set == 0) && (length(code) == 5) && (!l_setshort) && (code != "ERROR"))
+			if ((l_set == 0) && (length_char(code) == 5) && (!l_setshort) && (code != "ERROR"))
 				l_code = code
 				l_set = 1
 			else if ((code == l_code) && (l_set == 1))
@@ -109,7 +109,7 @@
 				storage_close(usr)
 			else
 				code += text("[]", href_list["type"])
-				if (length(code) > 5)
+				if (length_char(code) > 5)
 					code = "ERROR"
 		add_fingerprint(usr)
 		for(var/mob/M as anything in viewers(1, loc))

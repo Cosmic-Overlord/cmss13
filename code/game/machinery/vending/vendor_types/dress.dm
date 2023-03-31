@@ -91,7 +91,7 @@
 	var/list/data = list()
 	var/list/ui_listed_products = get_listed_products(user)
 	var/list/stock_values = list()
-	for (var/i in 1 to length(ui_listed_products))
+	for (var/i in 1 to length_char(ui_listed_products))
 		var/prod_available = TRUE
 		var/list/myprod = ui_listed_products[i] //we take one list from listed_products
 		var/uniform_path = myprod[3]
@@ -194,7 +194,7 @@
 
 	//Figure out which object they might be trying to fetch
 	for(var/path in types)
-		if(findtext("[path]", item))
+		if(findtext_char("[path]", item))
 			matches += path
 
 	if(matches.len==0)

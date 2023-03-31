@@ -69,14 +69,14 @@ GLOBAL_LIST_EMPTY(ui_data_keybindings)
 				if(kbinds[old_key])
 					kbinds[old_key] -= kb_name
 					kbinds["Unbound"] += kb_name
-					if(!length(kbinds[old_key]))
+					if(!length_char(kbinds[old_key]))
 						kbinds -= old_key
 				INVOKE_ASYNC(owner, /client/proc/set_macros)
 				prefs.save_preferences()
 				return
 
 			var/list/tempList = list()
-			for(var/i in splittext(full_key, "+"))
+			for(var/i in splittext_char(full_key, "+"))
 				if(GLOB._kbMap[i])
 					tempList += GLOB._kbMap[i]
 				else
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(ui_data_keybindings)
 
 			if(kbinds[old_key])
 				kbinds[old_key] -= kb_name
-				if(!length(kbinds[old_key]))
+				if(!length_char(kbinds[old_key]))
 					kbinds -= old_key
 
 			if(LAZYISIN(kbinds["Unbound"], old_key))
@@ -111,7 +111,7 @@ GLOBAL_LIST_EMPTY(ui_data_keybindings)
 				if(kbinds[key])
 					kbinds[key] -= kb_name
 					kbinds["Unbound"] += kb_name
-					if(!length(kbinds[key]))
+					if(!length_char(kbinds[key]))
 						kbinds -= key
 
 			prefs.save_preferences()

@@ -325,18 +325,18 @@
 	if(vines.len >= (seed ? seed.potency * slowdown_limit : 30) && !reached_slowdown_size )
 		reached_slowdown_size = 1
 
-	var/length = 0
+	var/length_char = 0
 	if(reached_collapse_size)
-		length = 0
+		length_char = 0
 	else if(reached_slowdown_size)
 		if(prob(seed ? seed.potency : 25))
-			length = 1
+			length_char = 1
 		else
-			length = 0
+			length_char = 0
 	else
-		length = 1
+		length_char = 1
 
-	length = min(30, max(length, vines.len/5))
+	length_char = min(30, max(length_char, vines.len/5))
 
 	// Update as many pieces of vine as we're allowed to.
 	// Append updated vines to the end of the growth queue.
@@ -365,7 +365,7 @@
 
 		SV.update()
 		SV.spread()
-		if(i >= length)
+		if(i >= length_char)
 			break
 
 	growth_queue = growth_queue + queue_end

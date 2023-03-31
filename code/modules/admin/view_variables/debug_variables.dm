@@ -22,7 +22,7 @@
 			name_part = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(name)]'>[VV_HTML_ENCODE(name)] [REF(name)]</a>"
 		else if(islist(name))
 			var/list/L = name
-			name_part = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(name)]'> /list ([length(L)]) [REF(name)]</a>"
+			name_part = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(name)]'> /list ([length_char(L)]) [REF(name)]</a>"
 
 	if (isnull(value))
 		item = "[name_part] = <span class='value'>null</span>"

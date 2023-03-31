@@ -172,9 +172,9 @@
 
 /obj/structure/machinery/telecomms/relay/preset/tower/faction/Initialize(mapload, ...)
 	if(faction_shorthand)
-		name = replacetext(name, "UPP", faction_shorthand)
-		desc = replacetext(desc, "UPP", faction_shorthand)
-		id = replacetext(id, "UPP", faction_shorthand)
+		name = replacetext_char(name, "UPP", faction_shorthand)
+		desc = replacetext_char(desc, "UPP", faction_shorthand)
+		id = replacetext_char(id, "UPP", faction_shorthand)
 	return ..()
 
 /obj/structure/machinery/telecomms/relay/preset/tower/faction/clf

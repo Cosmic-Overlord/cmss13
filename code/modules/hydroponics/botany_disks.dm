@@ -16,7 +16,7 @@
 /obj/item/disk/botany/attack_self(mob/user)
 	..()
 
-	if(!length(genes))
+	if(!length_char(genes))
 		return
 
 	var/choice = alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", "No", "Yes")

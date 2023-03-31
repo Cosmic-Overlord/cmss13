@@ -13,27 +13,27 @@
  * Text sanitization
  */
 
-//Simply removes < and > and limits the length of the message
+//Simply removes < and > and limits the length_char of the message
 /proc/strip_html_simple(t, limit=MAX_MESSAGE_LEN)
 	var/list/strip_chars = list("<",">")
-	t = copytext(t,1,limit)
+	t = copytext_char(t,1,limit)
 	for(var/char in strip_chars)
-		var/index = findtext(t, char)
+		var/index = findtext_char(t, char)
 		while(index)
-			t = copytext(t, 1, index) + copytext(t, index+1)
-			index = findtext(t, char)
+			t = copytext_char(t, 1, index) + copytext_char(t, index+1)
+			index = findtext_char(t, char)
 	return t
 
 //Removes a few problematic characters
 /proc/sanitize_simple(text, list/repl_chars = list("\n"=" ","\t"=" ","�"=" "))
 	for(var/char in repl_chars)
-		text = replacetext(text, char, repl_chars[char])
+		text = replacetext_char(text, char, repl_chars[char])
 	return text
 
 /proc/readd_quotes(text)
 	var/list/repl_chars = list("&#34;" = "\"", "&#39;" = "'")
 	for(var/char in repl_chars)
-		text = replacetext(text, char, repl_chars[char])
+		text = replacetext_char(text, char, repl_chars[char])
 	return text
 
 //Runs byond's sanitization proc along-side sanitize_simple
@@ -54,18 +54,18 @@
 //Runs sanitize and strip_html_simple
 //I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' after sanitize() calls byond's html_encode()
 /proc/strip_html(text, limit=MAX_MESSAGE_LEN)
-	return copytext((sanitize(strip_html_simple(text))), 1, limit)
+	return copytext_char((sanitize(strip_html_simple(text))), 1, limit)
 
 //Runs byond's sanitization proc along-side strip_html_simple
 //I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' that html_encode() would cause
 /proc/adminscrub(text, limit=MAX_MESSAGE_LEN)
-	return copytext((html_encode(strip_html_simple(text))), 1, limit)
+	return copytext_char((html_encode(strip_html_simple(text))), 1, limit)
 
 //Returns null if there is any bad text in the string
 /proc/reject_bad_text(text, max_length=512)
-	if(length(text) > max_length) return //message too long
+	if(length_char(text) > max_length) return //message too long
 	var/non_whitespace = 0
-	for(var/i=1, i<=length(text), i++)
+	for(var/i=1, i<=length_char(text), i++)
 		switch(text2ascii(text,i))
 			if(62,60,92,47) return //rejects the text if it contains these bad characters: <, >, \ or /
 			if(127 to 255) return //rejects weird letters like �
@@ -86,14 +86,14 @@
 
 //Filters out undesirable characters from names
 /proc/reject_bad_name(t_in, allow_numbers = 0, max_length = MAX_NAME_LEN, allow_signs = TRUE)
-	if(!t_in || length(t_in) > max_length)
-		return //Rejects the input if it is null or if it is longer then the max length allowed
+	if(!t_in || length_char(t_in) > max_length)
+		return //Rejects the input if it is null or if it is longer then the max length_char allowed
 
 	var/number_of_alphanumeric = 0
 	var/last_char_group = 0
 	var/t_out = ""
 
-	for(var/i=1, i<=length(t_in), i++)
+	for(var/i=1, i<=length_char(t_in), i++)
 		var/ascii_char = text2ascii(t_in,i)
 		switch(ascii_char)
 			// A  .. Z
@@ -146,7 +146,7 @@
 		return //protects against tiny names like "A" and also names like "' ' ' ' ' ' ' '"
 
 	if(last_char_group == 1)
-		t_out = copytext(t_out,1,length(t_out)) //removes the last character (in this case a space)
+		t_out = copytext_char(t_out,1,length_char(t_out)) //removes the last character (in this case a space)
 
 	for(var/bad_name in list("space","floor","wall","r-wall","monkey","unknown","inactive ai")) //prevents these common metagamey names
 		if(cmptext(t_out,bad_name))
@@ -160,34 +160,34 @@
 
 //Adds 'u' number of zeros ahead of the text 't'
 /proc/add_zero(t, u)
-	while (length(t) < u)
+	while (length_char(t) < u)
 		t = "0[t]"
 	return t
 
 //Adds 'u' number of spaces ahead of the text 't'
 /proc/add_lspace(t, u)
-	while(length(t) < u)
+	while(length_char(t) < u)
 		t = " [t]"
 	return t
 
 //Adds 'u' number of spaces behind the text 't'
 /proc/add_tspace(t, u)
-	while(length(t) < u)
+	while(length_char(t) < u)
 		t = "[t] "
 	return t
 
 //Returns a string with reserved characters and spaces before the first letter removed
 /proc/trim_left(text)
-	for (var/i in 1 to length(text))
+	for (var/i in 1 to length_char(text))
 		if (text2ascii(text, i) > 32)
-			return copytext(text, i)
+			return copytext_char(text, i)
 	return ""
 
 //Returns a string with reserved characters and spaces after the last letter removed
 /proc/trim_right(text)
-	for (var/i in length(text) to 1 step -1)
+	for (var/i in length_char(text) to 1 step -1)
 		if (text2ascii(text, i) > 32)
-			return copytext(text, 1, i + 1)
+			return copytext_char(text, 1, i + 1)
 
 	return ""
 
@@ -197,7 +197,7 @@
 
 //Returns a string with the first element of the string capitalized.
 /proc/capitalize(t as text)
-	return uppertext(copytext(t, 1, 2)) + copytext(t, 2)
+	return uppertext(copytext_char(t, 1, 2)) + copytext_char(t, 2)
 
 /proc/stringpercent(text,character = "*")
 //This proc returns the number of chars of the string that is the character
@@ -205,62 +205,62 @@
 	if(!text || !character)
 		return 0
 	var/count = 0
-	for(var/i = 1, i <= length(text), i++)
-		var/a = copytext(text,i,i+1)
+	for(var/i = 1, i <= length_char(text), i++)
+		var/a = copytext_char(text,i,i+1)
 		if(a == character)
 			count++
 	return count
 
 /proc/reverse_text(text = "")
 	var/new_text = ""
-	for(var/i = length(text); i > 0; i--)
-		new_text += copytext(text, i, i+1)
+	for(var/i = length_char(text); i > 0; i--)
+		new_text += copytext_char(text, i, i+1)
 	return new_text
 
 //Used in preferences' SetFlavorText and human's set_flavor verb
-//Previews a string of len or less length
+//Previews a string of len or less length_char
 /proc/TextPreview(string, len=40)
-	var/string_length = length(string)
+	var/string_length = length_char(string)
 	if(!string_length)
 		return "\[...\]"
 	else if(string_length <= len)
 		return string
 	else
-		return "[copytext(string, 1, len - 3)]..."
+		return "[copytext_char(string, 1, len - 3)]..."
 
 /proc/strip_improper(input_text)
-	return replacetext(replacetext(input_text, "\proper", ""), "\improper", "")
+	return replacetext_char(replacetext_char(input_text, "\proper", ""), "\improper", "")
 
 // Used to remove the string shortcuts for a clean transfer
 /proc/sanitize_filename(t)
 	return sanitize_simple(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
 
 /proc/deep_string_equals(A, B)
-	if(length(A) != length(B))
+	if(length_char(A) != length_char(B))
 		return FALSE
-	for(var/i = 1 to length(A))
+	for(var/i = 1 to length_char(A))
 		if (text2ascii(A, i) != text2ascii(B, i))
 			return FALSE
 	return TRUE
 
 //Used for applying byonds text macros to strings that are loaded at runtime
 /proc/apply_text_macros(string)
-	var/next_backslash = findtext(string, "\\")
+	var/next_backslash = findtext_char(string, "\\")
 	if(!next_backslash)
 		return string
 
-	var/leng = length(string)
+	var/leng = length_char(string)
 
-	var/next_space = findtext(string, " ", next_backslash + 1)
+	var/next_space = findtext_char(string, " ", next_backslash + 1)
 	if(!next_space)
 		next_space = leng - next_backslash
 
 	if(!next_space) //trailing bs
 		return string
 
-	var/base = next_backslash == 1 ? "" : copytext(string, 1, next_backslash)
-	var/macro = lowertext(copytext(string, next_backslash + 1, next_space))
-	var/rest = next_backslash > leng ? "" : copytext(string, next_space + 1)
+	var/base = next_backslash == 1 ? "" : copytext_char(string, 1, next_backslash)
+	var/macro = lowertext(copytext_char(string, next_backslash + 1, next_space))
+	var/rest = next_backslash > leng ? "" : copytext_char(string, next_space + 1)
 
 	//See http://www.byond.com/docs/ref/info.html#/DM/text/macros
 	switch(macro)
@@ -336,7 +336,7 @@
 	// ---Begin URL caching.
 	var/list/urls = list()
 	var/i = 1
-	while (url_find_lazy.Find_char(message))
+	while (url_find_lazy.Find(message))
 		urls["\ref[urls]-[i]"] = url_find_lazy.match
 		i++
 
@@ -360,12 +360,12 @@
 #define SMALL_FONTS_COLOR(FONTSIZE, MSG, COLOR) "<span style=\"font-family: 'Small Fonts'; -dm-text-outline: 1 black; font-size: [FONTSIZE]px; color: [COLOR];\">[MSG]</span>"
 
 //finds the first occurrence of one of the characters from needles argument inside haystack
-//it may appear this can be optimised, but it really can't. findtext() is so much faster than anything you can do in byondcode.
+//it may appear this can be optimised, but it really can't. findtext_char() is so much faster than anything you can do in byondcode.
 //stupid byond :(
 /proc/findchar(haystack, needles, start=1, end=0)
 	var/char = ""
-	var/len = length(needles)
-	for(var/i = 1, i <= len, i += length(char))
+	var/len = length_char(needles)
+	for(var/i = 1, i <= len, i += length_char(char))
 		char = needles[i]
 		. = findtextEx(haystack, char, start, end)
 		if(.)

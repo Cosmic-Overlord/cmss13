@@ -496,7 +496,7 @@
 	H.h_style = "Bald"
 	H.f_style = "Shaved"
 	if(prob(5))
-		H.h_style = "Shoulder-length Hair" //Added the chance of hair as per Monkeyfist lore accuracy
+		H.h_style = "Shoulder-length_char Hair" //Added the chance of hair as per Monkeyfist lore accuracy
 	H.r_eyes = 0
 	H.g_eyes = 0
 	H.b_eyes = 0

@@ -9,7 +9,7 @@
 		GAME_CHAT 5
 		DEBUG 6
 		RUNTIME  7
-		DEFAULT CONFIG LENGTH == 150
+		DEFAULT CONFIG length_char == 150
 		TODO:
 			** setup a way of opening a single log
 */
@@ -40,7 +40,7 @@ GLOBAL_DATUM_INIT(STUI, /datum/STUI, new)
 
 /datum/STUI/New()
 	. = ..()
-	if(length(stui_init_runtimes)) // Report existing errors that might have occured during static initializers
+	if(length_char(stui_init_runtimes)) // Report existing errors that might have occured during static initializers
 		runtime = stui_init_runtimes.Copy()
 
 /datum/STUI/Topic(href, href_list)

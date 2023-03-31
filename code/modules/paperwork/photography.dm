@@ -39,7 +39,7 @@
 /obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
 	if(HAS_TRAIT(P, TRAIT_TOOL_PEN) || istype(P, /obj/item/toy/crayon))
 		var/txt = strip_html(input(user, "What would you like to write on the back?", "Photo Writing", null)  as text)
-		txt = copytext(txt, 1, 128)
+		txt = copytext_char(txt, 1, 128)
 		if(loc == user && user.stat == 0)
 			scribble = txt
 			playsound(src, "paper_writing", 15, TRUE)

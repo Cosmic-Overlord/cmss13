@@ -26,7 +26,7 @@
 	icon_state = ""
 
 /obj/structure/pipes/trinary/filter/update_icon()
-	if(length(connected_to))
+	if(length_char(connected_to))
 		icon_state += "on"
 	else
 		icon_state += "off"
@@ -83,7 +83,7 @@
 	icon_state = ""
 
 /obj/structure/pipes/trinary/mixer/update_icon(safety = 0)
-	if(length(connected_to))
+	if(length_char(connected_to))
 		icon_state += "on"
 	else
 		icon_state += "off"

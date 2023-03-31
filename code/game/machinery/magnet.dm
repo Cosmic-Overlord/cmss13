@@ -321,7 +321,7 @@
 				if(speed <= 0)
 					speed = 1
 			if("setpath")
-				var/newpath = copytext(sanitize(input(usr, "Please define a new path!",,path) as text|null),1,MAX_MESSAGE_LEN)
+				var/newpath = copytext_char(sanitize(input(usr, "Please define a new path!",,path) as text|null),1,MAX_MESSAGE_LEN)
 				if(newpath && newpath != "")
 					moving = 0 // stop moving
 					path = newpath
@@ -353,7 +353,7 @@
 		signal.frequency = frequency
 		signal.data["code"] = code
 
-		if(pathpos > rpath.len) // if the position is greater than the length, we just loop through the list!
+		if(pathpos > rpath.len) // if the position is greater than the length_char, we just loop through the list!
 			pathpos = 1
 
 		var/nextmove = uppertext(rpath[pathpos]) // makes it un-case-sensitive
@@ -386,14 +386,14 @@
 	// Generates the rpath variable using the path string, think of this as "string2list"
 	// Doesn't use params2list() because of the akward way it stacks entities
 	rpath = list() //  clear rpath
-	var/maximum_character = min( 50, length(path) ) // chooses the maximum length of the iterator. 50 max length
+	var/maximum_character = min( 50, length_char(path) ) // chooses the maximum length_char of the iterator. 50 max length_char
 
 	for(var/i=1, i<=maximum_character, i++) // iterates through all characters in path
 
-		var/nextchar = copytext(path, i, i+1) // find next character
+		var/nextchar = copytext_char(path, i, i+1) // find next character
 
 		if(!(nextchar in list(";", "&", "*", " "))) // if char is a separator, ignore
-			rpath += copytext(path, i, i+1) // else, add to list
+			rpath += copytext_char(path, i, i+1) // else, add to list
 
 		// there doesn't HAVE to be separators but it makes paths syntatically visible
 

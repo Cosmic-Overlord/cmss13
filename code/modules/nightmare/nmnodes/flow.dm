@@ -15,7 +15,7 @@
 
 /datum/nmnode/branch/resolve(datum/nmcontext/context)
 	. = ..()
-	if(!. || !length(nodes))
+	if(!. || !length_char(nodes))
 		return FALSE
 	for(var/datum/nmnode/node as anything in nodes)
 		node.invoke(context)
@@ -71,7 +71,7 @@
 			pickables[node] = node.raw["weight"]
 	var/list/datum/nmnode/picked = list()
 	var/remaining = src.amount
-	while(length(pickables) && remaining > 0)
+	while(length_char(pickables) && remaining > 0)
 		var/datum/nmnode/node = pickweight(pickables)
 		remaining--
 		pickables -= node

@@ -9,7 +9,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 /datum/controller/failsafe // This thing pretty much just keeps poking the master controller
 	name = "Failsafe"
 
-	// The length of time to check on the MC (in deciseconds).
+	// The length_char of time to check on the MC (in deciseconds).
 	// Set to 0 to disable.
 	var/processing_interval = 20
 	// The alert level. For every failed poke, we drop a DEFCON level. Once we hit DEFCON 1, restart the MC.

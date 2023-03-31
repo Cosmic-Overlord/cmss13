@@ -298,7 +298,7 @@ GLOBAL_LIST_INIT(frozen_items, list(SQUAD_MARINE_1 = list(), SQUAD_MARINE_2 = li
 
 			for(var/TT in deleteempty)
 				if(istype(W, TT))
-					if(length(W.contents) == 0)
+					if(length_char(W.contents) == 0)
 						qdel(W) // delete all the empty satchels
 						continue item_loop
 					break // not empty, don't delete

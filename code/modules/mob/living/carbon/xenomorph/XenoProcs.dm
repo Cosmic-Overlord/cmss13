@@ -90,7 +90,7 @@
 
 	var/list/statdata = list()
 	SEND_SIGNAL(src, COMSIG_XENO_APPEND_TO_STAT, statdata)
-	if(length(statdata))
+	if(length_char(statdata))
 		. += statdata
 
 	. += ""

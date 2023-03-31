@@ -270,13 +270,13 @@ What a mess.*/
 					return
 				Perp = new/list()
 				t1 = lowertext(t1)
-				var/list/components = splittext(t1, " ")
+				var/list/components = splittext_char(t1, " ")
 				if(components.len > 5)
 					return //Lets not let them search too greedily.
 				for(var/datum/data/record/R in GLOB.data_core.general)
 					var/temptext = R.fields["name"] + " " + R.fields["id"] + " " + R.fields["rank"]
 					for(var/i = 1, i<=components.len, i++)
-						if(findtext(temptext,components[i]))
+						if(findtext_char(temptext,components[i]))
 							var/prelist = new/list(2)
 							prelist[1] = R
 							Perp += prelist
@@ -327,7 +327,7 @@ What a mess.*/
 						P.name = "Security Record"
 					if (record2)
 						P.info += text("<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nIncidents: [record2.fields["incident"]]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>")
-						if(islist(record2.fields["comments"]) || length(record2.fields["comments"]) > 0)
+						if(islist(record2.fields["comments"]) || length_char(record2.fields["comments"]) > 0)
 							for(var/com_i in record2.fields["comments"])
 								var/comment = record2.fields["comments"][com_i]
 								var/comment_markup = text("<b>[] / [] ([])</b><br />", comment["created_at"], comment["created_by"]["name"], comment["created_by"]["rank"])
@@ -360,7 +360,7 @@ What a mess.*/
 				if (!(istype(active2, /datum/data/record)))
 					return
 				var/a2 = active2
-				var/t1 = copytext(trim(strip_html(input("Your name and time will be added to this new comment.", "Add a comment", null, null)  as message)),1,MAX_MESSAGE_LEN)
+				var/t1 = copytext_char(trim(strip_html(input("Your name and time will be added to this new comment.", "Add a comment", null, null)  as message)),1,MAX_MESSAGE_LEN)
 				if((!t1 || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!ishighersilicon(usr))) || active2 != a2))
 					return
 				var/created_at = text("[]&nbsp;&nbsp;[]&nbsp;&nbsp;[]", time2text(world.realtime, "MMM DD"), time2text(world.time, "[worldtime2text()]:ss"), game_year)
@@ -374,7 +374,7 @@ What a mess.*/
 				if(!islist(active2.fields["comments"]))
 					active2.fields["comments"] = list("1" = new_comment)
 				else
-					var/new_com_i = length(active2.fields["comments"]) + 1
+					var/new_com_i = length_char(active2.fields["comments"]) + 1
 					active2.fields["comments"]["[new_com_i]"] = new_comment
 				to_chat(usr, text("You have added a new comment to the Security Record of [].", active2.fields["name"]))
 
@@ -452,7 +452,7 @@ What a mess.*/
 							alert(usr, "You do not have the required rank to do this!")
 					if("species")
 						if (istype(active1, /datum/data/record))
-							var/t1 = copytext(trim(strip_html(input("Please enter race:", "General records", active1.fields["species"], null)  as message)),1,MAX_MESSAGE_LEN)
+							var/t1 = copytext_char(trim(strip_html(input("Please enter race:", "General records", active1.fields["species"], null)  as message)),1,MAX_MESSAGE_LEN)
 							if (!t1 || active1 != a1)
 								return
 							active1.fields["species"] = t1

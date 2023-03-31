@@ -206,7 +206,7 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 				dat+="<BR><HR>The newscaster recognises you as: <FONT COLOR='green'>[src.scanned_user]</FONT>"
 			if(1)
 				dat+= "Station Feed Channels<HR>"
-				if(!length(news_network.network_channels) )
+				if(!length_char(news_network.network_channels) )
 					dat+="<I>No active channels found...</I>"
 				else
 					for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
@@ -216,7 +216,7 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 							dat+="<B><A href='?src=\ref[src];show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR></B>"
 					/*for(var/datum/feed_channel/CHANNEL in src.channel_list)
 						dat+="<B>[CHANNEL.channel_name]: </B> <BR><FONT SIZE=1>\[created by: <FONT COLOR='maroon'>[CHANNEL.author]</FONT>\]</FONT><BR><BR>"
-						if(!length(CHANNEL.messages) )
+						if(!length_char(CHANNEL.messages) )
 							dat+="<I>No feed messages found in channel...</I><BR><BR>"
 						else
 							for(var/datum/feed_message/MESSAGE in CHANNEL.messages)
@@ -278,12 +278,12 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 					dat+="<FONT COLOR='maroon'>�Channel author unverified.</FONT><BR>"
 				dat+="<BR><A href='?src=\ref[src];setScreen=[2]'>Return</A><BR>"
 			if(8)
-				var/total_num=length(news_network.network_channels)
+				var/total_num=length_char(news_network.network_channels)
 				var/active_num=total_num
 				var/message_num=0
 				for(var/datum/feed_channel/FC in news_network.network_channels)
 					if(!FC.censored)
-						message_num += length(FC.messages) //Dont forget, datum/feed_channel's var messages is a list of datum/feed_message
+						message_num += length_char(FC.messages) //Dont forget, datum/feed_channel's var messages is a list of datum/feed_message
 					else
 						active_num--
 				dat+="Network currently serves a total of [total_num] Feed channels, [active_num] of which are active, and a total of [message_num] Feed Stories." //TODO: CONTINUE
@@ -296,7 +296,7 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 					dat+="<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a Weyland-Yutani D-Notice.<BR>"
 					dat+="No further feed story additions are allowed while the D-Notice is in effect.</FONT><BR><BR>"
 				else
-					if(!length(src.viewing_channel.messages) )
+					if(!length_char(src.viewing_channel.messages) )
 						dat+="<I>No feed messages found in channel...</I><BR>"
 					else
 						var/i = 0
@@ -314,7 +314,7 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 				dat+="<FONT SIZE=1>NOTE: Due to the nature of news Feeds, total deletion of a Feed Story is not possible.<BR>"
 				dat+="Keep in mind that users attempting to view a censored feed will instead see the \[REDACTED\] tag above it.</FONT>"
 				dat+="<HR>Select Feed channel to get Stories from:<BR>"
-				if(!length(news_network.network_channels))
+				if(!length_char(news_network.network_channels))
 					dat+="<I>No feed channels found active...</I><BR>"
 				else
 					for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
@@ -325,7 +325,7 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 				dat+="<FONT SIZE=1>A D-Notice is to be bestowed upon the channel if the handling Authority deems it as harmful for the station's"
 				dat+="morale, integrity or disciplinary behaviour. A D-Notice will render a channel unable to be updated by anyone, without deleting any feed"
 				dat+="stories it might contain at the time. You can lift a D-Notice if you have the required access at any time.</FONT><HR>"
-				if(!length(news_network.network_channels))
+				if(!length_char(news_network.network_channels))
 					dat+="<I>No feed channels found active...</I><BR>"
 				else
 					for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
@@ -337,7 +337,7 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 				dat+="<FONT SIZE=2><A href='?src=\ref[src];censor_channel_author=\ref[src.viewing_channel]'>[(src.viewing_channel.author=="\[REDACTED\]") ? ("Undo Author censorship") : ("Censor channel Author")]</A></FONT><HR>"
 
 
-				if(!length(src.viewing_channel.messages) )
+				if(!length_char(src.viewing_channel.messages) )
 					dat+="<I>No feed messages found in channel...</I><BR>"
 				else
 					for(var/datum/feed_message/MESSAGE in src.viewing_channel.messages)
@@ -351,7 +351,7 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 					dat+="<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a Weyland-Yutani D-Notice.<BR>"
 					dat+="No further feed story additions are allowed while the D-Notice is in effect.</FONT><BR><BR>"
 				else
-					if(!length(src.viewing_channel.messages) )
+					if(!length_char(src.viewing_channel.messages) )
 						dat+="<I>No feed messages found in channel...</I><BR>"
 					else
 						for(var/datum/feed_message/MESSAGE in src.viewing_channel.messages)
@@ -437,8 +437,8 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 		usr.set_interaction(src)
 		if(href_list["set_channel_name"])
 			src.channel_name = strip_html(input(usr, "Provide a Feed Channel Name", "Network Channel Handler", ""))
-			while (findtext(src.channel_name," ") == 1)
-				src.channel_name = copytext(src.channel_name,2,length(src.channel_name)+1)
+			while (findtext_char(src.channel_name," ") == 1)
+				src.channel_name = copytext_char(src.channel_name,2,length_char(src.channel_name)+1)
 			src.updateUsrDialog()
 			//src.update_icon()
 
@@ -486,8 +486,8 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 
 		else if(href_list["set_new_message"])
 			src.msg = strip_html(input(usr, "Write your Feed story", "Network Channel Handler", ""))
-			while (findtext(src.msg," ") == 1)
-				src.msg = copytext(src.msg,2,length(src.msg)+1)
+			while (findtext_char(src.msg," ") == 1)
+				src.msg = copytext_char(src.msg,2,length_char(src.msg)+1)
 			src.updateUsrDialog()
 
 		else if(href_list["set_attachment"])
@@ -553,14 +553,14 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 
 		else if(href_list["set_wanted_name"])
 			src.channel_name = strip_html(input(usr, "Provide the name of the Wanted person", "Network Security Handler", ""))
-			while (findtext(src.channel_name," ") == 1)
-				src.channel_name = copytext(src.channel_name,2,length(src.channel_name)+1)
+			while (findtext_char(src.channel_name," ") == 1)
+				src.channel_name = copytext_char(src.channel_name,2,length_char(src.channel_name)+1)
 			src.updateUsrDialog()
 
 		else if(href_list["set_wanted_desc"])
 			src.msg = strip_html(input(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", ""))
-			while (findtext(src.msg," ") == 1)
-				src.msg = copytext(src.msg,2,length(src.msg)+1)
+			while (findtext_char(src.msg," ") == 1)
+				src.msg = copytext_char(src.msg,2,length_char(src.msg)+1)
 			src.updateUsrDialog()
 
 		else if(href_list["submit_wanted"])
@@ -778,7 +778,7 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 		if(0) //Cover
 			dat+="<DIV ALIGN='center'><B><FONT SIZE=6>The Griffon</FONT></B></div>"
 			dat+="<DIV ALIGN='center'><FONT SIZE=2>Weyland-Yutani-standard newspaper, for use on Weyland-Yutani� Space Facilities</FONT></div><HR>"
-			if(!length(src.news_content))
+			if(!length_char(src.news_content))
 				if(src.important_message)
 					dat+="Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [src.pages+2]\]</FONT><BR></ul>"
 				else
@@ -805,7 +805,7 @@ var/list/obj/structure/machinery/newscaster/allCasters = list() //Global list th
 			if(C.censored)
 				dat+="This channel was deemed dangerous to the general welfare of the station and therefore marked with a <B><FONT COLOR='red'>D-Notice</B></FONT>. Its contents were not transferred to the newspaper at the time of printing."
 			else
-				if(!length(C.messages))
+				if(!length_char(C.messages))
 					dat+="No Feed stories stem from this channel..."
 				else
 					dat+="<ul>"

@@ -91,11 +91,11 @@
 	set name = "Add Note"
 	set category = "IC"
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 	msg = sanitize(msg)
 
 	if(mind)
-		if(length(mind.memory) < 4000)
+		if(length_char(mind.memory) < 4000)
 			mind.store_memory(msg)
 		else
 			src.sleeping = 9999999

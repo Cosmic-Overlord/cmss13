@@ -127,7 +127,7 @@ Transition is animated but instant by default.**/
 	if(!client)
 		return
 
-	if(!length(client_color_matrices))
+	if(!length_char(client_color_matrices))
 		animate(client, color = null, time = time, easing = easing)
 		UNSETEMPTY(client_color_matrices)
 		SEND_SIGNAL(src, COMSIG_MOB_RECALCULATE_CLIENT_COLOR)

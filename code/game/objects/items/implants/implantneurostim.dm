@@ -27,7 +27,7 @@
 
 /obj/item/implant/neurostim/hear(msg)
 	msg = strip_html(msg)
-	if(findtext(msg,phrase))
+	if(findtext_char(msg,phrase))
 		activate(0)
 
 /obj/item/implant/neurostim/activate(accidental = 0)

@@ -1,11 +1,11 @@
 /mob/living/carbon/human/proc/parse_say_modes(message)
 	. = list("message_and_language", "modes" = list())
-	if(length(message) >= 1 && message[1] == ";")
-		.["message_and_language"] = copytext(message, 2)
+	if(length_char(message) >= 1 && message[1] == ";")
+		.["message_and_language"] = copytext_char(message, 2)
 		.["modes"] += "headset"
 		return
 
-	if(length(message) >= 2 && message[1] == ",")
+	if(length_char(message) >= 2 && message[1] == ",")
 		// Radio multibroadcast functionality.
 		// If a message starts with , we assume that up to MULTIBROADCAST_MAX_CHANNELS
 		// next symbols are channel names. If we run into a space we stop looking for more channels.
@@ -16,7 +16,7 @@
 				i--
 				break
 			.["modes"] += department_radio_keys[":[current_channel]"]
-		.["message_and_language"] = copytext(message, i+1)
+		.["message_and_language"] = copytext_char(message, i+1)
 		var/multibroadcast_cooldown = 0
 		for(var/obj/item/device/radio/headset/headset in list(wear_l_ear, wear_r_ear))
 			if(world.time - headset.last_multi_broadcast < headset.multibroadcast_cooldown)
@@ -29,10 +29,10 @@
 			.["fail_with"] = "You've used the multi-broadcast system too recently, wait [round(multibroadcast_cooldown / 10)] more seconds."
 		return
 
-	if(length(message) >= 2 && (message[1] == "." || message[1] == ":" || message[1] == "#"))
-		var/channel_prefix = copytext(message, 1, 3)
+	if(length_char(message) >= 2 && (message[1] == "." || message[1] == ":" || message[1] == "#"))
+		var/channel_prefix = copytext_char(message, 1, 3)
 		if(channel_prefix in department_radio_keys)
-			.["message_and_language"] = copytext(message, 3)
+			.["message_and_language"] = copytext_char(message, 3)
 			.["modes"] += department_radio_keys[channel_prefix]
 			return
 
@@ -49,7 +49,7 @@
 	var/parsed_language = parse_language(message_and_language)
 	if(parsed_language)
 		.["language"] = parsed_language
-		.["message"] = copytext(message_and_language, 3)
+		.["message"] = copytext_char(message_and_language, 3)
 	else
 		.["message"] = message_and_language
 
@@ -74,9 +74,9 @@
 	if(stat == 2)
 		return say_dead(message)
 
-	if(copytext(message,1,2) == "*")
-		if(!findtext(message, "*", 2)) //Second asterisk means it is markup for *bold*, not an *emote.
-			return emote(lowertext(copytext(message,2)), intentional = TRUE) //TRUE arg means emote was caused by player (e.g. no an auto scream when hurt).
+	if(copytext_char(message,1,2) == "*")
+		if(!findtext_char(message, "*", 2)) //Second asterisk means it is markup for *bold*, not an *emote.
+			return emote(lowertext(copytext_char(message,2)), intentional = TRUE) //TRUE arg means emote was caused by player (e.g. no an auto scream when hurt).
 
 	if(name != GetVoice())
 		alt_name = "(as [get_id_name("Unknown")])"
@@ -91,7 +91,7 @@
 	if(!speaking)
 		speaking = get_default_language()
 
-	var/ending = copytext(message, length(message))
+	var/ending = copytext_char(message, length_char(message))
 	if (speaking)
 		// This is broadcast to all mobs with the language,
 		// irrespective of distance or anything else.
@@ -126,7 +126,7 @@
 
 	// Automatic punctuation
 	if(client && client.prefs && client.prefs.toggle_prefs & TOGGLE_AUTOMATIC_PUNCTUATION)
-		if(!(copytext(message, -1) in ENDING_PUNCT))
+		if(!(copytext_char(message, -1) in ENDING_PUNCT))
 			message += "."
 
 	for(var/message_mode in parsed["modes"])
@@ -153,7 +153,7 @@
 			sound_vol = 70
 
 		//speaking into radios
-		if(length(used_radios))
+		if(length_char(used_radios))
 			GLOB.STUI.game.Add("\[[time_stamp()]]<font color='#FF0000'>RADIO: [key_name(src)] : [message]</font><br>")
 			GLOB.STUI.processing |= STUI_LOG_GAME_CHAT
 			if (speech_sound)
@@ -181,7 +181,7 @@
 		return
 
 	var/say_text = winget(client, "input", "text")
-	if (length(say_text) < 8)
+	if (length_char(say_text) < 8)
 		return
 
 	var/regex/say_regex = regex("say \"(;|:)*", "i")
@@ -247,7 +247,7 @@ for it but just ignore it.
 
 /mob/living/carbon/human/say_quote(message, datum/language/speaking = null)
 	var/verb = "says"
-	var/ending = copytext(message, length(message))
+	var/ending = copytext_char(message, length_char(message))
 
 	if(speaking)
 		verb = speaking.get_spoken_verb(ending)

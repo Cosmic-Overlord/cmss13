@@ -338,7 +338,7 @@ GLOBAL_LIST_INIT(emote_list, init_emote_list())
 	for(var/T in subtypesof(/datum/surgery))
 		surgeries += new T
 
-	var/gap = length(surgeries)
+	var/gap = length_char(surgeries)
 	var/swapped = 1
 	while(gap > 1 || swapped)
 		swapped = 0
@@ -346,7 +346,7 @@ GLOBAL_LIST_INIT(emote_list, init_emote_list())
 			gap = round(gap / 1.247330950103979)
 		if(gap < 1)
 			gap = 1
-		for(var/i = 1; gap + i <= length(surgeries); i++)
+		for(var/i = 1; gap + i <= length_char(surgeries); i++)
 			var/datum/surgery/l = surgeries[i] //Fucking hate
 			var/datum/surgery/r = surgeries[gap+i] //how lists work here
 			if(l.priority < r.priority)

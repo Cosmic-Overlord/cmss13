@@ -31,12 +31,12 @@
 	return pick(gender == MALE ? first_names_male : first_names_female) + " A.W. " + pick(weapon_surnames)
 
 /datum/origin/uscm/aw/validate_name(name_to_check)
-	if(!findtext(name_to_check, "A.W. "))
+	if(!findtext_char(name_to_check, "A.W. "))
 		return "Sorry, as a Artificial-Womb soldier, your character's 'middle-name' must be 'A.W.'."
 	return null
 
 /datum/origin/uscm/aw/correct_name(name_to_check, gender = MALE)
-	if(!findtext(name_to_check, "A.W. "))
+	if(!findtext_char(name_to_check, "A.W. "))
 		name_to_check = generate_human_name(gender)
 	return name_to_check
 

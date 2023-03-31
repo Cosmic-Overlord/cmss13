@@ -190,7 +190,7 @@
 		params_string = ""
 		for (var/param in params)
 			params_string += "[param]=[params[param]];"
-		params_string = copytext(params_string, 1, -1)
+		params_string = copytext_char(params_string, 1, -1)
 
 	winset(C, windowid, "on-close=\".windowclose \\\"[ref_string]\\\" \\\"[params_string]\\\"\"")
 

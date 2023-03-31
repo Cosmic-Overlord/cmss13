@@ -525,7 +525,7 @@
 	if(!islist(L))
 		return L
 	. = L.Copy()
-	for(var/i in 1 to length(L))
+	for(var/i in 1 to length_char(L))
 		var/key = .[i]
 		if(isnum(key))
 			// numbers cannot ever be associative keys
@@ -619,4 +619,4 @@
 			. += A
 
 //Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
-#define is_type_in_typecache(A, L) (A && length(L) && L[(ispath(A) ? A : A:type)])
+#define is_type_in_typecache(A, L) (A && length_char(L) && L[(ispath(A) ? A : A:type)])

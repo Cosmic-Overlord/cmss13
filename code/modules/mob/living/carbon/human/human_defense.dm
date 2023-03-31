@@ -371,7 +371,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		return access_to_check in compare_group
 
 	var/list/overlap = compare_group & access_to_check
-	return length(overlap)
+	return length_char(overlap)
 
 /mob/living/carbon/human/freeze()
 	. = ..()
@@ -395,7 +395,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		return access_to_check in id_group
 
 	var/list/overlap = id_group & access_to_check
-	return length(overlap)
+	return length_char(overlap)
 
 /mob/living/carbon/human/handle_flamer_fire_crossed(obj/flamer_fire/fire)
 	. = ..()

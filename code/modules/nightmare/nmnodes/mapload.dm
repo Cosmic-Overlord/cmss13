@@ -68,7 +68,7 @@
 		sum   += w
 	var/roll = rand(1, sum)
 	sum = 0
-	for(var/i in 1 to length(filelist))
+	for(var/i in 1 to length_char(filelist))
 		sum += weights[i]
 		if(sum >= roll && matcher.Find(filelist[i]))
 			var/keep = (matcher.group[2] == "+")

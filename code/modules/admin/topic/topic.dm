@@ -1688,13 +1688,13 @@
 		if(!paths)
 			alert("The path list you sent is empty")
 			return
-		if(length(paths) > 5)
+		if(length_char(paths) > 5)
 			alert("Select fewer object types, (max 5)")
 			return
-		else if(length(removed_paths))
+		else if(length_char(removed_paths))
 			alert("Removed:\n" + jointext(removed_paths, "\n"))
 
-		var/list/offset = splittext(href_list["offset"],",")
+		var/list/offset = splittext_char(href_list["offset"],",")
 		var/number = dd_range(1, 100, text2num(href_list["object_count"]))
 		var/X = offset.len > 0 ? text2num(offset[1]) : 0
 		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
@@ -2006,7 +2006,7 @@
 
 	var/dat = ""
 	dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
-	dat += "<tr align='center' bgcolor='[color]'><th colspan='[length(roles)]'><a href='?src=\ref[src];[HrefToken(forceGlobal = TRUE)];jobban3=[department]dept;jobban4=\ref[M]'>[department]</a></th></tr><tr align='center'>"
+	dat += "<tr align='center' bgcolor='[color]'><th colspan='[length_char(roles)]'><a href='?src=\ref[src];[HrefToken(forceGlobal = TRUE)];jobban3=[department]dept;jobban4=\ref[M]'>[department]</a></th></tr><tr align='center'>"
 	for(var/jobPos in roles)
 		if(!jobPos)
 			continue
@@ -2015,10 +2015,10 @@
 			continue
 
 		if(jobban_isbanned(M, job.title, P))
-			dat += "<td width='20%'><a href='?src=\ref[src];[HrefToken(forceGlobal = TRUE)];jobban3=[job.title];jobban4=\ref[M]'><font color=red>[replacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			dat += "<td width='20%'><a href='?src=\ref[src];[HrefToken(forceGlobal = TRUE)];jobban3=[job.title];jobban4=\ref[M]'><font color=red>[replacetext_char(job.title, " ", "&nbsp")]</font></a></td>"
 			counter++
 		else
-			dat += "<td width='20%'><a href='?src=\ref[src];[HrefToken(forceGlobal = TRUE)];jobban3=[job.title];jobban4=\ref[M]'>[replacetext(job.title, " ", "&nbsp")]</a></td>"
+			dat += "<td width='20%'><a href='?src=\ref[src];[HrefToken(forceGlobal = TRUE)];jobban3=[job.title];jobban4=\ref[M]'>[replacetext_char(job.title, " ", "&nbsp")]</a></td>"
 			counter++
 
 		if(counter >= 5) //So things dont get squiiiiished!

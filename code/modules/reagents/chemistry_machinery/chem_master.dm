@@ -135,10 +135,10 @@
 		if(!Adjacent(usr))
 			return
 
-		var/label = copytext(reject_bad_text(input(user,"Label text?", "Set label", "")), 1, MAX_NAME_LEN)
+		var/label = copytext_char(reject_bad_text(input(user,"Label text?", "Set label", "")), 1, MAX_NAME_LEN)
 		if(label)
 			loaded_pill_bottle.AddComponent(/datum/component/label, label)
-			if(length(label) < 3)
+			if(length_char(label) < 3)
 				loaded_pill_bottle.maptext_label = label
 				loaded_pill_bottle.update_icon()
 

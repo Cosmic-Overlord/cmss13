@@ -639,12 +639,12 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			choices[capitalized_name] = image(icon = attached_attachment.icon, icon_state = attached_attachment.icon_state)
 			choice_to_attachment[capitalized_name] = attached_attachment
 
-	if(!length(choices))
+	if(!length_char(choices))
 		to_chat(usr, SPAN_WARNING("[src] has no removable attachments."))
 		return
 
 	var/obj/item/attachable/attachment
-	if(length(choices) == 1)
+	if(length_char(choices) == 1)
 		attachment = choice_to_attachment[choices[1]]
 	else
 		var/use_radials = usr.client.prefs?.no_radials_preference ? FALSE : TRUE

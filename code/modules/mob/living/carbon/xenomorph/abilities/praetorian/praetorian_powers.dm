@@ -281,7 +281,7 @@
 		facing = get_dir(T, A)
 		telegraph_atom_list += new /obj/effect/xenomorph/xeno_telegraph/brown/abduct_hook(T, windup)
 
-	if(!length(turflist))
+	if(!length_char(turflist))
 		to_chat(X, SPAN_XENOWARNING("You don't have any room to do your abduction!"))
 		return
 
@@ -485,7 +485,7 @@
 		target_turfs += next_turf
 		telegraph_atom_list += new /obj/effect/xenomorph/xeno_telegraph/brown/lash(next_turf, windup)
 
-	if(!length(target_turfs))
+	if(!length_char(target_turfs))
 		to_chat(X, SPAN_XENOWARNING("You don't have any room to do your tail lash!"))
 		return
 
@@ -1011,7 +1011,7 @@
 		facing = get_dir(T, A)
 		telegraph_atom_list += new /obj/effect/xenomorph/xeno_telegraph/green(T, windup)
 
-	if(!length(turflist))
+	if(!length_char(turflist))
 		to_chat(X, SPAN_XENOWARNING("You don't have any room to do your retrieve!"))
 		return
 

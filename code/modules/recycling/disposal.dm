@@ -120,7 +120,7 @@
 
 	if(isstorage(I))
 		var/obj/item/storage/S = I
-		if(length(S.contents) > 0)
+		if(length_char(S.contents) > 0)
 			to_chat(user, SPAN_NOTICE("You empty [S] into [src]."))
 			for(var/obj/item/O in S.contents)
 				S.remove_from_storage(O, src)

@@ -36,8 +36,8 @@
 	if(title)
 		data_to_list["title"] = title
 	if(description)
-		var/new_desc = replacetext(replacetext(description, "\proper", ""), "\improper", "")
-		new_desc = GLOB.has_discord_embeddable_links.Replace(replacetext(new_desc, "`", ""), " ```$1``` ")
+		var/new_desc = replacetext_char(replacetext_char(description, "\proper", ""), "\improper", "")
+		new_desc = GLOB.has_discord_embeddable_links.Replace(replacetext_char(new_desc, "`", ""), " ```$1``` ")
 		data_to_list["description"] = new_desc
 	if(url)
 		data_to_list["url"] = url
@@ -75,6 +75,6 @@
 				continue
 			data_to_list["fields"] += list(list(
 				"name" = data,
-				"value" = GLOB.has_discord_embeddable_links.Replace(replacetext(fields[data], "`", ""), " ```$1``` "),
+				"value" = GLOB.has_discord_embeddable_links.Replace(replacetext_char(fields[data], "`", ""), " ```$1``` "),
 			))
 	return data_to_list

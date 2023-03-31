@@ -17,7 +17,7 @@
 		return SECRETE_RESIN_FAIL
 
 	if(RC.max_per_xeno != RESIN_CONSTRUCTION_NO_MAX)
-		var/current_amount = length(built_structures[RC.build_path])
+		var/current_amount = length_char(built_structures[RC.build_path])
 		if(current_amount >= RC.max_per_xeno)
 			to_chat(src, SPAN_XENOWARNING("You've already built the maximum possible structures you can!"))
 			return SECRETE_RESIN_FAIL

@@ -128,7 +128,7 @@
 		else
 			turfs = list(initial_turf)
 
-		if(!length(turfs))
+		if(!length_char(turfs))
 			return
 
 		var/list/humans = list()
@@ -205,7 +205,7 @@
 		else
 			turfs = list(initial_turf)
 
-		if(!length(turfs))
+		if(!length_char(turfs))
 			return
 
 		var/caste_type = RoleAuthority.get_caste_by_text(xeno_caste)

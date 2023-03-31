@@ -206,7 +206,7 @@
 				return
 			var/chemical = params["chemid"]
 			var/amount = text2num(params["amount"])
-			if(!length(chemical) || amount <= 0)
+			if(!length_char(chemical) || amount <= 0)
 				return
 			if(connected.occupant.health > connected.min_health || (chemical in connected.emergency_chems))
 				connected.inject_chemical(usr, chemical, amount)

@@ -206,7 +206,7 @@
 			send_to += owner
 		if(!client?.prefs.lang_chat_disabled)
 			send_to += src
-		if(length(send_to))
+		if(length_char(send_to))
 			langchat_speech(message, send_to, GLOB.all_languages, skip_language_check = TRUE)
 
 	//speech bubble

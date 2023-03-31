@@ -47,5 +47,5 @@
 
 /datum/entity_meta/chemical_information/unmap(datum/entity/chemical_information/ET)
 	. = ..()
-	if(length(ET.properties))
+	if(length_char(ET.properties))
 		.["properties_text"] = json_encode(ET.properties)

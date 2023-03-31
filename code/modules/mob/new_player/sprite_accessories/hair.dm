@@ -24,11 +24,11 @@
 	icon_state = "hair_flair"
 
 /datum/sprite_accessory/hair/long
-	name = "Shoulder-length Hair"
+	name = "Shoulder-length_char Hair"
 	icon_state = "hair_long_shoulder"
 
 /datum/sprite_accessory/hair/longalt
-	name = "Shoulder-length Hair Alt"
+	name = "Shoulder-length_char Hair Alt"
 	icon_state = "hair_longfringe"
 
 /datum/sprite_accessory/hair/longer

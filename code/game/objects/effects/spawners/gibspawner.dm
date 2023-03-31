@@ -44,7 +44,7 @@
 
 /obj/effect/spawner/gibspawner/proc/Gib(list/viruses = list(), mob/living/ml = null)
 	if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
-		to_world(SPAN_DANGER("Gib list length mismatch!"))
+		to_world(SPAN_DANGER("Gib list length_char mismatch!"))
 		return
 
 	var/obj/effect/decal/cleanable/blood/gibs/gib = null

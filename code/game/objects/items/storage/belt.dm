@@ -24,11 +24,11 @@
 
 /obj/item/storage/belt/update_icon()
 	overlays.Cut()
-	if(!length(contents))
+	if(!length_char(contents))
 		return
 	if(content_watchers && flap) //If it has a flap and someone's looking inside it, don't close the flap.
 		return
-	else if(length(contents) <= storage_slots * 0.5)
+	else if(length_char(contents) <= storage_slots * 0.5)
 		overlays += "+[icon_state]_half"
 	else
 		overlays += "+[icon_state]_full"
@@ -641,8 +641,8 @@
 
 /obj/item/storage/belt/shotgun/van_bandolier/update_icon()
 	var/mob/living/carbon/human/user = loc
-	icon_state = "van_bandolier_[round(length(contents) * 0.5, 1)]"
-	var/new_state = "van_bandolier_[length(contents)]"
+	icon_state = "van_bandolier_[round(length_char(contents) * 0.5, 1)]"
+	var/new_state = "van_bandolier_[length_char(contents)]"
 	for(var/I in item_state_slots)
 		LAZYSET(item_state_slots, I, new_state)
 
@@ -677,7 +677,7 @@
 		dump_ammo_to(M, user, M.transfer_handful_amount)
 
 	if(istype(W, /obj/item/storage/belt/gun/m44/lever_action/attach_holster))
-		if(length(contents) || length(W.contents))
+		if(length_char(contents) || length_char(W.contents))
 			to_chat(user, SPAN_WARNING("Both holster and belt need to be empty to attach the holster!"))
 			return
 		to_chat(user, SPAN_NOTICE("You attach the holster to the belt, reducing total storage capacity but allowing it to fit the M44 revolver and its speedloaders."))
@@ -865,10 +865,10 @@
 
 	if(content_watchers && flap)
 		return
-	var/magazines = length(contents) - length(holstered_guns)
+	var/magazines = length_char(contents) - length_char(holstered_guns)
 	if(!magazines)
 		return
-	if(magazines <= (storage_slots - length(holster_slots)) * 0.5) //Don't count slots reserved for guns, even if they're empty.
+	if(magazines <= (storage_slots - length_char(holster_slots)) * 0.5) //Don't count slots reserved for guns, even if they're empty.
 		overlays += "+[base_icon]_half"
 	else
 		overlays += "+[base_icon]_full"
@@ -884,13 +884,13 @@
 			return
 
 /obj/item/storage/belt/gun/attack_hand(mob/user, mods)
-	if(length(holstered_guns) && ishuman(user) && loc == user)
+	if(length_char(holstered_guns) && ishuman(user) && loc == user)
 		var/obj/item/I
-		if(mods && mods["alt"] && length(contents) > length(holstered_guns)) //Withdraw the most recently inserted magazine, if possible.
+		if(mods && mods["alt"] && length_char(contents) > length_char(holstered_guns)) //Withdraw the most recently inserted magazine, if possible.
 			var/list/magazines = contents - holstered_guns
-			I = magazines[length(magazines)]
+			I = magazines[length_char(magazines)]
 		else //Otherwise find and draw the last-inserted gun.
-			I = holstered_guns[length(holstered_guns)]
+			I = holstered_guns[length_char(holstered_guns)]
 		I.attack_hand(user)
 		return
 
@@ -923,7 +923,7 @@
 		underlays -= holster_slots[slot]["underlay_sprite"]
 		holster_slots[slot]["underlay_sprite"] = null
 
-		icon_state = copytext(icon_state,1,-2)
+		icon_state = copytext_char(icon_state,1,-2)
 		item_state = icon_state
 
 	if(istype(user))
@@ -944,13 +944,13 @@
 				return
 
 		if(!stop_messages) //No open holsters.
-			if(length(holster_slots) == 1)
+			if(length_char(holster_slots) == 1)
 				to_chat(usr, SPAN_WARNING("[src] already holds a gun."))
 			else
 				to_chat(usr, SPAN_WARNING("[src] doesn't have any empty holsters."))
 		return FALSE
 
-	else if(length(contents) - length(holstered_guns) >= storage_slots - length(holster_slots)) //Compare amount of nongun items in storage with usable ammo pockets.
+	else if(length_char(contents) - length_char(holstered_guns) >= storage_slots - length_char(holster_slots)) //Compare amount of nongun items in storage with usable ammo pockets.
 		if(!stop_messages)
 			to_chat(usr, SPAN_WARNING("[src] can't hold any more ammo."))
 		return FALSE
@@ -1679,6 +1679,6 @@
 
 /obj/item/storage/belt/souto/update_icon()
 	var/mob/living/carbon/human/user = loc
-	item_state = "souto_man[length(contents)]"
+	item_state = "souto_man[length_char(contents)]"
 	if(istype(user))
 		user.update_inv_belt() //Makes sure the onmob updates.

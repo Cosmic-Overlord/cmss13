@@ -29,7 +29,7 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	var/list/cached_contents = spawn_at.contents.Copy()
 	var/original_turf_type = spawn_at.type
 	var/original_baseturfs = islist(spawn_at.baseturfs) ? spawn_at.baseturfs.Copy() : spawn_at.baseturfs
-	var/original_baseturf_count = length(original_baseturfs)
+	var/original_baseturf_count = length_char(original_baseturfs)
 
 	GLOB.running_create_and_destroy = TRUE
 	for(var/type_path in typesof(/atom/movable, /turf) - ignore) //No areas please
@@ -37,11 +37,11 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 			spawn_at.ChangeTurf(type_path)
 			//We change it back to prevent baseturfs stacking and hitting the limit
 			spawn_at.ChangeTurf(original_turf_type, original_baseturfs)
-			if(original_baseturf_count != length(spawn_at.baseturfs))
-				TEST_FAIL("[type_path] changed the amount of baseturfs from [original_baseturf_count] to [length(spawn_at.baseturfs)]; [english_list(original_baseturfs)] to [islist(spawn_at.baseturfs) ? english_list(spawn_at.baseturfs) : spawn_at.baseturfs]")
+			if(original_baseturf_count != length_char(spawn_at.baseturfs))
+				TEST_FAIL("[type_path] changed the amount of baseturfs from [original_baseturf_count] to [length_char(spawn_at.baseturfs)]; [english_list(original_baseturfs)] to [islist(spawn_at.baseturfs) ? english_list(spawn_at.baseturfs) : spawn_at.baseturfs]")
 				//Warn if it changes again
 				original_baseturfs = islist(spawn_at.baseturfs) ? spawn_at.baseturfs.Copy() : spawn_at.baseturfs
-				original_baseturf_count = length(original_baseturfs)
+				original_baseturf_count = length_char(original_baseturfs)
 		else
 			var/atom/creation = new type_path(spawn_at)
 			if(QDELETED(creation))
@@ -54,7 +54,7 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 
 		//There's a lot of stuff that either spawns stuff in on create, or removes stuff on destroy. Let's cut it all out so things are easier to deal with
 		var/list/to_del = spawn_at.contents - cached_contents
-		if(length(to_del))
+		if(length_char(to_del))
 			for(var/atom/to_kill in to_del)
 				qdel(to_kill)
 
@@ -75,7 +75,7 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	while(!garbage_queue_processed)
 		var/list/queue_to_check = SSgarbage.queues[GC_QUEUE_CHECK]
 		//How the hell did you manage to empty this? Good job!
-		if(!length(queue_to_check))
+		if(!length_char(queue_to_check))
 			garbage_queue_processed = TRUE
 			break
 

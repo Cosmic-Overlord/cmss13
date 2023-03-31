@@ -26,7 +26,7 @@
 	LT.ckey = ckey
 	if(!last_known_ip) // debugging has no ip
 		last_known_ip = "127.0.0.1"
-	var/list/ips = splittext(last_known_ip,".")
+	var/list/ips = splittext_char(last_known_ip,".")
 	LT.ip1 = text2num(ips[1])
 	LT.ip2 = text2num(ips[2])
 	LT.ip3 = text2num(ips[3])

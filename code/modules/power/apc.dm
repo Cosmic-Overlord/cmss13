@@ -247,7 +247,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, list(
 
 	var/list/payload = list()
 
-	for(var/wire in 1 to length(GLOB.apc_wire_descriptions))
+	for(var/wire in 1 to length_char(GLOB.apc_wire_descriptions))
 		payload.Add(list(list(
 			"number" = wire,
 			"cut" = isWireCut(wire),
@@ -834,7 +834,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, list(
 			return
 		else if(H.species.can_shred(H))
 			var/allcut = TRUE
-			for(var/wire = 1; wire < length(get_wire_descriptions()); wire++)
+			for(var/wire = 1; wire < length_char(get_wire_descriptions()); wire++)
 				if(!isWireCut(wire))
 					allcut = FALSE
 					break
@@ -845,7 +845,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, list(
 			SPAN_WARNING("You slash [src]!"))
 			playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
 			if(wiresexposed)
-				for(var/wire = 1; wire < length(get_wire_descriptions()); wire++)
+				for(var/wire = 1; wire < length_char(get_wire_descriptions()); wire++)
 					cut(wire, user)
 				update_icon()
 				visible_message(SPAN_WARNING("[src]'s wires are shredded!"))
@@ -1286,7 +1286,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, list(
 /obj/structure/machinery/power/apc/wires_cut/Initialize(mapload, ndir, building)
 	. = ..()
 	wiresexposed = TRUE
-	for(var/wire = 1; wire < length(get_wire_descriptions()); wire++)
+	for(var/wire = 1; wire < length_char(get_wire_descriptions()); wire++)
 		cut(wire)
 	update_icon()
 	beenhit = 4
@@ -1297,7 +1297,7 @@ GLOBAL_LIST_INIT(apc_wire_descriptions, list(
 /obj/structure/machinery/power/apc/fully_broken/Initialize(mapload, ndir, building)
 	. = ..()
 	wiresexposed = TRUE
-	for(var/wire = 1; wire < length(get_wire_descriptions()); wire++)
+	for(var/wire = 1; wire < length_char(get_wire_descriptions()); wire++)
 		cut(wire)
 	beenhit = 4
 	set_broken()

@@ -1062,7 +1062,7 @@
 
 /mob/living/carbon/xenomorph/proc/set_resin_build_order(list/build_order)
 	resin_build_order = build_order
-	if(length(resin_build_order))
+	if(length_char(resin_build_order))
 		selected_resin = resin_build_order[1]
 
 /mob/living/carbon/xenomorph/ghostize(can_reenter_corpse = TRUE)

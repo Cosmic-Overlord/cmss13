@@ -64,7 +64,7 @@
 
 
 /datum/admins/proc/player_has_info(key as text)
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/savefile/info = new("data/player_saves/[copytext_char(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos || !infos.len) return 0
@@ -182,7 +182,7 @@
 	var/list/matches = new()
 
 	for(var/path in types)
-		if(findtext("[path]", object))
+		if(findtext_char("[path]", object))
 			matches += path
 
 	if(matches.len==0)

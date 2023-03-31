@@ -112,7 +112,7 @@ var/datum/controller/subsystem/entity_manager/SSentity_manager
 
 /datum/controller/subsystem/entity_manager/proc/do_insert(datum/entity_meta/meta)
 	var/list/datum/entity/to_insert = meta.to_insert
-	if(!length(to_insert))
+	if(!length_char(to_insert))
 		return
 	meta.to_insert = list() // release the list early
 	meta.inserting = to_insert
@@ -140,7 +140,7 @@ var/datum/controller/subsystem/entity_manager/SSentity_manager
 
 /datum/controller/subsystem/entity_manager/proc/do_update(datum/entity_meta/meta)
 	var/list/datum/entity/to_update = meta.to_update
-	if(!length(to_update))
+	if(!length_char(to_update))
 		return
 	meta.to_update = list() // release the list early
 	var/list/unmap = list()
@@ -158,7 +158,7 @@ var/datum/controller/subsystem/entity_manager/SSentity_manager
 
 /datum/controller/subsystem/entity_manager/proc/do_delete(datum/entity_meta/meta)
 	var/list/datum/entity/to_delete = meta.to_delete
-	if(!length(to_delete))
+	if(!length_char(to_delete))
 		return
 	meta.to_delete = list() // release the list early
 	var/list/ids = list()
@@ -174,7 +174,7 @@ var/datum/controller/subsystem/entity_manager/SSentity_manager
 
 /datum/controller/subsystem/entity_manager/proc/do_select(datum/entity_meta/meta)
 	var/list/datum/entity/to_select = meta.to_read
-	if(!length(to_select))
+	if(!length_char(to_select))
 		return
 	meta.to_read = list() // release the list early
 	var/list/ids = list()
@@ -241,9 +241,9 @@ var/datum/controller/subsystem/entity_manager/SSentity_manager
 			resultset.Add(ET)
 
 
-	if(length(meta.to_insert))
+	if(length_char(meta.to_insert))
 		resultset.Add(meta.filter_list(meta.to_insert, filter))
-	if(length(meta.inserting))
+	if(length_char(meta.inserting))
 		resultset.Add(meta.filter_list(meta.inserting, filter))
 	if(CB)
 		CB.Invoke(resultset)
@@ -259,7 +259,7 @@ var/datum/controller/subsystem/entity_manager/SSentity_manager
 	return ET
 
 /datum/controller/subsystem/entity_manager/proc/after_select_by_key(datum/entity/ET, datum/entity_meta/meta, quid, list/results)
-	var/r_len = length(results)
+	var/r_len = length_char(results)
 	if(!r_len) // safe to insert
 		meta.to_insert |= ET
 		return

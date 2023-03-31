@@ -144,10 +144,10 @@
 		dat += "<br>Filtering Frequencies: "
 
 		i = 0
-		if(length(freq_listening))
+		if(length_char(freq_listening))
 			for(var/x in freq_listening)
 				i++
-				if(i < length(freq_listening))
+				if(i < length_char(freq_listening))
 					dat += "[format_frequency(x)] GHz<a href='?src=\ref[src];delete=[x]'>\[X\]</a>; "
 				else
 					dat += "[format_frequency(x)] GHz<a href='?src=\ref[src];delete=[x]'>\[X\]</a>"
@@ -265,7 +265,7 @@
 		var/newfreq = input(usr, "Specify a new frequency for new signals to change to. Enter null to turn off frequency changing. Decimals assigned automatically.", src, network) as null|num
 		if(canAccess(usr))
 			if(newfreq)
-				if(findtext(num2text(newfreq), "."))
+				if(findtext_char(num2text(newfreq), "."))
 					newfreq *= 10 // shift the decimal one place
 				if(newfreq < 10000)
 					change_frequency = newfreq
@@ -302,7 +302,7 @@
 			*/
 
 			if("id")
-				var/newid = copytext(reject_bad_text(input(usr, "Specify the new ID for this machine", src, id) as null|text),1,MAX_MESSAGE_LEN)
+				var/newid = copytext_char(reject_bad_text(input(usr, "Specify the new ID for this machine", src, id) as null|text),1,MAX_MESSAGE_LEN)
 				if(newid && canAccess(usr))
 					id = newid
 					temp = "<font color = #666633>-% New ID assigned: \"[id]\" %-</font color>"
@@ -311,7 +311,7 @@
 				var/newnet = stripped_input(usr, "Specify the new network for this machine. This will break all current links.", src, network)
 				if(newnet && canAccess(usr))
 
-					if(length(newnet) > 15)
+					if(length_char(newnet) > 15)
 						temp = "<font color = #666633>-% Too many characters in new network tag %-</font color>"
 
 					else
@@ -326,7 +326,7 @@
 			if("freq")
 				var/newfreq = input(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, network) as null|num
 				if(newfreq && canAccess(usr))
-					if(findtext(num2text(newfreq), "."))
+					if(findtext_char(num2text(newfreq), "."))
 						newfreq *= 10 // shift the decimal one place
 					if(!(newfreq in freq_listening) && newfreq < 10000)
 						freq_listening.Add(newfreq)
@@ -342,7 +342,7 @@
 
 	if(href_list["unlink"])
 
-		if(text2num(href_list["unlink"]) <= length(links))
+		if(text2num(href_list["unlink"]) <= length_char(links))
 			var/obj/structure/machinery/telecomms/T = links[text2num(href_list["unlink"])]
 			if(istype(T))
 				temp = "<font color = #666633>-% Removed \ref[T] [T.name] from linked entities. %-</font color>"

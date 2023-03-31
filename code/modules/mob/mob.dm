@@ -398,7 +398,7 @@
 	var/msg = input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null
 
 	if(msg != null)
-		msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+		msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 		msg = html_encode(msg)
 
 		flavor_text = msg
@@ -410,11 +410,11 @@
 
 /mob/proc/print_flavor_text()
 	if (flavor_text && flavor_text != "")
-		var/msg = replacetext(flavor_text, "\n", " ")
-		if(length(msg) <= 40)
+		var/msg = replacetext_char(flavor_text, "\n", " ")
+		if(length_char(msg) <= 40)
 			return SPAN_NOTICE("[msg]")
 		else
-			return SPAN_NOTICE("[copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>")
+			return SPAN_NOTICE("[copytext_char(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>")
 
 /mob/Topic(href, href_list)
 	. = ..()
@@ -426,7 +426,7 @@
 		close_browser(src, t1)
 
 	if(href_list["flavor_more"])
-		show_browser(usr, "<BODY><TT>[replacetext(flavor_text, "\n", "<BR>")]</TT></BODY>", name, name, "size=500x200")
+		show_browser(usr, "<BODY><TT>[replacetext_char(flavor_text, "\n", "<BR>")]</TT></BODY>", name, name, "size=500x200")
 		onclose(usr, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()

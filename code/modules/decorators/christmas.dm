@@ -33,7 +33,7 @@
 	if(!istype(wire))
 		return
 	wire.name = "christmas wire"
-	wire.desc = "A bulbed, festive, and dangerous length of wire."
+	wire.desc = "A bulbed, festive, and dangerous length_char of wire."
 	wire.attack_verb = list("hit", "whacked", "sliced", "festivized")
 	wire.icon = 'icons/obj/items/marine-items_christmas.dmi'
 	wire.update_icon()

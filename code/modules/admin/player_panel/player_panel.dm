@@ -25,7 +25,7 @@
 					} else {
 						var maintable_data = document.getElementById('maintable_data');
 						var ltr = maintable_data.getElementsByTagName("tr");
-						for (var i = 0; i < ltr.length; ++i) {
+						for (var i = 0; i < ltr.length_char; ++i) {
 							try {
 								var tr = ltr\[i\];
 								if (tr.getAttribute("id").indexOf("data") != 0) {
@@ -76,7 +76,7 @@
 
 				function clearAll() {
 					var spans = document.getElementsByTagName('span');
-					for (var i = 0; i < spans.length; i++) {
+					for (var i = 0; i < spans.length_char; i++) {
 						var span = spans\[i\];
 
 						var id = span.getAttribute("id");
@@ -86,7 +86,7 @@
 
 						var pass = 1;
 
-						for (var j = 0; j < locked_tabs.length; j++) {
+						for (var j = 0; j < locked_tabs.length_char; j++) {
 							if (locked_tabs\[j\]==id) {
 								pass = 0;
 								break;
@@ -112,7 +112,7 @@
 					}
 
 					var pass = 1;
-					for (var j = 0; j < locked_tabs.length; j++) {
+					for (var j = 0; j < locked_tabs.length_char; j++) {
 						if (locked_tabs\[j\]==id) {
 							pass = 0;
 							break;
@@ -132,7 +132,7 @@
 				function removeFromLocked(id,link_id,notice_span_id) {
 					var index = 0;
 					var pass = 0;
-					for (var j = 0; j < locked_tabs.length; j++) {
+					for (var j = 0; j < locked_tabs.length_char; j++) {
 						if (locked_tabs\[j\]==id) {
 							pass = 1;
 							index = j;
@@ -224,23 +224,23 @@
 		else if(isobserver(M))
 			M_job = "Ghost"
 
-		M_job = replacetext(M_job, "'", "")
-		M_job = replacetext(M_job, "\"", "")
-		M_job = replacetext(M_job, "\\", "")
+		M_job = replacetext_char(M_job, "'", "")
+		M_job = replacetext_char(M_job, "\"", "")
+		M_job = replacetext_char(M_job, "\\", "")
 
 		var/M_name = M.name
-		M_name = replacetext(M_name, "'", "")
-		M_name = replacetext(M_name, "\"", "")
-		M_name = replacetext(M_name, "\\", "")
+		M_name = replacetext_char(M_name, "'", "")
+		M_name = replacetext_char(M_name, "\"", "")
+		M_name = replacetext_char(M_name, "\\", "")
 		var/M_rname = M.real_name
-		M_rname = replacetext(M_rname, "'", "")
-		M_rname = replacetext(M_rname, "\"", "")
-		M_rname = replacetext(M_rname, "\\", "")
+		M_rname = replacetext_char(M_rname, "'", "")
+		M_rname = replacetext_char(M_rname, "\"", "")
+		M_rname = replacetext_char(M_rname, "\\", "")
 
 		var/M_key = M.key
-		M_key = replacetext(M_key, "'", "")
-		M_key = replacetext(M_key, "\"", "")
-		M_key = replacetext(M_key, "\\", "")
+		M_key = replacetext_char(M_key, "'", "")
+		M_key = replacetext_char(M_key, "\"", "")
+		M_key = replacetext_char(M_key, "\\", "")
 
 		//output for each mob
 		dat += {"
@@ -330,7 +330,7 @@
 	dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
 	dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 
-	if(length(GLOB.other_factions_human_list))
+	if(length_char(GLOB.other_factions_human_list))
 		dat += "<br><table cellspacing=5><tr><td><B>Other human factions</B></td><td></td><td></td></tr>"
 		for(var/i in GLOB.other_factions_human_list)
 			var/mob/living/carbon/human/H = i

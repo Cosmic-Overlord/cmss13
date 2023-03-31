@@ -49,8 +49,8 @@
 		return FALSE//Have to be actually a twohander and wielded.
 	flags_item ^= WIELDED
 	SEND_SIGNAL(src, COMSIG_ITEM_UNWIELD, user)
-	name = copytext(name,1,-10)
-	item_state  = copytext(item_state,1,-2)
+	name = copytext_char(name,1,-10)
+	item_state  = copytext_char(item_state,1,-2)
 	remove_offhand(user)
 	return TRUE
 
@@ -214,7 +214,7 @@
 /obj/item/weapon/twohanded/dualsaber/unwield(mob/user)
 	. = ..()
 	if(!.) return
-	icon_state = copytext(icon_state,1,-2)
+	icon_state = copytext_char(icon_state,1,-2)
 
 /obj/item/weapon/twohanded/spear
 	name = "spear"

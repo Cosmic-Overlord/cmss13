@@ -45,7 +45,7 @@
 /obj/item/clothing/under/marine/select_gamemode_skin(expected_type, list/override_icon_state, list/override_protection)
 	. = ..()
 	for(var/i in map_variants_roll_accessories)
-		if(findtext(icon_state, i, 1, 3))
+		if(findtext_char(icon_state, i, 1, 3))
 			flags_jumpsuit |= UNIFORM_DO_NOT_HIDE_ACCESSORIES
 
 /obj/item/clothing/under/marine/medic

@@ -316,7 +316,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if(status_flags & GODMODE)
 		return //godmode
 	var/list/obj/limb/parts = get_damageable_limbs(80)
-	var/amount_of_parts = length(parts)
+	var/amount_of_parts = length_char(parts)
 	for(var/obj/limb/L as anything in parts)
 		L.take_damage(brute / amount_of_parts, burn / amount_of_parts, sharp, edge, used_weapon)
 	updatehealth()
@@ -327,7 +327,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if(status_flags & GODMODE)
 		return //godmode
 	var/list/obj/limb/parts = get_damageable_limbs(limb_damage_chance)
-	var/amount_of_parts = length(parts)
+	var/amount_of_parts = length_char(parts)
 	var/armour_config = GLOB.marine_ranged
 	if(armour_type == ARMOR_MELEE)
 		armour_config = GLOB.marine_melee

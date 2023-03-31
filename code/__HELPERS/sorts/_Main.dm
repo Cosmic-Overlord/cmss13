@@ -45,7 +45,7 @@ var/datum/sortInstance/sortInstance = new()
 		return
 
 	//March over the array finding natural runs
-	//Extend any short natural runs to runs of length minRun
+	//Extend any short natural runs to runs of length_char minRun
 	var/minRun = minRunLength(remaining)
 
 	do
@@ -123,7 +123,7 @@ var/datum/sortInstance/sortInstance = new()
 		moveElement(L, start, left) //move pivot element to correct location in the sorted range
 
 	/*
-	Returns the length of the run beginning at the specified position and reverses the run if it is back-to-front
+	Returns the length_char of the run beginning at the specified position and reverses the run if it is back-to-front
 
 	A run is the longest ascending sequence with:
 		a[lo] <= a[lo + 1] <= a[lo + 2] <= ...
@@ -162,7 +162,7 @@ var/datum/sortInstance/sortInstance = new()
 
 	return runHi - lo
 
-//Returns the minimum acceptable run length for an array of the specified length.
+//Returns the minimum acceptable run length_char for an array of the specified length_char.
 //Natural runs shorter than this will be extended with binarySort
 /datum/sortInstance/proc/minRunLength(n)
 	//ASSERT(n >= 0)
@@ -252,7 +252,7 @@ var/datum/sortInstance/sortInstance = new()
 
 	key the element to be inserted into the sorted range
 	base the index of the first element of the sorted range
-	len the length of the sorted range, must be greater than 0
+	len the length_char of the sorted range, must be greater than 0
 	hint the offset from base at which to begin the search, such that 0 <= hint < len; i.e. base <= hint < base+hint
 
 	Returns the index at which to insert element 'key'
@@ -310,7 +310,7 @@ var/datum/sortInstance/sortInstance = new()
 	* @param key the key whose insertion point to search for
 	* @param a the array in which to search
 	* @param base the index of the first element in the range
-	* @param len the length of the range; must be > 0
+	* @param len the length_char of the range; must be > 0
 	* @param hint the index at which to begin the search, 0 <= hint < n.
 	*  The closer hint is to the result, the faster this method will run.
 	* @param c the comparator used to order the range, and to search

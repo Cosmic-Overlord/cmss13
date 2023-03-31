@@ -19,11 +19,11 @@
 	if(islist(conds))
 		for(var/pname in conds)
 			var/pvalue = conds[pname]
-			var/modifier = copytext(pname, 1, 2)
+			var/modifier = copytext_char(pname, 1, 2)
 			var/negate = FALSE
 			if(modifier == "!")
 				negate = TRUE
-				pname = copytext(pname, 2)
+				pname = copytext_char(pname, 2)
 			AddComponent(/datum/component/nmnode_cond, pname, pvalue, negate)
 
 /// Implementation of the node, resolving into tasks in the given context

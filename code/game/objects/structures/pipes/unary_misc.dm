@@ -12,7 +12,7 @@
 	valid_directions = list(dir)
 
 /obj/structure/pipes/unary/freezer/update_icon()
-	if(length(connected_to))
+	if(length_char(connected_to))
 		icon_state = "freezer"
 	else
 		icon_state = "freezer_0"
@@ -39,7 +39,7 @@
 	density = TRUE
 
 /obj/structure/pipes/unary/heat_exchanger/update_icon()
-	if(length(connected_to))
+	if(length_char(connected_to))
 		icon_state = "intact"
 	else
 		icon_state = "exposed"
@@ -59,7 +59,7 @@
 
 
 /obj/structure/pipes/unary/heater/update_icon()
-	if(length(connected_to))
+	if(length_char(connected_to))
 		icon_state = "heater"
 	else
 		icon_state = "heater_0"

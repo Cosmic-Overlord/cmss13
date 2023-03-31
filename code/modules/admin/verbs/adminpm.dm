@@ -60,13 +60,13 @@
 
 	var/message_prompt = "Message:"
 
-	if((AH?.opening_responders && length(AH.ticket_interactions) == 1 ) || (AH?.marked_admin && AH?.marked_admin != usr.key) && length(AH.ticket_interactions) == 2)
+	if((AH?.opening_responders && length_char(AH.ticket_interactions) == 1 ) || (AH?.marked_admin && AH?.marked_admin != usr.key) && length_char(AH.ticket_interactions) == 2)
 		SEND_SOUND(src, sound('sound/machines/buzz-sigh.ogg', volume=30))
-		message_prompt += "\n\n**This ticket is already being responded to by: [length(AH.opening_responders) ? english_list(AH.opening_responders) : AH.marked_admin]**"
+		message_prompt += "\n\n**This ticket is already being responded to by: [length_char(AH.opening_responders) ? english_list(AH.opening_responders) : AH.marked_admin]**"
 
 	if(AH)
 		message_admins("[key_name_admin(src)] has started replying to [key_name_admin(C, 0, 0)]'s admin help.")
-		if(length(AH.ticket_interactions) == 1) // add the admin who is currently responding to the list of people responding
+		if(length_char(AH.ticket_interactions) == 1) // add the admin who is currently responding to the list of people responding
 			LAZYADD(AH.opening_responders, src)
 
 	var/msg = input(src, message_prompt, "Private message to [C.admin_holder?.fakekey ? "an Administrator" : key_name(C, 0, 0)].") as message|null
@@ -133,7 +133,7 @@
 	recipient_ckey = recipient.ckey
 	recipient_ticket = recipient.current_ticket
 
-	//get message text, limit it's length.and clean/escape html
+	//get message text, limit it's length_char.and clean/escape html
 	if(!msg)
 		msg = input(src,"Message:", "Private message to [recipient.admin_holder?.fakekey ? "an Administrator" : key_name(recipient, 0, 0)].") as message|null
 		msg = trim(msg)

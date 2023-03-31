@@ -321,10 +321,10 @@
 		var/list/department_jobs = list()
 		for(var/job in job_list)
 			department_jobs += list(list(
-				"display_name" = replacetext(job, "&nbsp", " "),
+				"display_name" = replacetext_char(job, "&nbsp", " "),
 				"job" = job
 			))
-		if(length(department_jobs))
+		if(length_char(department_jobs))
 			data["jobs"][department] = department_jobs
 
 	var/list/regions = list()
@@ -334,7 +334,7 @@
 		for(var/access in get_region_accesses(i))
 			if (get_access_desc(access))
 				accesses += list(list(
-					"desc" = replacetext(get_access_desc(access), "&nbsp", " "),
+					"desc" = replacetext_char(get_access_desc(access), "&nbsp", " "),
 					"ref" = access,
 				))
 

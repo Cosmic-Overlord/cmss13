@@ -34,7 +34,7 @@
 
 	alpha = 255
 
-	if(!length(connected_to))
+	if(!length_char(connected_to))
 		new /obj/item/pipe(loc, null, null, src)
 		qdel(src)
 	else

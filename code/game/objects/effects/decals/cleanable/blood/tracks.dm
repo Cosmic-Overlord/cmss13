@@ -36,7 +36,7 @@
 	cleanable_turf.overlays += I
 
 /obj/effect/decal/cleanable/blood/tracks/clear_overlay()
-	if(length(overlay_images))
+	if(length_char(overlay_images))
 		cleanable_turf.overlays -= overlay_images
 		overlay_images = null
 

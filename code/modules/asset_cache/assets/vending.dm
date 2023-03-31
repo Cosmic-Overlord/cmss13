@@ -37,7 +37,7 @@
 		if (!isnull(c) && c != "#FFFFFF")
 			I.Blend(c, ICON_MULTIPLY)
 
-		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
+		var/imgid = replacetext_char(replacetext_char("[item]", "/obj/item/", ""), "/", "-")
 
 		Insert(imgid, I)
 	return ..()

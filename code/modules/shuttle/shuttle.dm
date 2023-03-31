@@ -618,7 +618,7 @@
 
 		// Here we locate the bottomost shuttle boundary and remove all turfs above it
 		var/list/baseturf_cache = oldT.baseturfs
-		for(var/k in 1 to length(baseturf_cache))
+		for(var/k in 1 to length_char(baseturf_cache))
 			if(ispath(baseturf_cache[k], /turf/baseturf_skipover/shuttle))
 				oldT.ScrapeAway(baseturf_cache.len - k + 1)
 				break
@@ -753,7 +753,7 @@
 // continue
 // for (var/thing2 in T)
 // var/atom/movable/AM = thing2
-// if (length(AM.client_mobs_in_contents))
+// if (length_char(AM.client_mobs_in_contents))
 // AM.update_parallax_contents()
 
 /obj/docking_port/mobile/proc/check_transit_zone()

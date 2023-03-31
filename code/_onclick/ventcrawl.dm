@@ -76,7 +76,7 @@
 			to_chat(src, SPAN_WARNING("The weeds are blocking the entrance of this vent"))
 			return
 
-	if(length(vent_found.connected_to))
+	if(length_char(vent_found.connected_to))
 		if(src.action_busy)
 			to_chat(src, SPAN_WARNING("You are already busy with something."))
 			return

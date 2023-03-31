@@ -150,7 +150,7 @@
 
 		var/list/candidate_target_turfs = range(round(stacked_size/2), starting_turf)
 		candidate_target_turfs -= starting_turf
-		var/turf/target_turf = candidate_target_turfs[rand(1, length(candidate_target_turfs))]
+		var/turf/target_turf = candidate_target_turfs[rand(1, length_char(candidate_target_turfs))]
 
 		falling_chair.forceMove(starting_turf)
 		falling_chair.pixel_x = rand(-8, 8)
@@ -406,7 +406,7 @@
 			chair_state = DROPSHIP_CHAIR_BROKEN
 		else
 			chair_state = DROPSHIP_CHAIR_FOLDED
-		addtimer(VARSET_CALLBACK(src, icon_state, "hotseat_new_folded"), 5) // animation length
+		addtimer(VARSET_CALLBACK(src, icon_state, "hotseat_new_folded"), 5) // animation length_char
 
 /obj/structure/bed/chair/dropship/passenger/shuttle_chair/fold_down(break_it = 1)
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED)
@@ -421,7 +421,7 @@
 	flick("hotseat_new_unfolding", src)
 	is_animating = 0
 	chair_state = DROPSHIP_CHAIR_UNFOLDED
-	addtimer(VARSET_CALLBACK(src, icon_state, "hotseat"), 5) // animation length
+	addtimer(VARSET_CALLBACK(src, icon_state, "hotseat"), 5) // animation length_char
 
 /obj/structure/bed/chair/dropship/passenger/shuttle_chair/unfold_up()
 	if(chair_state == DROPSHIP_CHAIR_BROKEN)

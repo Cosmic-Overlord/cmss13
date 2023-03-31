@@ -185,7 +185,7 @@
 			if(limb_surgeries)
 				damage += limb_surgeries
 
-			if(length(damage))
+			if(length_char(damage))
 				msg += SPAN_WARNING("[t_He] [t_has] [english_list(damage, final_comma_text = ",")] on [t_his] [o.display_name]!\n")
 
 	if(holo_card_color)
@@ -485,7 +485,7 @@
 	msg += "</span>"
 
 	if (pose)
-		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )
+		if( findtext_char(pose,".",length_char(pose)) == 0 && findtext_char(pose,"!",length_char(pose)) == 0 && findtext_char(pose,"?",length_char(pose)) == 0 )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "\n[t_He] is [pose]"
 

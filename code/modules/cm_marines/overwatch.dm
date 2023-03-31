@@ -132,7 +132,7 @@
 			var marine_list = document.getElementById("marine_list");
 			var ltr = marine_list.getElementsByTagName("tr");
 
-			for(var i = 0; i < ltr.length; ++i) {
+			for(var i = 0; i < ltr.length_char; ++i) {
 				try {
 					var tr = ltr\[i\];
 					tr.style.display = '';
@@ -724,7 +724,7 @@
 		if(E.fields["ref"] == marine_ref)
 			for(var/datum/data/record/R in GLOB.data_core.security)
 				if(R.fields["id"] == E.fields["id"])
-					if(!findtext(R.fields["ma_crim"],"Insubordination."))
+					if(!findtext_char(R.fields["ma_crim"],"Insubordination."))
 						R.fields["criminal"] = "*Arrest*"
 						if(R.fields["ma_crim"] == "None")
 							R.fields["ma_crim"] = "Insubordination."
@@ -811,7 +811,7 @@
 	var/x_coord = deobfuscate_x(x_bomb)
 	var/y_coord = deobfuscate_y(y_bomb)
 	var/z_coord = SSmapping.levels_by_trait(ZTRAIT_GROUND)
-	if(length(z_coord))
+	if(length_char(z_coord))
 		z_coord = z_coord[1]
 	else
 		z_coord = 1 // fuck it
@@ -882,7 +882,7 @@
 	var/x_coord = deobfuscate_x(x_supply)
 	var/y_coord = deobfuscate_y(y_supply)
 	var/z_coord = SSmapping.levels_by_trait(ZTRAIT_GROUND)
-	if(length(z_coord))
+	if(length_char(z_coord))
 		z_coord = z_coord[1]
 	else
 		z_coord = 1 // fuck it

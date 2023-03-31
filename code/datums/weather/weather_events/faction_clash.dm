@@ -1,7 +1,7 @@
 /datum/weather_event/clash_rain
 	name = "Rainstorm"
 	display_name = "Rainstorm"
-	length = INFINITY
+	length_char = INFINITY
 	fullscreen_type = /atom/movable/screen/fullscreen/weather/low
 
 	turf_overlay_icon_state = "strata_storm"

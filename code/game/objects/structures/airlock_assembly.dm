@@ -60,7 +60,7 @@
 		return
 
 	if(HAS_TRAIT(W, TRAIT_TOOL_PEN))
-		var/t = copytext(stripped_input(user, "Enter the name for the airlock.", name, created_name), 1, MAX_NAME_LEN)
+		var/t = copytext_char(stripped_input(user, "Enter the name for the airlock.", name, created_name), 1, MAX_NAME_LEN)
 		if(!t || !in_range(src, usr) && loc != usr)
 			return
 		created_name = t
@@ -166,7 +166,7 @@
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = W
 				if (C.get_amount() < 1)
-					to_chat(user, SPAN_WARNING("You need one length of coil to wire the airlock assembly."))
+					to_chat(user, SPAN_WARNING("You need one length_char of coil to wire the airlock assembly."))
 					return
 				to_chat(user, SPAN_NOTICE("You start to wire the circuit."))
 				if(!do_after(user, 40 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))

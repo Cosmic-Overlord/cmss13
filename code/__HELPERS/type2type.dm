@@ -16,9 +16,9 @@
 	var/num = 0
 	var/power = 0
 	var/i = null
-	i = length(hex)
+	i = length_char(hex)
 	while(i > 0)
-		var/char = copytext(hex, i, i + 1)
+		var/char = copytext_char(hex, i, i + 1)
 		switch(char)
 			if("0")
 				//Apparently, switch works with empty statements, yay! If that doesn't work, blame me, though. -- Urist
@@ -79,15 +79,15 @@
 				hex += "F"
 			else
 		power--
-	while(length(hex) < placeholder)
+	while(length_char(hex) < placeholder)
 		hex = text("0[]", hex)
 	return hex
 
 //Splits the text of a file at seperator and returns them in a list.
 /proc/file2list(filename, seperator="\n", trim = TRUE)
 	if (trim)
-		return splittext(trim(file2text(filename)),seperator)
-	return splittext(file2text(filename),seperator)
+		return splittext_char(trim(file2text(filename)),seperator)
+	return splittext_char(file2text(filename),seperator)
 
 
 //Turns a direction into text
@@ -254,7 +254,7 @@
 				return /atom
 			else
 				return /datum
-	return text2path(copytext(string_type, 1, last_slash))
+	return text2path(copytext_char(string_type, 1, last_slash))
 
 //returns a string the last bit of a type, without the preceeding '/'
 /proc/type2top(the_type)
@@ -275,7 +275,7 @@
 		if(/turf)
 			return "turf"
 		else //regex everything else (works for /proc too)
-			return lowertext(replacetext("[the_type]", "[type2parent(the_type)]/", ""))
+			return lowertext(replacetext_char("[the_type]", "[type2parent(the_type)]/", ""))
 
 
 //This is a weird one:
@@ -293,23 +293,23 @@
 
 	. = list()
 
-	var/var_found = findtext(t_string,"\[") //Not the actual variables, just a generic "should we even bother" check
+	var/var_found = findtext_char(t_string,"\[") //Not the actual variables, just a generic "should we even bother" check
 	if(var_found)
 		//Find var names
 
 		// "A dog said hi [name]!"
-		// splittext() --> list("A dog said hi ","name]!"
+		// splittext_char() --> list("A dog said hi ","name]!"
 		// jointext() --> "A dog said hi name]!"
-		// splittext() --> list("A","dog","said","hi","name]!")
+		// splittext_char() --> list("A","dog","said","hi","name]!")
 
-		t_string = replacetext(t_string,"\[","\[ ")//Necessary to resolve "word[var_name]" scenarios
-		var/list/list_value = splittext(t_string,"\[")
+		t_string = replacetext_char(t_string,"\[","\[ ")//Necessary to resolve "word[var_name]" scenarios
+		var/list/list_value = splittext_char(t_string,"\[")
 		var/intermediate_stage = jointext(list_value, null)
 
-		list_value = splittext(intermediate_stage," ")
+		list_value = splittext_char(intermediate_stage," ")
 		for(var/value in list_value)
-			if(findtext(value,"]"))
-				value = splittext(value,"]") //"name]!" --> list("name","!")
+			if(findtext_char(value,"]"))
+				value = splittext_char(value,"]") //"name]!" --> list("name","!")
 				for(var/A in value)
 					if(var_source.vars.Find(A))
 						. += A

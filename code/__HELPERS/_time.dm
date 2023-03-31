@@ -55,7 +55,7 @@ var/rollovercheck_last_timeofday = 0
 	return CEILING(target_time - current_time, 1) / time_unit
 
 /proc/text2duration(text = "00:00") // Attempts to convert time text back to time value
-	var/split_text = splittext(text, ":")
+	var/split_text = splittext_char(text, ":")
 	var/time_hours = text2num(split_text[1]) * 1 HOURS
 	var/time_minutes = text2num(split_text[2]) * 1 MINUTES
 	return time_hours + time_minutes

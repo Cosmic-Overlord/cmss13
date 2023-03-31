@@ -14,7 +14,7 @@
 		var/turf/T = get_turf(src) //otherwise it won't work in hand
 		T.visible_message("[icon2html(src, hearers(src))] beeps, \"Activation message is '[recorded]'.\"")
 	else
-		if(findtext(msg, recorded))
+		if(findtext_char(msg, recorded))
 			pulse(0)
 
 /obj/item/device/assembly/voice/activate()

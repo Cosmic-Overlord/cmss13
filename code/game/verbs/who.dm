@@ -36,7 +36,7 @@
 
 	var/list/counted_xenos = list()
 
-	var/players = length(GLOB.clients)
+	var/players = length_char(GLOB.clients)
 
 	var/dat = "<html><body><B>Current Players:</B><BR>"
 	var/list/Lines = list()
@@ -180,7 +180,7 @@
 				break
 
 	for(var/category in listings)
-		dat += "<BR><B>Current [category] ([length(listings[category])]):<BR></B>\n"
+		dat += "<BR><B>Current [category] ([length_char(listings[category])]):<BR></B>\n"
 		for(var/client/entry in listings[category])
 			dat += "\t[entry.key] is a [entry.admin_holder.rank]"
 			if(entry.admin_holder.extra_titles?.len)

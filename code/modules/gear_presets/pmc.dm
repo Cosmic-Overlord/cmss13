@@ -1824,7 +1824,7 @@ list("POUCHES (CHOOSE 2)", 0, null, null, null),
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/lockable, WEAR_BACK)
 
 	var/obj/item/storage/pouch/pistol/command/command_pouch = new(H)
-	command_pouch.desc = replacetext(command_pouch.desc, "Captains", "corporate PMC directors")
+	command_pouch.desc = replacetext_char(command_pouch.desc, "Captains", "corporate PMC directors")
 	H.equip_to_slot_or_del(command_pouch, WEAR_L_STORE)
 	H.equip_to_slot_or_del(new /obj/item/device/cotablet/pmc(H), WEAR_IN_L_STORE)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars/range(H), WEAR_IN_L_STORE)

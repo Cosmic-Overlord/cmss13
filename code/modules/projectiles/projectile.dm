@@ -309,7 +309,7 @@
 		return TRUE
 
 	// Adjust computed path if we just missed our intended target
-	if(!length(path))
+	if(!length_char(path))
 		var/turf/aim_turf = get_angle_target_turf(src, angle, distance_travelled * 2 + 1)
 		if(!aim_turf || aim_turf == loc) // Map border safety
 			speed = 0
@@ -1057,7 +1057,7 @@
 		if(prob(L.get_projectile_hit_chance(P)))
 			mobs_list += L
 
-	if(length(mobs_list))
+	if(length_char(mobs_list))
 		var/mob/living/picked_mob = pick(mobs_list) //Hit a mob, if there is one.
 		if(istype(picked_mob))
 			picked_mob.bullet_act(P)

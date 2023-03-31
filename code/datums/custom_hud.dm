@@ -78,8 +78,8 @@
 
 ///Offsets the slot's screen_loc by the item's hud_offset var. Uses the ui slot var as the arg: ui_belt, not WEAR_WAIST/"belt".
 /datum/custom_hud/proc/hud_slot_offset(obj/item/A, ui_slot)
-	var/coords = splittext(ui_slot, ",")
-	var/coords_x = splittext(coords[1], ":")
+	var/coords = splittext_char(ui_slot, ",")
+	var/coords_x = splittext_char(coords[1], ":")
 	return "[coords_x[1]]:[text2num(coords_x[2])+A.hud_offset],[coords[2]]"
 
 /datum/custom_hud/proc/special_behaviour(datum/hud/element, ui_alpha = 255, ui_color = "#ffffff")

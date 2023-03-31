@@ -108,7 +108,7 @@
 		if(current_step.attempt_step(user, target, user.zone_selected, tool, src, repeating)) //First, try this step.
 			return TRUE
 		var/datum/surgery_step/next_step
-		if(current_step.skip_step_criteria(user, target, user.zone_selected, tool, src) && status < length(steps)) //If that doesn't work but the step is optional and not the last in the list, try the next step.
+		if(current_step.skip_step_criteria(user, target, user.zone_selected, tool, src) && status < length_char(steps)) //If that doesn't work but the step is optional and not the last in the list, try the next step.
 			next_step = GLOB.surgery_step_list[steps[status + 1]]
 			if(next_step.attempt_step(user, target, user.zone_selected, tool, src, skipped = TRUE))
 				return TRUE

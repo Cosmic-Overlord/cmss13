@@ -27,7 +27,7 @@
 		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno] is too weak to be deevolved."))
 		return
 
-	if(length(target_xeno.caste.deevolves_to) < 1)
+	if(length_char(target_xeno.caste.deevolves_to) < 1)
 		to_chat(user_xeno, SPAN_XENOWARNING("[target_xeno] can't be deevolved."))
 		return
 
@@ -38,9 +38,9 @@
 
 	var/newcaste
 
-	if(length(target_xeno.caste.deevolves_to) == 1)
+	if(length_char(target_xeno.caste.deevolves_to) == 1)
 		newcaste = target_xeno.caste.deevolves_to[1]
-	else if(length(target_xeno.caste.deevolves_to) > 1)
+	else if(length_char(target_xeno.caste.deevolves_to) > 1)
 		newcaste = tgui_input_list(user_xeno, "Choose a caste you want to de-evolve [target_xeno] to.", "De-evolve", target_xeno.caste.deevolves_to, theme="hive_status")
 
 	if(!newcaste)

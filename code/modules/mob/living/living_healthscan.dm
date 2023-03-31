@@ -121,7 +121,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			"dangerous" = reagent.overdose != 0 && reagent.volume > reagent.overdose && !(reagent.flags & REAGENT_CANNOT_OVERDOSE) || istype(reagent, /datum/reagent/toxin),
 			"color" = reagent.color
 		)
-	data["has_chemicals"] = length(target_mob.reagents.reagent_list)
+	data["has_chemicals"] = length_char(target_mob.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
 
 	var/list/limb_data_lists = list()
@@ -164,7 +164,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			if(limb.hidden)
 				unknown_implants++
 			var/implant = FALSE
-			if(length(limb.implants))
+			if(length_char(limb.implants))
 				for(var/I in limb.implants)
 					if(is_type_in_list(I, GLOB.known_implants))
 						continue
@@ -249,7 +249,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			limb_data_lists["[limb.name]"] = current_list
 
 		data["limb_data_lists"] = limb_data_lists
-		data["limbs_damaged"] = length(limb_data_lists)
+		data["limbs_damaged"] = length_char(limb_data_lists)
 		data["internal_bleeding"] = internal_bleeding
 		data["body_temperature"] = "[round(human_target_mob.bodytemperature-T0C, 0.1)]℃ ([round(human_target_mob.bodytemperature*1.8-459.67, 0.1)]℉)" // METRIC RULES IMPERIAL DROOLS
 		data["pulse"] = "[human_target_mob.get_pulse(GETPULSE_TOOL)] bpm"
@@ -707,13 +707,13 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				dat += advice
 
 	if(show_browser)
-		dat = replacetext(dat, "\n", "<br>")
-		dat = replacetext(dat, "\t", "&emsp;")
-		dat = replacetext(dat, "class='warning'", "class='[INTERFACE_RED]'")
-		dat = replacetext(dat, "class='scanner'", "class='[INTERFACE_RED]'")
-		dat = replacetext(dat, "class='scannerb'", "style='font-weight: bold;' class='[INTERFACE_RED]'")
-		dat = replacetext(dat, "class='scannerburn'", "class='[INTERFACE_ORANGE]'")
-		dat = replacetext(dat, "class='scannerburnb'", "style='font-weight: bold;' class='[INTERFACE_ORANGE]'")
+		dat = replacetext_char(dat, "\n", "<br>")
+		dat = replacetext_char(dat, "\t", "&emsp;")
+		dat = replacetext_char(dat, "class='warning'", "class='[INTERFACE_RED]'")
+		dat = replacetext_char(dat, "class='scanner'", "class='[INTERFACE_RED]'")
+		dat = replacetext_char(dat, "class='scannerb'", "style='font-weight: bold;' class='[INTERFACE_RED]'")
+		dat = replacetext_char(dat, "class='scannerburn'", "class='[INTERFACE_ORANGE]'")
+		dat = replacetext_char(dat, "class='scannerburnb'", "style='font-weight: bold;' class='[INTERFACE_ORANGE]'")
 		show_browser(user, dat, name, "handscanner", "size=500x400")
 	else
 		user.show_message(dat, 1)

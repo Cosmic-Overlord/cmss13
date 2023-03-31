@@ -28,7 +28,7 @@
 	return ckeyEx(Key)
 
 /proc/_copytext(T, Start = 1, End = 0)
-	return copytext(T, Start, End)
+	return copytext_char(T, Start, End)
 
 /proc/_cos(X)
 	return cos(X)
@@ -55,7 +55,7 @@
 	return ispath(path, type)
 
 /proc/_length(E)
-	return length(E)
+	return length_char(E)
 
 /proc/_link(thing, url)
 	thing << link(url)
@@ -90,7 +90,7 @@
 /proc/_new(type, arguments)
 	var/datum/result
 
-	if(!length(arguments))
+	if(!length_char(arguments))
 		result = new type()
 	else
 		result = new type(arglist(arguments))
@@ -155,7 +155,7 @@
 	return REGEX_QUOTE_REPLACEMENT(text)
 
 /proc/_replacetext(Haystack, Needle, Replacement, Start = 1,End = 0)
-	return replacetext(Haystack, Needle, Replacement, Start, End)
+	return replacetext_char(Haystack, Needle, Replacement, Start, End)
 
 /proc/_replacetextEx(Haystack, Needle, Replacement, Start = 1,End = 0)
 	return replacetextEx(Haystack, Needle, Replacement, Start, End)
@@ -265,7 +265,7 @@
 
 /// Auxtools REALLY doesn't know how to handle filters as values;
 /// when passed as arguments to auxtools-called procs, they aren't simply treated as nulls -
-/// they don't even count towards the length of args.
+/// they don't even count towards the length_char of args.
 /// For example, calling some_proc([a filter], foo, bar) from auxtools
 /// is equivalent to calling some_proc(foo, bar). Thus, we can't use _animate directly on filters.
 /// Use this to perform animation steps on a filter. Consecutive steps on the same filter can be
@@ -273,6 +273,6 @@
 /proc/_animate_filter(atom/target, filter_index, set_vars, time = 10, loop = 1, easing = LINEAR_EASING, flags = null)
 	if(!istype(target))
 		return
-	if(!filter_index || filter_index < 1 || filter_index > length(target.filters))
+	if(!filter_index || filter_index < 1 || filter_index > length_char(target.filters))
 		return
 	animate(target.filters[filter_index], appearance = set_vars, time, loop, easing, flags)

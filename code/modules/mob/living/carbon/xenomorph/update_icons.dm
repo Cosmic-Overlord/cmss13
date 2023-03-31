@@ -45,7 +45,7 @@
 	if(!walking_state_cache[mutation_caste_state])
 		var/cache_walking_state = FALSE
 		for(var/state in icon_states(icon))
-			if(findtext(state, "Walking"))
+			if(findtext_char(state, "Walking"))
 				cache_walking_state = TRUE
 				break
 		walking_state_cache[mutation_caste_state] = cache_walking_state

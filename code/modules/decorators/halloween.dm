@@ -26,7 +26,7 @@
 
 /datum/decorator/halloween/cobwebs/decorate(turf/closed/wall/almayer/T)
 	var/static/list/order = list(NORTHWEST, SOUTHEAST, NORTHEAST, SOUTHWEST) // Ordering of wall_connections
-	if(length(T.wall_connections) < 4)
+	if(length_char(T.wall_connections) < 4)
 		return
 
 	var/event_progress = get_event_progress()

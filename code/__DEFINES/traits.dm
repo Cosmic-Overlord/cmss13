@@ -43,14 +43,14 @@
 					_L[trait] -= _T \
 				} \
 			};\
-			if (!length(_L[trait])) { \
+			if (!length_char(_L[trait])) { \
 				_L -= trait; \
 				SEND_SIGNAL(target, SIGNAL_REMOVETRAIT(trait), trait); \
 				if(trait in GLOB.traits_with_elements) { \
 					target.RemoveElement(GLOB.traits_with_elements[trait]); \
 				} \
 			}; \
-			if (!length(_L)) { \
+			if (!length_char(_L)) { \
 				target.status_traits = null \
 			}; \
 		} \
@@ -62,7 +62,7 @@
 		if (_L) { \
 			for (var/_T in _L) { \
 				_L[_T] &= _S;\
-				if (!length(_L[_T])) { \
+				if (!length_char(_L[_T])) { \
 					_L -= _T; \
 					SEND_SIGNAL(target, SIGNAL_REMOVETRAIT(_T), _T); \
 					if(_T in GLOB.traits_with_elements) { \
@@ -70,7 +70,7 @@
 					}; \
 				};\
 			};\
-			if (!length(_L)) { \
+			if (!length_char(_L)) { \
 				target.status_traits = null\
 			};\
 		}\
@@ -88,7 +88,7 @@
 		if (_L) { \
 			for (var/_T in _L) { \
 				_L[_T] -= _S;\
-				if (!length(_L[_T])) { \
+				if (!length_char(_L[_T])) { \
 					_L -= _T; \
 					SEND_SIGNAL(target, SIGNAL_REMOVETRAIT(_T)); \
 					if(_T in GLOB.traits_with_elements) { \
@@ -96,7 +96,7 @@
 					}; \
 				};\
 			};\
-			if (!length(_L)) { \
+			if (!length_char(_L)) { \
 				target.status_traits = null\
 			};\
 		}\
@@ -107,10 +107,10 @@
 #define HAS_TRAIT_FROM_ONLY(target, trait, source) (\
 	target.status_traits ?\
 		(target.status_traits[trait] ?\
-			((source in target.status_traits[trait]) && (length(target.status_traits) == 1))\
+			((source in target.status_traits[trait]) && (length_char(target.status_traits) == 1))\
 			: FALSE)\
 		: FALSE)
-#define HAS_TRAIT_NOT_FROM(target, trait, source) (target.status_traits ? (target.status_traits[trait] ? (length(target.status_traits[trait] - source) > 0) : FALSE) : FALSE)
+#define HAS_TRAIT_NOT_FROM(target, trait, source) (target.status_traits ? (target.status_traits[trait] ? (length_char(target.status_traits[trait] - source) > 0) : FALSE) : FALSE)
 
 
 /// Example trait

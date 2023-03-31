@@ -127,7 +127,7 @@
 		icon_state = initial(icon_state)
 
 /obj/item/weapon/pole/fancy_cane/this_is_a_knife/attackby(obj/item/object, mob/living/mobber)
-	if(length(allowed_items))
+	if(length_char(allowed_items))
 		for (var/i in allowed_items)
 			if(istype(object, i))
 				if(stored_item)

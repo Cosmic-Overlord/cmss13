@@ -102,12 +102,12 @@
 	master_object.add_fingerprint(user)
 	//Checks that it's in the user's inventory somewhere - not safe with items inside storage without additional checks on master_object's end.
 	if(user.contains(master_object))
-		if((mods && mods["alt"] || storage_flags & STORAGE_USING_DRAWING_METHOD) && ishuman(user) && length(contents))
+		if((mods && mods["alt"] || storage_flags & STORAGE_USING_DRAWING_METHOD) && ishuman(user) && length_char(contents))
 			var/obj/item/I
 			if(storage_flags & STORAGE_USING_FIFO_DRAWING)
 				I = contents[1]
 			else
-				I = contents[length(contents)]
+				I = contents[length_char(contents)]
 			I.attack_hand(user)
 		else
 			open(user)
@@ -178,7 +178,7 @@
 	if(!.)
 		return
 
-	if(!HAS_FLAG(item.flags_obj, OBJ_IS_HELMET_GARB) && length(contents) - length(garb_items) >= storage_slots - slots_reserved_for_garb)
+	if(!HAS_FLAG(item.flags_obj, OBJ_IS_HELMET_GARB) && length_char(contents) - length_char(garb_items) >= storage_slots - slots_reserved_for_garb)
 		if(!stop_messages)
 			to_chat(usr, SPAN_WARNING("This slot is reserved for headgear accessories!"))
 		return FALSE

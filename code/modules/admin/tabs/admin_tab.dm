@@ -226,7 +226,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	if(!msg)
 		return
 
@@ -335,14 +335,14 @@
 	if(!check_rights(R_ADMIN|R_MOD))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if (!msg)
 		return
 
-	if(findtext(msg, "@") || findtext(msg, "#"))
+	if(findtext_char(msg, "@") || findtext_char(msg, "#"))
 		var/list/link_results = check_asay_links(msg)
-		if(length(link_results))
+		if(length_char(link_results))
 			msg = link_results[ASAY_LINK_NEW_MESSAGE_INDEX]
 			link_results[ASAY_LINK_NEW_MESSAGE_INDEX] = null
 			var/list/pinged_admin_clients = link_results[ASAY_LINK_PINGED_ADMINS_INDEX]
@@ -377,7 +377,7 @@
 	if(!check_rights(R_MENTOR|R_MOD|R_ADMIN))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if (!msg)
 		return

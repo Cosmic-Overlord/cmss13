@@ -57,13 +57,13 @@ SUBSYSTEM_DEF(decorator)
 	if(Master.map_loading || !initialized)
 		return
 
-	if(!resumed && !length(currentrun))
+	if(!resumed && !length_char(currentrun))
 		var/swap = decoratable
 		decoratable = currentrun
 		decoratable.Cut()
 		currentrun = swap
 
-	while(length(currentrun))
+	while(length_char(currentrun))
 		var/datum/weakref/ref = currentrun[currentrun.len]
 		currentrun.len--
 		var/atom/A = ref?.resolve()
@@ -73,7 +73,7 @@ SUBSYSTEM_DEF(decorator)
 
 /datum/controller/subsystem/decorator/proc/add_decorator(decor_type, ...)
 	var/list/arguments = list()
-	if (length(args) > 1)
+	if (length_char(args) > 1)
 		arguments = args.Copy(2)
 	var/datum/decorator/decor = new decor_type(arglist(arguments))
 

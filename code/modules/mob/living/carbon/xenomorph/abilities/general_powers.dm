@@ -158,7 +158,7 @@
 
 		entry["name"] = RC.name
 		entry["desc"] = RC.desc
-		entry["image"] = replacetext(RC.construction_name, " ", "-")
+		entry["image"] = replacetext_char(RC.construction_name, " ", "-")
 		entry["plasma_cost"] = RC.cost
 		entry["max_per_xeno"] = RC.max_per_xeno
 		entry["id"] = "[type]"
@@ -281,7 +281,7 @@
 		var/list/promptlist = list("Yes", "No")
 		var/obj/effect/alien/resin/marker/Goober = null
 		var/promptuser = null
-		for(var/i=1, i<=length(X.hive.resin_marks))
+		for(var/i=1, i<=length_char(X.hive.resin_marks))
 			Goober = X.hive.resin_marks[i]
 			if(Goober.createdby == X.nicknumber)
 				promptuser = tgui_input_list(X, "Remove oldest placed mark: '[Goober.mark_meaning.name]!'?", "Mark limit reached.", promptlist, theme="hive_status")
@@ -423,7 +423,7 @@
 			X.update_canmove()
 		post_windup_effects()
 
-	X.visible_message(SPAN_XENOWARNING("\The [X] [ability_name][findtext(ability_name, "e", -1) || findtext(ability_name, "p", -1) ? "s" : "es"] at [A]!"), SPAN_XENOWARNING("You [ability_name] at [A]!"))
+	X.visible_message(SPAN_XENOWARNING("\The [X] [ability_name][findtext_char(ability_name, "e", -1) || findtext_char(ability_name, "p", -1) ? "s" : "es"] at [A]!"), SPAN_XENOWARNING("You [ability_name] at [A]!"))
 
 	pre_pounce_effects()
 

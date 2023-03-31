@@ -516,7 +516,7 @@ BSQL_PROTECT_DATUM(/datum/entity/player)
 
 
 /datum/entity/player/proc/migrate_notes()
-	var/savefile/info = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/info.sav")
+	var/savefile/info = new("data/player_saves/[copytext_char(ckey, 1, 2)]/[ckey]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos)
@@ -535,13 +535,13 @@ BSQL_PROTECT_DATUM(/datum/entity/player)
 		if(!note.admin_rank)
 			note.admin_rank = "N/A"
 		note.date = I.timestamp
-		var/list/splitting = splittext(I.content, "|")
+		var/list/splitting = splittext_char(I.content, "|")
 		if(splitting.len == 1)
 			note.text = I.content
 			note.is_ban = FALSE
 		if(splitting.len == 3)
 			note.text = splitting[3]
-			note.ban_time = text2num(replacetext(replacetext(splitting[2],"Duration: ","")," minutes",""))
+			note.ban_time = text2num(replacetext_char(replacetext_char(splitting[2],"Duration: ","")," minutes",""))
 			note.is_ban = TRUE
 		if(splitting.len == 2)
 			note.text = I.content

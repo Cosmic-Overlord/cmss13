@@ -123,7 +123,7 @@
 		A.on_mob_jump()
 		var/ground_level = 1
 		var/list/ground_z_levels = SSmapping.levels_by_trait(ZTRAIT_GROUND)
-		if(length(ground_z_levels))
+		if(length_char(ground_z_levels))
 			ground_level = ground_z_levels[1]
 
 		var/turf/T = locate(deobfuscate_x(tx), deobfuscate_y(ty), ground_level)

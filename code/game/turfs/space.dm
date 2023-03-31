@@ -94,7 +94,7 @@
 				return
 
 			var/list/disk_search = A.search_contents_for(/obj/item/disk/nuclear)
-			if(length(disk_search))
+			if(length_char(disk_search))
 				if(istype(A, /mob/living))
 					var/mob/living/MM = A
 					if(MM.client && !MM.stat)

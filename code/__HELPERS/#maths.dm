@@ -202,7 +202,7 @@ var/list/sqrtTable = list(1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 
 	temp = ((temp + (temp >> 3)) & 29127) % 63 //070707
 	return temp
 
-/// Returns the name of the mathematical tuple of same length as the number arg (rounded down).
+/// Returns the name of the mathematical tuple of same length_char as the number arg (rounded down).
 /proc/make_tuple(number)
 	var/static/list/units_prefix = list("", "un", "duo", "tre", "quattuor", "quin", "sex", "septen", "octo", "novem")
 	var/static/list/tens_prefix = list("", "decem", "vigin", "trigin", "quadragin", "quinquagin", "sexagin", "septuagin", "octogin", "nongen")

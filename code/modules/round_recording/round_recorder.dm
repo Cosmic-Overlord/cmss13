@@ -165,8 +165,8 @@
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	var/game_files = flist("data/recorded_rounds/[date_string]/")
 
-	var/meta_file = file("data/recorded_rounds/[date_string]/game[length(game_files)]_meta.json")
-	var/data_file = file("data/recorded_rounds/[date_string]/game[length(game_files)]_data.json")
+	var/meta_file = file("data/recorded_rounds/[date_string]/game[length_char(game_files)]_meta.json")
+	var/data_file = file("data/recorded_rounds/[date_string]/game[length_char(game_files)]_data.json")
 
 	meta_file << meta_json
 	data_file << data_json

@@ -250,7 +250,7 @@
 			if(!decal) //Let's not stack blood, it just makes lagggggs.
 				add_splatter_floor(T) //Drop some on the ground first.
 			else
-				if(decal.random_icon_states && length(decal.random_icon_states) > 0) //If there's already one, just randomize it so it changes.
+				if(decal.random_icon_states && length_char(decal.random_icon_states) > 0) //If there's already one, just randomize it so it changes.
 					decal.icon_state = pick(decal.random_icon_states)
 
 		var/splash_chance = 40 //Base chance of getting splashed. Decreases with # of victims.
@@ -290,7 +290,7 @@
 		return access_to_check in iff_tag.faction_groups
 
 	var/list/overlap = iff_tag.faction_groups & access_to_check
-	return length(overlap)
+	return length_char(overlap)
 
 /mob/living/carbon/xenomorph/handle_flamer_fire(obj/flamer_fire/fire, damage, delta_time)
 	. = ..()

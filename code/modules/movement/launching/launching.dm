@@ -47,7 +47,7 @@
 			return null
 		return list(collision_callbacks[highest_matching])
 	else
-		if (length(matching) == 0)
+		if (length_char(matching) == 0)
 			return null
 		var/list/matching_procs = list()
 		for(var/path in matching)
@@ -206,7 +206,7 @@
 		rebounding = FALSE
 		cur_speed = old_speed
 		remove_temp_pass_flags(pass_flags)
-		if(length(LM.end_throw_callbacks))
+		if(length_char(LM.end_throw_callbacks))
 			for(var/datum/callback/CB as anything in LM.end_throw_callbacks)
 				if(istype(CB, /datum/callback/dynamic))
 					CB.Invoke(src)

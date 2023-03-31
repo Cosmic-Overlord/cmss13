@@ -27,9 +27,9 @@
 /// Get a value from the scenario, or a global value
 /datum/nmcontext/proc/get_scenario_value(pname)
 	var/datum/nmcontext/scope = src
-	var/modifier = copytext(pname, 1, 2)
+	var/modifier = copytext_char(pname, 1, 2)
 	if(modifier == "$")
-		pname = copytext(pname, 2)
+		pname = copytext_char(pname, 2)
 		scope = SSnightmare.contexts[NIGHTMARE_CTX_GLOBAL]
 	return scope.scenario[pname]
 

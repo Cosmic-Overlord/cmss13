@@ -239,7 +239,7 @@
 			return
 
 		if(organ_slot != "default")
-			organ_slot = sanitize(copytext(organ_slot,1,MAX_MESSAGE_LEN))
+			organ_slot = sanitize(copytext_char(organ_slot,1,MAX_MESSAGE_LEN))
 		else
 			if(I.removed_type)
 				var/obj/item/organ/O = new I.removed_type()

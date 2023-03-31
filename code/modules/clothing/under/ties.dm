@@ -539,15 +539,15 @@
 /obj/item/storage/internal/accessory/surg_vest/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/storage/surgical_tray))
 		var/obj/item/storage/surgical_tray/ST = W
-		if(!length(ST.contents))
+		if(!length_char(ST.contents))
 			return
-		if(length(contents) >= storage_slots)
+		if(length_char(contents) >= storage_slots)
 			to_chat(user, SPAN_WARNING("The surgical webbing vest is already full."))
 			return
 		if(!do_after(user, 5 SECONDS * user.get_skill_duration_multiplier(SKILL_MEDICAL), INTERRUPT_ALL, BUSY_ICON_GENERIC))
 			return
 		for(var/obj/item/I in ST)
-			if(length(contents) >= storage_slots)
+			if(length_char(contents) >= storage_slots)
 				break
 			ST.remove_from_storage(I)
 			attempt_item_insertion(I, TRUE, user)
@@ -674,10 +674,10 @@
 /obj/item/clothing/accessory/storage/holster/attack_hand(mob/user, mods)
 	var/obj/item/storage/internal/accessory/holster/H = hold
 	if(H.current_gun && ishuman(user) && (loc == user || has_suit))
-		if(mods && mods["alt"] && length(H.contents) > 1) //Withdraw the most recently inserted magazine, if possible.
-			var/obj/item/I = H.contents[length(H.contents)]
+		if(mods && mods["alt"] && length_char(H.contents) > 1) //Withdraw the most recently inserted magazine, if possible.
+			var/obj/item/I = H.contents[length_char(H.contents)]
 			if(isgun(I))
-				I = H.contents[length(H.contents) - 1]
+				I = H.contents[length_char(H.contents) - 1]
 			I.attack_hand(user)
 		else
 			H.current_gun.attack_hand(user)
@@ -694,7 +694,7 @@
 				return
 		else //Must be ammo.
 			var/ammo_slots = storage_slots - 1 //We have a slot reserved for the gun
-			var/ammo_stored = length(contents)
+			var/ammo_stored = length_char(contents)
 			if(current_gun)
 				ammo_stored--
 			if(ammo_stored >= ammo_slots)

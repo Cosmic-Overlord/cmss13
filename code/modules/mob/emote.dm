@@ -3,13 +3,13 @@
 	var/param = message
 	var/custom_param = findchar(act, " ")
 	if(custom_param)
-		param = copytext(act, custom_param + length(act[custom_param]))
-		act = copytext(act, 1, custom_param)
+		param = copytext_char(act, custom_param + length_char(act[custom_param]))
+		act = copytext_char(act, 1, custom_param)
 
 	act = lowertext(act)
 	var/list/key_emotes = GLOB.emote_list[act]
 
-	if(!length(key_emotes))
+	if(!length_char(key_emotes))
 		if(intentional && !force_silence)
 			to_chat(src, SPAN_NOTICE("'[act]' emote does not exist. Say *help for a list."))
 		return FALSE

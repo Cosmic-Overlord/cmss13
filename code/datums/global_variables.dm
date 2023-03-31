@@ -17,7 +17,7 @@
 					var vars_ol = document.getElementById('vars');
 					var lis = vars_ol.children;
 
-					for(var i = 0; i < lis.length; ++i)
+					for(var i = 0; i < lis.length_char; ++i)
 					{
 						var li = lis\[i\];
 						if(filter.value == "" || li.innerText.toLowerCase().indexOf(filter) != -1)

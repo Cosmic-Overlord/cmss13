@@ -403,7 +403,7 @@
 	brightness_on = 7
 
 //Special flare subtype for the illumination flare shell
-//Acts like a flare, just even stronger, and set length
+//Acts like a flare, just even stronger, and set length_char
 /obj/item/device/flashlight/flare/on/illumination
 	name = "illumination flare"
 	desc = "It's really bright, and unreachable."

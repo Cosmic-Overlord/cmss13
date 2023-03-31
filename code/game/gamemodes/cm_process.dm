@@ -76,7 +76,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 /datum/game_mode/proc/declare_completion_announce_predators()
 	set waitfor = 0
 	sleep(2 SECONDS)
-	if(length(predators))
+	if(length_char(predators))
 		var/dat = "<br>"
 		dat += SPAN_ROUNDBODY("<br>The Predators were:")
 		for(var/entry in predators)
@@ -177,8 +177,8 @@ GLOBAL_VAR_INIT(next_admin_bioscan, 30 MINUTES)
 	//So if you have peak 30 xenos, if you still have 30 xenos, humans will have to wait 30 minutes between bioscans
 	//But if you fall down to 15 xenos, humans will get them every 15 minutes
 	//But never more often than 5 minutes apart
-	var/nextXenoBioscan = GLOB.last_xeno_bioscan + max(30 MINUTES * length(GLOB.alive_human_list) / GLOB.peak_humans, 5 MINUTES)
-	var/nextHumanBioscan = GLOB.last_human_bioscan + max(30 MINUTES * length(GLOB.living_xeno_list) / GLOB.peak_xenos, 5 MINUTES)
+	var/nextXenoBioscan = GLOB.last_xeno_bioscan + max(30 MINUTES * length_char(GLOB.alive_human_list) / GLOB.peak_humans, 5 MINUTES)
+	var/nextHumanBioscan = GLOB.last_human_bioscan + max(30 MINUTES * length_char(GLOB.living_xeno_list) / GLOB.peak_xenos, 5 MINUTES)
 	GLOB.bioscan_data.get_scan_data()
 	if(world.time > GLOB.next_predator_bioscan)
 		GLOB.bioscan_data.yautja_bioscan()//Also does ghosts

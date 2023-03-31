@@ -72,14 +72,14 @@ var/datum/controller/subsystem/database_query_manager/SSdatabase
 		return
 
 	if(!resumed)
-		if(!length(queries_active) && !length(queries_standby))
+		if(!length_char(queries_active) && !length_char(queries_standby))
 			return
 		connection.keep()
 		queries_current = queries_active.Copy()
 		queries_new = null
 
 	// First handle the already running queries
-	while(length(queries_current))
+	while(length_char(queries_current))
 		var/datum/db/query_response/Q = popleft(queries_current)
 		if(!process_query(Q))
 			queries_active -= Q
@@ -88,11 +88,11 @@ var/datum/controller/subsystem/database_query_manager/SSdatabase
 
 	// Then strap on extra new queries as possible
 	if(isnull(queries_new))
-		if(!length(queries_standby))
+		if(!length_char(queries_standby))
 			return
-		queries_new = queries_standby.Copy(1, min(length(queries_standby), max_concurrent_queries) + 1)
+		queries_new = queries_standby.Copy(1, min(length_char(queries_standby), max_concurrent_queries) + 1)
 
-	while(length(queries_new) && length(queries_active) < max_concurrent_queries)
+	while(length_char(queries_new) && length_char(queries_active) < max_concurrent_queries)
 		var/datum/db/query_response/Q = queries_new[1]
 		var/list/ar = queries_new[Q]
 		queries_standby.Remove(Q)
@@ -181,22 +181,22 @@ var/datum/controller/subsystem/database_query_manager/SSdatabase
 		if(!t) continue
 
 		t = trim(t)
-		if(length(t) == 0)
+		if(length_char(t) == 0)
 			continue
-		else if (copytext(t, 1, 2) == "#")
+		else if (copytext_char(t, 1, 2) == "#")
 			continue
 
-		var/pos = findtext(t, " ")
+		var/pos = findtext_char(t, " ")
 		var/name = null
 		var/value = null
 
 		if(pos)
-			name = lowertext(copytext(t, 1, pos))
-			value = copytext(t, pos + 1)
+			name = lowertext(copytext_char(t, 1, pos))
+			value = copytext_char(t, pos + 1)
 		else
 			name = lowertext(t)
 
-		if(findtext(name, "db_")==0)
+		if(findtext_char(name, "db_")==0)
 			continue
 
 		if(!name)

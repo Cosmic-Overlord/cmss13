@@ -87,9 +87,9 @@
 	var/image/r_icon
 	var/use_mob_style = TRUE
 	var/text_to_display = message
-	if(length(text_to_display) > LANGCHAT_LONGEST_TEXT)
+	if(length_char(text_to_display) > LANGCHAT_LONGEST_TEXT)
 		text_to_display = copytext_char(text_to_display, 1, LANGCHAT_LONGEST_TEXT + 1) + "..."
-	var/timer = (length(text_to_display) / LANGCHAT_LONGEST_TEXT) * 4 SECONDS + 2 SECONDS
+	var/timer = (length_char(text_to_display) / LANGCHAT_LONGEST_TEXT) * 4 SECONDS + 2 SECONDS
 	if(additional_styles.Find("emote"))
 		additional_styles.Remove("emote")
 		use_mob_style = FALSE
@@ -139,7 +139,7 @@
 	var/text_left = null
 	var/text_to_display = message
 
-	if(length(message) > LANGCHAT_LONGEST_TEXT)
+	if(length_char(message) > LANGCHAT_LONGEST_TEXT)
 		text_to_display = copytext_char(message, 1, LANGCHAT_LONGEST_TEXT - 5) + "..."
 		text_left = "..." + copytext_char(message, LANGCHAT_LONGEST_TEXT - 5)
 	var/timer = 6 SECONDS

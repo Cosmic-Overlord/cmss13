@@ -40,7 +40,7 @@
 	set desc = "Clears your current built structures that are tied to you."
 	set category = "Alien"
 
-	if(!length(built_structures))
+	if(!length_char(built_structures))
 		to_chat(usr, SPAN_WARNING("You don't have any built structures!"))
 		return
 

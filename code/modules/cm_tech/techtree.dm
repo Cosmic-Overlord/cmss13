@@ -54,12 +54,12 @@
 
 	var/longest_tier = 0
 	for(var/tier in all_techs)
-		var/tier_length = length(all_techs[tier])
+		var/tier_length = length_char(all_techs[tier])
 		if(longest_tier < tier_length)
 			longest_tier = tier_length
 
 	// Clear out the area
-	for(var/t in block(locate(1, 1, zlevel.z_value), locate(longest_tier * 2 + 1, length(all_techs) * 3 + 1, zlevel.z_value)))
+	for(var/t in block(locate(1, 1, zlevel.z_value), locate(longest_tier * 2 + 1, length_char(all_techs) * 3 + 1, zlevel.z_value)))
 		var/turf/pos = t
 		for(var/A in pos)
 			qdel(A)
@@ -70,7 +70,7 @@
 
 	var/y_offset = 1
 	for(var/tier in all_techs)
-		var/tier_length = length(all_techs[tier])
+		var/tier_length = length_char(all_techs[tier])
 
 		var/x_offset = (longest_tier - tier_length) + 1
 

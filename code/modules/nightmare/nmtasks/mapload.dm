@@ -69,7 +69,7 @@
 /// Initialize atoms/areas in bounds
 /datum/nmtask/mapload/proc/initialize_boundary_contents()
 	var/list/bounds = parsed.bounds
-	if(length(bounds) < 6)
+	if(length_char(bounds) < 6)
 		return
 	var/list/TT = block( locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
 							locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ]))

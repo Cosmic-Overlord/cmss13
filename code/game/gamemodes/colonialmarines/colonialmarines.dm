@@ -130,12 +130,12 @@
 
 	monkey_types = SSmapping.configs[GROUND_MAP].monkey_types
 
-	if(!length(monkey_types))
+	if(!length_char(monkey_types))
 		return
 
 	var/amount_to_spawn = round(players_preassigned * MONKEYS_TO_TOTAL_RATIO)
 
-	for(var/i in 0 to min(amount_to_spawn, length(GLOB.monkey_spawns)))
+	for(var/i in 0 to min(amount_to_spawn, length_char(GLOB.monkey_spawns)))
 		var/turf/T = get_turf(pick_n_take(GLOB.monkey_spawns))
 		var/monkey_to_spawn = pick(monkey_types)
 		new monkey_to_spawn(T)
@@ -147,7 +147,7 @@
 
 /datum/game_mode/colonialmarines/proc/map_announcement()
 	if(SSmapping.configs[GROUND_MAP].announce_text)
-		var/rendered_announce_text = replacetext(SSmapping.configs[GROUND_MAP].announce_text, "###SHIPNAME###", MAIN_SHIP_NAME)
+		var/rendered_announce_text = replacetext_char(SSmapping.configs[GROUND_MAP].announce_text, "###SHIPNAME###", MAIN_SHIP_NAME)
 		marine_announcement(rendered_announce_text, "[MAIN_SHIP_NAME]")
 
 ////////////////////////////////////////////////////////////////////////////////////////

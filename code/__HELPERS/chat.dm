@@ -17,7 +17,7 @@
 	var/list/channels_to_use = list()
 	for(var/I in world.TgsChatChannelInfo())
 		var/datum/tgs_chat_channel/channel = I
-		var/list/applicable_tags = splittext(channel.custom_tag, ",")
+		var/list/applicable_tags = splittext_char(channel.custom_tag, ",")
 		if((!admin_only || channel.is_admin_channel) && (channel_tag in applicable_tags))
 			channels_to_use += channel
 
@@ -31,8 +31,8 @@
  * message - The message to send.
  */
 /proc/send2adminchat(category, message, embed_links = FALSE)
-	category = replacetext(replacetext(category, "\proper", ""), "\improper", "")
-	message = replacetext(replacetext(message, "\proper", ""), "\improper", "")
+	category = replacetext_char(replacetext_char(category, "\proper", ""), "\improper", "")
+	message = replacetext_char(replacetext_char(message, "\proper", ""), "\improper", "")
 	if(!embed_links)
-		message = GLOB.has_discord_embeddable_links.Replace(replacetext(message, "`", ""), " ```$1``` ")
+		message = GLOB.has_discord_embeddable_links.Replace(replacetext_char(message, "`", ""), " ```$1``` ")
 	world.TgsTargetedChatBroadcast("[category] | [message]", TRUE)

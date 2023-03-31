@@ -34,7 +34,7 @@
 	author = "Engineering Encyclopedia"
 	title = "Particle Accelerator User's Guide"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -79,7 +79,7 @@
 	author = "Waleed Asad"
 	title = "Supermatter Engine User's Guide"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -209,7 +209,7 @@
 	author = "Engineering Encyclopedia"
 	title = "Singularity Safety in Special Circumstances"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -260,7 +260,7 @@
 	author = "Medical Journal, volume 3"
 	title = "Cloning Techniques of the 26th Century"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 21px; margin: 15px 0px 5px;}
@@ -353,7 +353,7 @@
 	author = "Randall Varn, Einstein Engines Senior Mechanic"
 	title = "APLU \"Ripley\" Construction and Operation Manual"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -430,7 +430,7 @@
 	author = "Dr. L. Ight"
 	title = "Research and Development 101"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 21px; margin: 15px 0px 5px;}
@@ -499,7 +499,7 @@
 	author = "XISC"
 	title = "Cyborgs for Dummies"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 21px; margin: 15px 0px 5px;}
@@ -767,7 +767,7 @@
 	author = "Weyland-Yutani Medicine Department"
 	title = "WY Medical Diagnostics Manual"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -831,7 +831,7 @@
 	author = "Victoria Ponsonby"
 	title = "Chef Recipes"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -890,7 +890,7 @@
 	author = "Sir John Rose"
 	title = "Barman Recipes"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -945,7 +945,7 @@
 	author = "Weyland-Yutani"
 	title = "The Film Noir: Proper Procedures for Investigations"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -988,7 +988,7 @@
 	author = "The Colonial Liberation Front"
 	title = "Fission Mailed: Nuclear Sabotage 101"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 21px; margin: 15px 0px 5px;}
@@ -1038,7 +1038,7 @@
 	icon_state = "pipingbook"
 	author = "Maria Crash, Senior Atmospherics Technician"
 	title = "Pipes and You: Getting To Know Your Scary Tools"
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -1145,7 +1145,7 @@
 	icon_state = "evabook"
 	author = "Maria Crash, Senior Atmospherics Technician"
 	title = "EVA Gear and You: Not Spending All Day Inside"
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -1217,7 +1217,7 @@
 	icon_state ="bookHydroponicsBees"
 	author = "Beekeeper Dave"
 	title = "The Ins and Outs of Apiculture - A Precise Art"
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}
@@ -1254,7 +1254,7 @@
 	author = "USCM R&D"
 	title = "USCM Orbital Bombardment System Manual"
 
-	dat = {"<html>
+	dat = {"<html><meta charset='UTF-8'>
 				<head>
 				<style>
 				h1 {font-size: 21px; margin: 15px 0px 5px;}

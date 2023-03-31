@@ -5,12 +5,12 @@ GLOBAL_LIST_EMPTY(vox_types)
 		players = list(players)
 
 	// Need to separate these so that they can be distinguished
-	sentence = replacetext(sentence, ".", " .")
-	sentence = replacetext(sentence, ",", " ,")
+	sentence = replacetext_char(sentence, ".", " .")
+	sentence = replacetext_char(sentence, ",", " ,")
 
 	var/list/sounds = list()
 	var/list/bad_words = list()
-	for(var/word in splittext(lowertext(sentence), " "))
+	for(var/word in splittext_char(lowertext(sentence), " "))
 		if(!(word in vox))
 			bad_words += word
 			continue
@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(vox_types)
 		var/sound_file = vox[word]
 		sounds += sound_file
 
-	if(caller && length(bad_words))
+	if(caller && length_char(bad_words))
 		var/missed_words = jointext(bad_words, ", ")
 		to_chat(caller, SPAN_WARNING("Couldn't find the sound files for: [missed_words]"))
 

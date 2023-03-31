@@ -598,4 +598,48 @@ export const RADIO_PREFIXES = {
     id: 'comms',
     label: 'Intercom',
   },
+  ':ф ': {
+    id: 'hive',
+    label: 'Hive',
+  },
+  ':м ': {
+    id: 'command',
+    label: 'Cmd.',
+  },
+  ':у ': {
+    id: 'engi',
+    label: 'Engi',
+  },
+  ':ь ': {
+    id: 'medsci',
+    label: 'MedSci',
+  },
+  ':щ ': {
+    id: 'colony',
+    label: 'Colony',
+  },
+  ':ы ': {
+    id: 'security',
+    label: 'MP',
+  },
+  ':г ': {
+    id: 'req',
+    label: 'Req',
+  },
+  ':й ': {
+    id: 'alpha',
+    label: 'Alpha',
+  },
+  ':и ': {
+    id: 'bravo',
+    label: 'Bravo',
+  },
+  ':с ': {
+    id: 'charlie',
+    label: 'Charlie',
+  },
+  ':в ': {
+    id: 'delta',
+    label: 'Delta',
+  },
 } as const;

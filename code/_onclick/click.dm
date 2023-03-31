@@ -340,11 +340,11 @@
 /proc/params2turf(scr_loc, turf/origin, client/C)
 	if(!scr_loc || !origin || !istype(C))
 		return
-	var/tX = splittext(scr_loc, ",")
-	var/tY = splittext(tX[2], ":")
+	var/tX = splittext_char(scr_loc, ",")
+	var/tY = splittext_char(tX[2], ":")
 	var/tZ = origin.z
 	tY = tY[1]
-	tX = splittext(tX[1], ":")
+	tX = splittext_char(tX[1], ":")
 	tX = tX[1]
 	var/shiftX = C.pixel_x / world.icon_size
 	var/shiftY = C.pixel_y / world.icon_size
@@ -362,7 +362,7 @@
 		viewX = totalviewrange
 		viewY = totalviewrange
 	else
-		var/list/viewrangelist = splittext(view,"x")
+		var/list/viewrangelist = splittext_char(view,"x")
 		viewX = text2num(viewrangelist[1])
 		viewY = text2num(viewrangelist[2])
 	return list(viewX, viewY)

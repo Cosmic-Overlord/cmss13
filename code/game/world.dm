@@ -137,7 +137,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		return x
 
 	else if(T == "players")
-		return length(GLOB.clients)
+		return length_char(GLOB.clients)
 
 	else if (T == "status")
 		var/list/s = list()
@@ -176,7 +176,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		return retdata
 
-	else if(copytext(T,1,6) == "notes")
+	else if(copytext_char(T,1,6) == "notes")
 		if(addr != "127.0.0.1")
 			return "Nah ah ah, you didn't say the magic word"
 		if(!SSdatabase.connection.connection_ready())
@@ -390,7 +390,7 @@ var/datum/BSQL_Connection/connection
 
 
 /world/proc/backfill_runtime_log()
-	if(length(full_init_runtimes))
+	if(length_char(full_init_runtimes))
 		world.log << "========= EARLY RUNTIME ERRORS ========"
 		for(var/line in full_init_runtimes)
 			world.log << line

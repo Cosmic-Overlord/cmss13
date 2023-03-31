@@ -35,14 +35,14 @@
 			no_icon = TRUE
 
 	title = "[D] ([REF(D)]) = [type]"
-	var/formatted_type = replacetext("[type]", "/", "<wbr>/")
+	var/formatted_type = replacetext_char("[type]", "/", "<wbr>/")
 
 	var/sprite_text
 	if(sprite)
 		sprite_text = no_icon? "\[NO ICON\]" : "<img src='vv[hash].png'></td><td>"
 	var/list/header = islist(D)? list("<b>/list</b>") : D.vv_get_header()
 
-	var/ref_line = "@[copytext(refid, 2, -1)]" // get rid of the brackets, add a @ prefix for copy pasting in asay
+	var/ref_line = "@[copytext_char(refid, 2, -1)]" // get rid of the brackets, add a @ prefix for copy pasting in asay
 
 	var/marked_line
 	if(admin_holder && admin_holder.marked_datum && admin_holder.marked_datum == D)
@@ -70,7 +70,7 @@
 			"Show VV To Player" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_EXPOSE),
 			"---"
 			)
-		for(var/i in 1 to length(dropdownoptions))
+		for(var/i in 1 to length_char(dropdownoptions))
 			var/name = dropdownoptions[i]
 			var/link = dropdownoptions[name]
 			dropdownoptions[i] = "<option value[link? "='[link]'":""]>[name]</option>"
@@ -122,10 +122,10 @@
 			function getCookie(cname) {
 				var name = cname + "=";
 				var ca = document.cookie.split(';');
-				for(var i=0; i<ca.length; i++) {
+				for(var i=0; i<ca.length_char; i++) {
 					var c = ca\[i];
-					while (c.charAt(0) == ' ') c = c.substring(1,c.length);
-					if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+					while (c.charAt(0) == ' ') c = c.substring(1,c.length_char);
+					if (c.indexOf(name) == 0) return c.substring(name.length_char,c.length_char);
 				}
 				return "";
 			}
@@ -142,7 +142,7 @@
 				} else if (filter.indexOf(last_filter) === 0) {
 					// The new filter starts with the old filter, fast path by removing only.
 					var children = vars_ol.childNodes;
-					for (var i = children.length - 1; i >= 0; --i) {
+					for (var i = children.length_char - 1; i >= 0; --i) {
 						try {
 							var li = children\[i];
 							if (li.innerText.toLowerCase().indexOf(filter) == -1) {
@@ -156,7 +156,7 @@
 						vars_ol.removeChild(vars_ol.lastChild);
 					}
 
-					for (var i = 0; i < complete_list.length; ++i) {
+					for (var i = 0; i < complete_list.length_char; ++i) {
 						try {
 							var li = complete_list\[i];
 							if (!filter || li.innerText.toLowerCase().indexOf(filter) != -1) {
@@ -267,7 +267,7 @@
 		<script type='text/javascript'>
 			var complete_list = \[\];
 			var lis = document.getElementById("vars").children;
-			for(var i = lis.length; i--;) complete_list\[i\] = lis\[i\];
+			for(var i = lis.length_char; i--;) complete_list\[i\] = lis\[i\];
 		</script>
 	</body>
 </html>

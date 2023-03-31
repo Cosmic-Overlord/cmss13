@@ -5,7 +5,7 @@
 		mind.current = src
 		mind_initialize()
 
-	if(length(GLOB.newplayer_start))
+	if(length_char(GLOB.newplayer_start))
 		forceMove(get_turf(pick(GLOB.newplayer_start)))
 	else
 		forceMove(locate(1,1,1))

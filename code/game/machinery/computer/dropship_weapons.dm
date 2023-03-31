@@ -100,7 +100,7 @@
 	var/element_nbr = 1
 	for(var/X in dropship.equipments)
 		var/obj/structure/dropship_equipment/E = X
-		equipment_data += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = E.is_weapon, "is_interactable" = E.is_interactable))
+		equipment_data += list(list("name"= sanitize(copytext_char(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = E.is_weapon, "is_interactable" = E.is_interactable))
 		element_nbr++
 		E.linked_console = src
 
@@ -117,9 +117,9 @@
 	var/firemission_signal
 	var/firemission_stat = 0
 	if(selected_equipment)
-		selected_eqp_name = sanitize(copytext(selected_equipment.name,1,MAX_MESSAGE_LEN))
+		selected_eqp_name = sanitize(copytext_char(selected_equipment.name,1,MAX_MESSAGE_LEN))
 		if(selected_equipment.ammo_equipped)
-			selected_eqp_ammo_name = sanitize(copytext(selected_equipment.ammo_equipped.name,1,MAX_MESSAGE_LEN))
+			selected_eqp_ammo_name = sanitize(copytext_char(selected_equipment.ammo_equipped.name,1,MAX_MESSAGE_LEN))
 			selected_eqp_ammo_amt = selected_equipment.ammo_equipped.ammo_count
 			selected_eqp_max_ammo_amt = selected_equipment.ammo_equipped.max_ammo_count
 		screen_mode = selected_equipment.screen_mode
@@ -143,7 +143,7 @@
 			if(selected)
 				found_selected = TRUE
 			var/can_interact = firemission_envelope.stat == FIRE_MISSION_STATE_IDLE && error_code == FIRE_MISSION_ALL_GOOD
-			firemission_data += list(list("name"= sanitize(copytext(X.name,1,MAX_MESSAGE_LEN)), "mission_tag" = firemission_id, "can_edit" = can_edit, "can_interact" = can_interact, "selected" = selected))
+			firemission_data += list(list("name"= sanitize(copytext_char(X.name,1,MAX_MESSAGE_LEN)), "mission_tag" = firemission_id, "can_edit" = can_edit, "can_interact" = can_interact, "selected" = selected))
 			firemission_id++
 
 		if(!istype(editing_firemission))
@@ -168,7 +168,7 @@
 					var/offsets = new /list(firerec.offsets.len)
 					for(var/idx = 1; idx < firerec.offsets.len; idx++)
 						offsets[idx] = firerec.offsets[idx] == null ? "-" : firerec.offsets[idx]
-					firemission_edit_data += list(list("name" = sanitize(copytext(firerec.weapon.name, 1, 50)), "ammo" = ammo, "gimbal" = gimbal, "offsets" = firerec.offsets))
+					firemission_edit_data += list(list("name" = sanitize(copytext_char(firerec.weapon.name, 1, 50)), "ammo" = ammo, "gimbal" = gimbal, "offsets" = firerec.offsets))
 
 		if(!found_selected)
 			selected_firemission = null
@@ -337,10 +337,10 @@
 			to_chat(usr, SPAN_WARNING("Cannot store more than [firemission_envelope.max_mission_len] Fire Missions."))
 			return
 		var/fm_name = stripped_input(usr, "", "Enter Fire Mission Name", "Fire Mission [firemission_envelope.missions.len+1]", 50)
-		if(!fm_name || length(fm_name) < 5)
+		if(!fm_name || length_char(fm_name) < 5)
 			to_chat(usr, SPAN_WARNING("Name too short (at least 5 symbols)."))
 			return
-		var/fm_length = stripped_input(usr, "Enter length of the Fire Mission. Has to be less than [firemission_envelope.fire_length]. Use something that divides [firemission_envelope.fire_length] for optimal performance.", "Fire Mission Length (in tiles)", "[firemission_envelope.fire_length]", 5)
+		var/fm_length = stripped_input(usr, "Enter length_char of the Fire Mission. Has to be less than [firemission_envelope.fire_length]. Use something that divides [firemission_envelope.fire_length] for optimal performance.", "Fire Mission length_char (in tiles)", "[firemission_envelope.fire_length]", 5)
 		var/fm_length_n = text2num(fm_length)
 		if(!fm_length_n)
 			to_chat(usr, SPAN_WARNING("Incorrect input format."))
@@ -444,7 +444,7 @@
 			to_chat(usr, SPAN_WARNING("A screen with graphics and walls of physics and engineering values open, you immediately force it closed."))
 			return
 
-		var/chosen = stripped_input(usr, "Select Fire Mission length, from 0 to [firemission_envelope.max_offset]", "Select Offset", "[firemission_envelope.recorded_offset]", 2)
+		var/chosen = stripped_input(usr, "Select Fire Mission length_char, from 0 to [firemission_envelope.max_offset]", "Select Offset", "[firemission_envelope.recorded_offset]", 2)
 		var/chosen_offset = text2num(chosen)
 
 		if(chosen_offset == null)

@@ -237,7 +237,7 @@
 		if(JOB_SQUAD_RTO)
 			return /datum/equipment_preset/uscm/rto_equipped
 		if(JOB_CO)
-			if(length(RoleAuthority.roles_whitelist))
+			if(length_char(RoleAuthority.roles_whitelist))
 				var/datum/job/J = RoleAuthority.roles_by_name[JOB_CO]
 				return J.gear_preset_whitelist["[JOB_CO][J.get_whitelist_status(RoleAuthority.roles_whitelist, owner)]"]
 			return /datum/equipment_preset/uscm_ship/commander
@@ -256,7 +256,7 @@
 		if(JOB_COMBAT_REPORTER)
 			return /datum/equipment_preset/uscm_ship/reporter
 		if(JOB_SYNTH)
-			if(length(RoleAuthority.roles_whitelist))
+			if(length_char(RoleAuthority.roles_whitelist))
 				var/datum/job/J = RoleAuthority.roles_by_name[JOB_SYNTH]
 				return J.gear_preset_whitelist["[JOB_SYNTH][J.get_whitelist_status(RoleAuthority.roles_whitelist, owner)]"]
 			return /datum/equipment_preset/synth/uscm
@@ -291,21 +291,21 @@
 		if(JOB_MESS_SERGEANT)
 			return /datum/equipment_preset/uscm_ship/chef
 		if(JOB_SURVIVOR)
-			var/list/survivor_types = preferred_survivor_variant != ANY_SURVIVOR && length(SSmapping.configs[GROUND_MAP].survivor_types_by_variant[preferred_survivor_variant]) ? SSmapping.configs[GROUND_MAP].survivor_types_by_variant[preferred_survivor_variant] : SSmapping.configs[GROUND_MAP].survivor_types
-			if(length(survivor_types))
+			var/list/survivor_types = preferred_survivor_variant != ANY_SURVIVOR && length_char(SSmapping.configs[GROUND_MAP].survivor_types_by_variant[preferred_survivor_variant]) ? SSmapping.configs[GROUND_MAP].survivor_types_by_variant[preferred_survivor_variant] : SSmapping.configs[GROUND_MAP].survivor_types
+			if(length_char(survivor_types))
 				return pick(survivor_types)
 			return /datum/equipment_preset/survivor
 		if(JOB_SYNTH_SURVIVOR)
-			var/list/survivor_types = preferred_survivor_variant != ANY_SURVIVOR && length(SSmapping.configs[GROUND_MAP].synth_survivor_types_by_variant[preferred_survivor_variant]) ? SSmapping.configs[GROUND_MAP].synth_survivor_types_by_variant[preferred_survivor_variant] : SSmapping.configs[GROUND_MAP].synth_survivor_types
-			if(length(survivor_types))
+			var/list/survivor_types = preferred_survivor_variant != ANY_SURVIVOR && length_char(SSmapping.configs[GROUND_MAP].synth_survivor_types_by_variant[preferred_survivor_variant]) ? SSmapping.configs[GROUND_MAP].synth_survivor_types_by_variant[preferred_survivor_variant] : SSmapping.configs[GROUND_MAP].synth_survivor_types
+			if(length_char(survivor_types))
 				return pick(survivor_types)
 			return /datum/equipment_preset/synth/survivor
 		if(JOB_CO_SURVIVOR)
-			if(length(SSmapping.configs[GROUND_MAP].CO_survivor_types))
+			if(length_char(SSmapping.configs[GROUND_MAP].CO_survivor_types))
 				return pick(SSmapping.configs[GROUND_MAP].CO_survivor_types)
 			return /datum/equipment_preset/uscm_ship/commander
 		if(JOB_PREDATOR)
-			if(length(RoleAuthority.roles_whitelist))
+			if(length_char(RoleAuthority.roles_whitelist))
 				var/datum/job/J = RoleAuthority.roles_by_name[JOB_PREDATOR]
 				return J.gear_preset_whitelist["[JOB_PREDATOR][J.get_whitelist_status(RoleAuthority.roles_whitelist, owner)]"]
 			return /datum/equipment_preset/yautja/blooded

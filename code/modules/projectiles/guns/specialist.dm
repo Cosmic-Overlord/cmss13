@@ -696,11 +696,11 @@
 	. = ..()
 	if(get_dist(user, src) > 2 && user != loc)
 		return
-	if(length(cylinder.contents))
+	if(length_char(cylinder.contents))
 		if(internal_slots == 1)
 			. += SPAN_NOTICE("It is loaded with a grenade.")
 		else
-			. += SPAN_NOTICE("It is loaded with <b>[length(cylinder.contents)] / [internal_slots]</b> grenades.")
+			. += SPAN_NOTICE("It is loaded with <b>[length_char(cylinder.contents)] / [internal_slots]</b> grenades.")
 	else
 		. += SPAN_NOTICE("It is empty.")
 
@@ -708,7 +708,7 @@
 /obj/item/weapon/gun/launcher/grenade/update_icon()
 	..()
 	var/GL_sprite = base_gun_icon
-	if(GL_has_empty_icon && cylinder && !length(cylinder.contents))
+	if(GL_has_empty_icon && cylinder && !length_char(cylinder.contents))
 		GL_sprite += "_e"
 		playsound(loc, cocked_sound, 25, 1)
 	if(GL_has_open_icon && open_chamber)
@@ -728,11 +728,11 @@
 	if(!open_chamber)
 		to_chat(user, SPAN_WARNING("[src] is closed!"))
 		return
-	if(!length(cylinder.contents))
+	if(!length_char(cylinder.contents))
 		to_chat(user, SPAN_WARNING("It's empty!"))
 		return
 
-	var/obj/item/explosive/grenade/nade = cylinder.contents[length(cylinder.contents)] //Grab the last-inserted one. Or the only one, as the case may be.
+	var/obj/item/explosive/grenade/nade = cylinder.contents[length_char(cylinder.contents)] //Grab the last-inserted one. Or the only one, as the case may be.
 	cylinder.remove_from_storage(nade, user.loc)
 
 	if(drop_override || !user)
@@ -776,7 +776,7 @@
 	if(!allowed_ammo_type(I))
 		to_chat(user, SPAN_WARNING("[src] can't fire this type of grenade!"))
 		return
-	if(length(cylinder.contents) >= internal_slots)
+	if(length_char(cylinder.contents) >= internal_slots)
 		to_chat(user, SPAN_WARNING("[src] cannot hold more grenades!"))
 		return
 	if(!cylinder.can_be_inserted(I)) //Technically includes whether there's room for it, but the above gives a tailored message.
@@ -786,7 +786,7 @@
 	SPAN_NOTICE("You load [I] into the grenade launcher."), null, 4, CHAT_TYPE_COMBAT_ACTION)
 	playsound(usr, reload_sound, 75, 1)
 	if(internal_slots > 1)
-		to_chat(user, SPAN_INFO("Now storing: [length(cylinder.contents) + 1] / [internal_slots] grenades."))
+		to_chat(user, SPAN_INFO("Now storing: [length_char(cylinder.contents) + 1] / [internal_slots] grenades."))
 
 	cylinder.handle_item_insertion(I, TRUE, user)
 
@@ -794,7 +794,7 @@
 /obj/item/weapon/gun/launcher/grenade/able_to_fire(mob/living/user) //Skillchecks and fire blockers go in the child items.
 	. = ..()
 	if(.)
-		if(!length(cylinder.contents))
+		if(!length_char(cylinder.contents))
 			to_chat(user, SPAN_WARNING("The [name] is empty."))
 			return FALSE
 		var/obj/item/explosive/grenade/G = cylinder.contents[1]
@@ -820,7 +820,7 @@
 
 	var/to_firer = "You fire the [name]!"
 	if(internal_slots > 1)
-		to_firer += " [length(cylinder.contents)-1]/[internal_slots] grenades remaining."
+		to_firer += " [length_char(cylinder.contents)-1]/[internal_slots] grenades remaining."
 	user.visible_message(SPAN_DANGER("[user] fired a grenade!"),
 	SPAN_WARNING("[to_firer]"), message_flags = CHAT_TYPE_WEAPON_USE)
 	playsound(user.loc, fire_sound, 50, 1)
@@ -859,7 +859,7 @@
 	return
 
 /obj/item/weapon/gun/launcher/grenade/has_ammunition()
-	return length(cylinder.contents)
+	return length_char(cylinder.contents)
 
 //-------------------------------------------------------
 //Toggle firing level special action for grenade launchers

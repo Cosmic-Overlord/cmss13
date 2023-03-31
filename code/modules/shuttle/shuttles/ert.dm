@@ -211,7 +211,7 @@
 			for(var/obj/structure/machinery/door/door in target_area)
 				if(door.id == airlock_id)
 					external_airlocks += list(door)
-	if(!length(external_airlocks))
+	if(!length_char(external_airlocks))
 		WARNING("No external airlocks for [src]")
 
 /obj/docking_port/stationary/emergency_response/external/on_arrival(obj/docking_port/mobile/arriving_shuttle)

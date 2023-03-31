@@ -11,4 +11,4 @@
 /datum/decorator/cassette/decorate(obj/item/device/cassette_tape/cassette)
 	if(!cassette_data)
 		return
-	cassette.desc = replacetext(cassette_data[cassette.id], "\\n", "\n")
+	cassette.desc = replacetext_char(cassette_data[cassette.id], "\\n", "\n")

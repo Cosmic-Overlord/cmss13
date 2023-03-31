@@ -114,12 +114,12 @@
 		if(rand(0,200) < speak_chance)
 			if(speak && speak.len)
 				if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))
-					var/length = speak.len
+					var/length_char = speak.len
 					if(emote_hear && emote_hear.len)
-						length += emote_hear.len
+						length_char += emote_hear.len
 					if(emote_see && emote_see.len)
-						length += emote_see.len
-					var/randomValue = rand(1,length)
+						length_char += emote_see.len
+					var/randomValue = rand(1,length_char)
 					if(randomValue <= speak.len)
 						INVOKE_ASYNC(src, PROC_REF(say), pick(speak))
 					else
@@ -136,8 +136,8 @@
 				if((emote_hear && emote_hear.len) && !(emote_see && emote_see.len))
 					INVOKE_ASYNC(src, PROC_REF(manual_emote), pick(emote_hear),2)
 				if((emote_hear && emote_hear.len) && (emote_see && emote_see.len))
-					var/length = emote_hear.len + emote_see.len
-					var/pick = rand(1,length)
+					var/length_char = emote_hear.len + emote_see.len
+					var/pick = rand(1,length_char)
 					if(pick <= emote_see.len)
 						INVOKE_ASYNC(src, PROC_REF(manual_emote), pick(emote_see),1)
 					else
@@ -353,8 +353,8 @@
 	if(stat)
 		return
 
-	if(copytext(message,1,2) == "*")
-		INVOKE_ASYNC(src, PROC_REF(emote), copytext(message,2))
+	if(copytext_char(message,1,2) == "*")
+		INVOKE_ASYNC(src, PROC_REF(emote), copytext_char(message,2))
 		return
 
 	if(stat)

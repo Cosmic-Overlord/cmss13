@@ -378,7 +378,7 @@
 
 /obj/effect/resin_container/proc/Smoke()
 	var/datum/effect_system/foam_spread/s = new /datum/effect_system/foam_spread(get_turf(loc))
-	s.set_up(12, get_turf(src), metal_foam = foam_metal_type) //Metalfoam 1 for aluminum foam, 2 for iron foam (Stronger), 12 amt = 2 tiles radius (5 tile length diamond)
+	s.set_up(12, get_turf(src), metal_foam = foam_metal_type) //Metalfoam 1 for aluminum foam, 2 for iron foam (Stronger), 12 amt = 2 tiles radius (5 tile length_char diamond)
 	s.start()
 	playsound(src,'sound/effects/bamf.ogg',100,TRUE)
 	qdel(src)

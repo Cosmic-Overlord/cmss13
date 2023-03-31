@@ -1002,12 +1002,12 @@
 		if(translator_type == "Retro")
 			overhead_color = "#FFFFFF"
 			span_class = "retro_translator"
-		msg = replacetext(msg, "a", "@")
-		msg = replacetext(msg, "e", "3")
-		msg = replacetext(msg, "i", "1")
-		msg = replacetext(msg, "o", "0")
-		msg = replacetext(msg, "s", "5")
-		msg = replacetext(msg, "l", "1")
+		msg = replacetext_char(msg, "a", "@")
+		msg = replacetext_char(msg, "e", "3")
+		msg = replacetext_char(msg, "i", "1")
+		msg = replacetext_char(msg, "o", "0")
+		msg = replacetext_char(msg, "s", "5")
+		msg = replacetext_char(msg, "l", "1")
 
 	caller.langchat_speech(msg, heard, GLOB.all_languages, overhead_color, TRUE)
 

@@ -59,7 +59,7 @@
 	moveToNullspace()
 	LAZYADD(S.print_list, src)
 	S.update_icon()
-	to_chat(user, SPAN_INFO("New print sets found: 1, total amount: [length(S.print_list)]"))
+	to_chat(user, SPAN_INFO("New print sets found: 1, total amount: [length_char(S.print_list)]"))
 
 /obj/effect/decal/prints/proc/decipher_clue()
 	var/information = ""

@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/minimap_added = list()
 
 /datum/controller/subsystem/minimaps/Initialize(start_timeofday)
-	for(var/level=1 to length(SSmapping.z_list))
+	for(var/level=1 to length_char(SSmapping.z_list))
 		minimaps_by_z["[level]"] = new /datum/hud_displays
 		if(!is_ground_level(level))
 			continue
@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(minimaps)
 
 	initialized = TRUE
 
-	for(var/i=1 to length(earlyadds)) //lateload icons
+	for(var/i=1 to length_char(earlyadds)) //lateload icons
 		earlyadds[i].Invoke()
 	earlyadds = null //then clear them
 
@@ -112,7 +112,7 @@ SUBSYSTEM_DEF(minimaps)
 	minimaps_by_z["[z_level.z_value]"] = new /datum/hud_displays
 
 /datum/controller/subsystem/minimaps/stat_entry(msg)
-	msg = "Upd:[length(update_targets_unsorted)] Mark: [length(removal_cbs)]"
+	msg = "Upd:[length_char(update_targets_unsorted)] Mark: [length_char(removal_cbs)]"
 	return ..()
 
 /datum/controller/subsystem/minimaps/Recover()
@@ -126,7 +126,7 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/fire(resumed)
 	var/static/iteration = 0
 	if(!iteration) //on first iteration clear all overlays
-		for(var/iter=1 to length(update_targets_unsorted))
+		for(var/iter=1 to length_char(update_targets_unsorted))
 			update_targets_unsorted[iter].overlays.Cut() //clear all the old overlays, no we cant cache it because they wont update
 	//checks last fired flag to make sure under high load that things are performed in stages
 	var/depthcount = 0

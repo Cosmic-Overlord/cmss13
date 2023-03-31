@@ -126,7 +126,7 @@
 
 	linked_bell.last_mob_activated = M
 
-	// Clear last mob after 4 times the length of the cooldown timer, about 6 seconds
+	// Clear last mob after 4 times the length_char of the cooldown timer, about 6 seconds
 	addtimer(CALLBACK(linked_bell, TYPE_PROC_REF(/obj/structure/machinery/defenses/bell_tower, clear_last_mob_activated)), 4 * BELL_TOWER_COOLDOWN, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 	if(!linked_bell.flick_image)

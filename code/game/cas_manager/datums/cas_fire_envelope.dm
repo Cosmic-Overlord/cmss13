@@ -29,7 +29,7 @@
 /datum/cas_fire_envelope/proc/get_total_duration()
 	return grace_period+flyto_period+flyoff_period
 
-/datum/cas_fire_envelope/proc/generate_mission(firemission_name, length)
+/datum/cas_fire_envelope/proc/generate_mission(firemission_name, length_char)
 	if(!missions || !linked_console || missions.len>max_mission_len || !fire_length)
 		return null
 
@@ -53,7 +53,7 @@
 		fm.records += record
 
 	fm.name = firemission_name
-	fm.mission_length = length
+	fm.mission_length = length_char
 
 	missions += fm
 	return fm
@@ -340,8 +340,8 @@
 	return istype(target_turf) && target_turf.valid_signal()
 
 //debugging procs
-/obj/structure/machinery/computer/dropship_weapons/proc/generate_mission(firemission_name, length)
-	firemission_envelope.generate_mission(firemission_name, length)
+/obj/structure/machinery/computer/dropship_weapons/proc/generate_mission(firemission_name, length_char)
+	firemission_envelope.generate_mission(firemission_name, length_char)
 
 /obj/structure/machinery/computer/dropship_weapons/proc/update_mission(mission_id, weapon_id, offset_step, offset)
 	var/result = firemission_envelope.update_mission(mission_id, weapon_id, offset_step, offset)

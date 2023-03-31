@@ -614,7 +614,7 @@
 
 	// Make it all nice and fancy by sorting the list before returning it
 	var/list/sorted_keys = sort_xeno_keys(xenos)
-	if(length(sorted_keys))
+	if(length_char(sorted_keys))
 		return sorted_keys
 	return xenos
 
@@ -624,15 +624,15 @@
 // 3. Tier
 // It uses a slightly modified insertion sort to accomplish this
 /datum/hive_status/proc/sort_xeno_keys(list/xenos)
-	if(!length(xenos))
+	if(!length_char(xenos))
 		return
 
 	var/list/sorted_list = xenos.Copy()
 
-	if(!length(sorted_list))
+	if(!length_char(sorted_list))
 		return
 
-	for(var/index in 2 to length(sorted_list))
+	for(var/index in 2 to length_char(sorted_list))
 		var/j = index
 
 		while(j > 1)
@@ -749,8 +749,8 @@
 	var/burrowed_factor = min(stored_larva, sqrt(4*stored_larva))
 	burrowed_factor = round(burrowed_factor)
 
-	var/used_tier_2_slots = length(tier_2_xenos)
-	var/used_tier_3_slots = length(tier_3_xenos)
+	var/used_tier_2_slots = length_char(tier_2_xenos)
+	var/used_tier_3_slots = length_char(tier_3_xenos)
 	for(var/caste_path in used_free_slots)
 		var/used_count = used_free_slots[caste_path]
 		if(!used_count)

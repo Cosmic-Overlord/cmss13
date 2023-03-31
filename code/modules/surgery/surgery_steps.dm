@@ -136,7 +136,7 @@ affected_limb, or location vars. Also, in that case there may be a wait between 
 			if(SURGERY_SURFACE_MULT_AWFUL)
 				message += "[pick("you need to work slowly and carefully", "you need to be very careful", "this is delicate work, especially")] [pick("in these", "under such")] [pick("terrible", "awful", "utterly unsuitable")] conditions"
 
-		if(length(message))
+		if(length_char(message))
 			to_chat(user, SPAN_WARNING("[capitalize(english_list(message, final_comma_text = ","))]."))
 
 	var/advance //Whether to continue to the next step afterwards.
@@ -183,7 +183,7 @@ affected_limb, or location vars. Also, in that case there may be a wait between 
 			surgery.status += 2
 		else
 			surgery.status++
-		if(surgery.status > length(surgery.steps))
+		if(surgery.status > length_char(surgery.steps))
 			complete(target, surgery)
 
 	else if(surgery.status == 1) //Aborting or unproductively failing the first step cancels the surgery.

@@ -41,7 +41,7 @@
 	PSB.save()
 
 /datum/entity/player/proc/process_stickyban(address, computer_id, source_id, reason, datum/entity/player/banning_admin, list/PSB)
-	if(length(PSB) > 0) // sticky ban with identical data already exists, no need for another copy
+	if(length_char(PSB) > 0) // sticky ban with identical data already exists, no need for another copy
 		if(banning_admin)
 			to_chat(banning_admin, SPAN_WARNING("Failed to add stickyban to [ckey]. Reason: Stickyban already exists."))
 		return
@@ -57,7 +57,7 @@
 			DB_COMP("computer_id", DB_EQUALS, computer_id)
 		))
 
-	if(length(SBLW) == 0)
+	if(length_char(SBLW) == 0)
 		return
 
 	if(stickyban_whitelisted)

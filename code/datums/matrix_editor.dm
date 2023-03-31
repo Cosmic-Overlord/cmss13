@@ -71,7 +71,7 @@
 				var/elements_str = input("Please enter the elements of the matrix as a comma-separated string. Elements should be given by column first, not row!", "Matrix elements") as null|text
 				if(!elements_str)
 					return
-				var/list/elements = splittext(elements_str, ",")
+				var/list/elements = splittext_char(elements_str, ",")
 				if(elements.len != 6)
 					to_chat(usr, "When creating a custom matrix, explicitly provide all 6 elements! Only [elements.len] were provided.")
 					return

@@ -7,10 +7,10 @@
 
 /// Return null if the name is correct, otherwise return a string containing the error message
 /datum/origin/proc/validate_name(name_to_check)
-	if(findtext(name_to_check, "A.W. "))
+	if(findtext_char(name_to_check, "A.W. "))
 		return "Sorry, you cannot have a name that contains 'A.W.'. Those are reserved for Artificial-Womb origin soldiers."
 	return null
 
 /datum/origin/proc/correct_name(name_to_check, gender = MALE)
-	name_to_check = replacetext(name_to_check, "A.W. ", "")
+	name_to_check = replacetext_char(name_to_check, "A.W. ", "")
 	return name_to_check

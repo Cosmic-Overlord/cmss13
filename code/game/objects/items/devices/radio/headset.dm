@@ -50,7 +50,7 @@
 		keys += new key(src)
 	recalculateChannels()
 
-	if(length(volume_settings))
+	if(length_char(volume_settings))
 		verbs += /obj/item/device/radio/headset/proc/set_volume_setting
 
 	if(has_hud)
@@ -188,7 +188,7 @@
 	translate_apollo = FALSE
 	translate_hive = FALSE
 
-	tracking_options = length(inbuilt_tracking_options) ? inbuilt_tracking_options.Copy() : list()
+	tracking_options = length_char(inbuilt_tracking_options) ? inbuilt_tracking_options.Copy() : list()
 	for(var/i in keys)
 		var/obj/item/device/encryptionkey/key = i
 		for(var/ch_name in key.channels)
@@ -203,7 +203,7 @@
 		if(key.translate_hive)
 			translate_hive = TRUE
 
-	if(length(tracking_options))
+	if(length_char(tracking_options))
 		var/list/tracking_stuff = list()
 		for(var/tracking_fluff in tracking_options)
 			tracking_stuff += tracking_options[tracking_fluff]

@@ -68,17 +68,17 @@ var/global/players_preassigned = 0
 	var/squads_all[] = typesof(/datum/squad) - /datum/squad
 	var/castes_all[] = subtypesof(/datum/caste_datum)
 
-	if(!length(roles_all))
+	if(!length_char(roles_all))
 		to_world(SPAN_DEBUG("Error setting up jobs, no job datums found."))
 		log_debug("Error setting up jobs, no job datums found.")
-		return //No real reason this should be length zero, so we'll just return instead.
+		return //No real reason this should be length_char zero, so we'll just return instead.
 
-	if(!length(squads_all))
+	if(!length_char(squads_all))
 		to_world(SPAN_DEBUG("Error setting up squads, no squad datums found."))
 		log_debug("Error setting up squads, no squad datums found.")
 		return
 
-	if(!length(castes_all))
+	if(!length_char(castes_all))
 		to_world(SPAN_DEBUG("Error setting up castes, no caste datums found."))
 		log_debug("Error setting up castes, no caste datums found.")
 		return
@@ -133,10 +133,10 @@ var/global/players_preassigned = 0
 	for(i in L)
 		if(!i) continue
 		i = trim(i)
-		if(!length(i)) continue
-		else if (copytext(i, 1, 2) == "#") continue
+		if(!length_char(i)) continue
+		else if (copytext_char(i, 1, 2) == "#") continue
 
-		P = splittext(i, "+")
+		P = splittext_char(i, "+")
 		if(!P.len) continue
 		ckey = ckey(P[1]) //Converting their key to canonical form. ckey() does this by stripping all spaces, underscores and converting to lower case.
 
@@ -212,7 +212,7 @@ I hope it's easier to tell what the heck this proc is even doing, unlike previou
 
 		unassigned_players += M
 
-	if(!length(unassigned_players)) //If we don't have any players, the round can't start.
+	if(!length_char(unassigned_players)) //If we don't have any players, the round can't start.
 		unassigned_players = null
 		return
 
@@ -223,7 +223,7 @@ I hope it's easier to tell what the heck this proc is even doing, unlike previou
 	for(var/i in roles_by_name)
 		var/datum/job/J = roles_by_name[i]
 		if(J.scaled)
-			J.set_spawn_positions(length(unassigned_players))
+			J.set_spawn_positions(length_char(unassigned_players))
 
 	/*===============================================================*/
 
@@ -231,7 +231,7 @@ I hope it's easier to tell what the heck this proc is even doing, unlike previou
 	//PART III: Here we're doing the main body of the loop and assigning everyone.
 
 	var/list/temp_roles_for_mode = roles_for_mode
-	if(length(overwritten_roles_for_mode))
+	if(length_char(overwritten_roles_for_mode))
 		temp_roles_for_mode = overwritten_roles_for_mode
 
 	// Get balancing weight for the readied players.
@@ -289,9 +289,9 @@ I hope it's easier to tell what the heck this proc is even doing, unlike previou
 				M.ready = 0
 		unassigned_players -= M
 
-	if(length(unassigned_players))
-		to_world(SPAN_DEBUG("Error setting up jobs, unassigned_players still has players left. Length of: [length(unassigned_players)]."))
-		log_debug("Error setting up jobs, unassigned_players still has players left. Length of: [length(unassigned_players)].")
+	if(length_char(unassigned_players))
+		to_world(SPAN_DEBUG("Error setting up jobs, unassigned_players still has players left. length_char of: [length_char(unassigned_players)]."))
+		log_debug("Error setting up jobs, unassigned_players still has players left. length_char of: [length_char(unassigned_players)].")
 
 	unassigned_players = null
 
@@ -329,7 +329,7 @@ I hope it's easier to tell what the heck this proc is even doing, unlike previou
 
 /datum/authority/branch/role/proc/assign_initial_roles(priority, list/roles_to_iterate, list/unassigned_players, count = TRUE)
 	var/assigned = 0
-	if(!length(roles_to_iterate) || !length(unassigned_players))
+	if(!length_char(roles_to_iterate) || !length_char(unassigned_players))
 		return
 
 	for(var/job in roles_to_iterate)
@@ -354,7 +354,7 @@ I hope it's easier to tell what the heck this proc is even doing, unlike previou
 					roles_to_iterate -= job //Remove the position, since we no longer need it.
 					break //Maximum position is reached?
 
-		if(!length(unassigned_players))
+		if(!length_char(unassigned_players))
 			break //No players left to assign? Break.
 	if(count)
 		return assigned
@@ -377,7 +377,7 @@ I hope it's easier to tell what the heck this proc is even doing, unlike previou
 
 /datum/authority/branch/role/proc/assign_random_role(mob/new_player/M, list/roles_to_iterate) //In case we want to pass on a list.
 	. = roles_to_iterate
-	if(length(roles_to_iterate))
+	if(length_char(roles_to_iterate))
 		var/datum/job/J
 		var/i = 0
 		var/j

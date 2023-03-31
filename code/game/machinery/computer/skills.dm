@@ -211,13 +211,13 @@ What a mess.*/
 					return
 				Perp = new/list()
 				t1 = lowertext(t1)
-				var/list/components = splittext(t1, " ")
+				var/list/components = splittext_char(t1, " ")
 				if(components.len > 5)
 					return //Lets not let them search too greedily.
 				for(var/datum/data/record/R in GLOB.data_core.general)
 					var/temptext = R.fields["name"] + " " + R.fields["id"] + " " + R.fields["rank"]
 					for(var/i = 1, i<=components.len, i++)
-						if(findtext(temptext,components[i]))
+						if(findtext_char(temptext,components[i]))
 							var/prelist = new/list(2)
 							prelist[1] = R
 							Perp += prelist
@@ -286,13 +286,13 @@ What a mess.*/
 					if("name")
 						if (istype(active1, /datum/data/record))
 							var/t1 = reject_bad_name(input("Please input name:", "Secure. records", active1.fields["name"], null)  as text)
-							if ((!( t1 ) || !length(trim(t1)) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr)))) || active1 != a1)
+							if ((!( t1 ) || !length_char(trim(t1)) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr)))) || active1 != a1)
 								return
 							message_admins("[key_name(usr)] has changed the record name of [active1.fields["name"]] to [t1]")
 							active1.fields["name"] = t1
 					if("id")
 						if (istype(active1, /datum/data/record))
-							var/t1 = copytext(trim(sanitize(input("Please input id:", "Secure. records", active1.fields["id"], null)  as text)),1,MAX_MESSAGE_LEN)
+							var/t1 = copytext_char(trim(sanitize(input("Please input id:", "Secure. records", active1.fields["id"], null)  as text)),1,MAX_MESSAGE_LEN)
 							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active1 != a1))
 								return
 							active1.fields["id"] = t1
@@ -321,7 +321,7 @@ What a mess.*/
 							alert(usr, "You do not have the required rank to do this!")
 					if("species")
 						if (istype(active1, /datum/data/record))
-							var/t1 = copytext(trim(sanitize(input("Please enter race:", "General records", active1.fields["species"], null)  as message)),1,MAX_MESSAGE_LEN)
+							var/t1 = copytext_char(trim(sanitize(input("Please enter race:", "General records", active1.fields["species"], null)  as message)),1,MAX_MESSAGE_LEN)
 							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.is_mob_restrained() || (!in_range(src, usr) && (!isRemoteControlling(usr))) || active1 != a1))
 								return
 							active1.fields["species"] = t1

@@ -25,7 +25,7 @@
 /datum/cm_objective/recover_corpses/proc/generate_corpses(numCorpsesToSpawn)
 	var/list/obj/effect/landmark/corpsespawner/objective_spawn_corpse = GLOB.corpse_spawns.Copy()
 	while(numCorpsesToSpawn--)
-		if(!length(objective_spawn_corpse))
+		if(!length_char(objective_spawn_corpse))
 			break
 		var/obj/effect/landmark/corpsespawner/spawner = pick(objective_spawn_corpse)
 		var/turf/spawnpoint = get_turf(spawner)

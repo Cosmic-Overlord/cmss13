@@ -34,7 +34,7 @@
 		list_of_techs[droppod_tech.name] = droppod_tech
 	*/
 
-	if(!length(list_of_techs))
+	if(!length_char(list_of_techs))
 		to_chat(user, SPAN_WARNING("No tech gear is available at the moment!"))
 		return
 

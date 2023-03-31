@@ -358,7 +358,7 @@
 				for(var/piece in combo)
 					if(piece == property || get_property(piece))
 						pieces++
-				if(pieces >= length(combo))
+				if(pieces >= length_char(combo))
 					initial_property = property
 					property = C
 					level = max(level - P.level, P.level - level, 1)

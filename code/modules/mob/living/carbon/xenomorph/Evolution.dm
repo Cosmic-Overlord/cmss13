@@ -23,7 +23,7 @@
 		if(GLOB.xeno_datum_list[caste].minimum_evolve_time > ROUND_TIME)
 			castes_available -= caste
 
-	if(!length(castes_available))
+	if(!length_char(castes_available))
 		to_chat(src, SPAN_WARNING("The Hive is not capable of supporting any castes you can evolve to yet."))
 		return
 
@@ -253,7 +253,7 @@
 		to_chat(src, SPAN_XENOWARNING("You are too weak to deevolve, regain your health first."))
 		return
 
-	if(length(caste.deevolves_to) < 1)
+	if(length_char(caste.deevolves_to) < 1)
 		to_chat(src, SPAN_XENOWARNING("You can't deevolve any further."))
 		return
 
@@ -264,9 +264,9 @@
 
 	var/newcaste
 
-	if(length(caste.deevolves_to) == 1)
+	if(length_char(caste.deevolves_to) == 1)
 		newcaste = caste.deevolves_to[1]
-	else if(length(caste.deevolves_to) > 1)
+	else if(length_char(caste.deevolves_to) > 1)
 		newcaste = tgui_input_list(src, "Choose a caste you want to de-evolve to.", "De-evolve", caste.deevolves_to, theme="hive_status")
 
 	if(!newcaste)
@@ -360,8 +360,8 @@
 	var/burrowed_factor = min(hive.stored_larva, sqrt(4*hive.stored_larva))
 	burrowed_factor = round(burrowed_factor)
 
-	var/used_tier_2_slots = length(hive.tier_2_xenos)
-	var/used_tier_3_slots = length(hive.tier_3_xenos)
+	var/used_tier_2_slots = length_char(hive.tier_2_xenos)
+	var/used_tier_3_slots = length_char(hive.tier_3_xenos)
 	for(var/caste_path in hive.used_free_slots)
 		if(!hive.used_free_slots[caste_path])
 			continue

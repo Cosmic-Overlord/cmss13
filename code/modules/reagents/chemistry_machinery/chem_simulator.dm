@@ -474,7 +474,7 @@
 	R.required_reagents = old_reaction.Copy()
 	while(LAZYLEN(recipe_targets) < 3)
 		var/list/target_elevated[0]
-		for(var/i = 0 to 5) //5 attempts at modifying the recipe before elevating recipe length
+		for(var/i = 0 to 5) //5 attempts at modifying the recipe before elevating recipe length_char
 			if(LAZYLEN(R.required_reagents) > 2)
 				LAZYREMOVE(R.required_reagents, pick(R.required_reagents))
 			var/new_component_id = R.add_component(tier = max(min(target.data.chemclass, CHEM_CLASS_COMMON), target.data.gen_tier, 1))
@@ -532,7 +532,7 @@
 				if(target_property.level >= chemical_data.clearance_level*TECHTREE_LEVEL_MULTIPLIER + 2 && chemical_data.clearance_level < 5)
 					status_bar = "CLEARANCE INSUFFICIENT FOR AMPLIFICATION"
 					return FALSE
-		if(target && length(target.data.properties) < 2)
+		if(target && length_char(target.data.properties) < 2)
 			status_bar = "TARGET COMPLEXITY IMPROPER FOR RELATION"
 			return FALSE
 		if(reference && target)

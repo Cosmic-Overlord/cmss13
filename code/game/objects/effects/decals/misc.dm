@@ -50,7 +50,7 @@
 					reagent_list += "[R]"
 
 			// One or more bad reagents means we log it
-			if(length(reagent_list) && source_user)
+			if(length_char(reagent_list) && source_user)
 				var/reagent_list_text = english_list(reagent_list)
 				var/mob/living/carbon/human/M = A
 				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been sprayed with [name] (REAGENT: [reagent_list_text]) by [key_name(source_user)]</font>")

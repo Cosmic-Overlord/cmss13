@@ -40,8 +40,8 @@ SUBSYSTEM_DEF(statpanels)
 		mc_data = null
 
 	var/list/currentrun = src.currentrun
-	while(length(currentrun))
-		var/client/target = currentrun[length(currentrun)]
+	while(length_char(currentrun))
+		var/client/target = currentrun[length_char(currentrun)]
 		currentrun.len--
 
 		if(!target.stat_panel.is_ready())
@@ -66,10 +66,10 @@ SUBSYSTEM_DEF(statpanels)
 			if(target.stat_tab == "Tickets" && num_fires % default_wait == 0)
 				set_tickets_tab(target)
 
-			if(!length(GLOB.sdql2_queries) && ("SDQL2" in target.panel_tabs))
+			if(!length_char(GLOB.sdql2_queries) && ("SDQL2" in target.panel_tabs))
 				target.stat_panel.send_message("remove_sdql2")
 
-			else if(length(GLOB.sdql2_queries) && (target.stat_tab == "SDQL2" || !("SDQL2" in target.panel_tabs)) && (num_fires % default_wait == 0))
+			else if(length_char(GLOB.sdql2_queries) && (target.stat_tab == "SDQL2" || !("SDQL2" in target.panel_tabs)) && (num_fires % default_wait == 0))
 				set_SDQL2_tab(target)
 
 		if(target.mob)
@@ -83,7 +83,7 @@ SUBSYSTEM_DEF(statpanels)
 				update_actions = TRUE
 			// We're not on a spell tab per se, but we have cooldown actions, and we've yet to
 			// set up our spell tabs at all
-			if(!length(target.spell_tabs) && locate(/datum/action/cooldown) in target_mob.actions)
+			if(!length_char(target.spell_tabs) && locate(/datum/action/cooldown) in target_mob.actions)
 				update_actions = TRUE
 
 			if(update_actions && num_fires % default_wait == 0)
@@ -152,7 +152,7 @@ SUBSYSTEM_DEF(statpanels)
 
 /datum/controller/subsystem/statpanels/proc/refresh_client_obj_view(client/refresh)
 	var/list/turf_items = return_object_images(refresh)
-	if(!length(turf_items) || !refresh.mob?.listed_turf)
+	if(!length_char(turf_items) || !refresh.mob?.listed_turf)
 		return
 	refresh.stat_panel.send_message("update_listedturf", turf_items)
 
@@ -210,7 +210,7 @@ SUBSYSTEM_DEF(statpanels)
 /// Sets the current tab to the SDQL tab
 /datum/controller/subsystem/statpanels/proc/set_SDQL2_tab(client/target)
 	var/list/sdql2_initial = list()
-	//sdql2_initial[length(sdql2_initial)++] = list("", "Access Global SDQL2 List", REF(GLOB.sdql2_vv_statobj))
+	//sdql2_initial[length_char(sdql2_initial)++] = list("", "Access Global SDQL2 List", REF(GLOB.sdql2_vv_statobj))
 	var/list/sdql2_querydata = list()
 	//for(var/datum/sdql2_query/query as anything in GLOB.sdql2_queries)
 		//sdql2_querydata = query.generate_stat()
@@ -236,7 +236,7 @@ SUBSYSTEM_DEF(statpanels)
 	if(target.stat_tab in target.spell_tabs)
 		update_actions = TRUE
 
-	if(!length(target.spell_tabs) && locate(/datum/action/cooldown) in target_mob.actions)
+	if(!length_char(target.spell_tabs) && locate(/datum/action/cooldown) in target_mob.actions)
 		update_actions = TRUE
 
 	if(update_actions)
@@ -265,10 +265,10 @@ SUBSYSTEM_DEF(statpanels)
 		set_tickets_tab(target)
 		return TRUE
 
-	if(!length(GLOB.sdql2_queries) && ("SDQL2" in target.panel_tabs))
+	if(!length_char(GLOB.sdql2_queries) && ("SDQL2" in target.panel_tabs))
 		target.stat_panel.send_message("remove_sdql2")
 
-	else if(length(GLOB.sdql2_queries) && target.stat_tab == "SDQL2")
+	else if(length_char(GLOB.sdql2_queries) && target.stat_tab == "SDQL2")
 		set_SDQL2_tab(target)
 
 /// Stat panel window declaration
@@ -310,12 +310,12 @@ SUBSYSTEM_DEF(statpanels)
 	var/list/to_make = atoms_to_imagify
 	var/list/newly_seen = atoms_to_images
 	var/index = 0
-	for(index in 1 to length(to_make))
+	for(index in 1 to length_char(to_make))
 		var/atom/thing = to_make[index]
 
 		var/generated_string
 		/* We're cheap and won't render all overlays. It's expensive and updates with onmob changes!
-		if(ismob(thing) || length(thing.overlays) > 2)
+		if(ismob(thing) || length_char(thing.overlays) > 2)
 			generated_string = costly_icon2html(thing, parent, sourceonly=TRUE)
 		else
 			generated_string = icon2html(thing, parent, sourceonly=TRUE)
@@ -331,7 +331,7 @@ SUBSYSTEM_DEF(statpanels)
 	if(index)
 		to_make.Cut(1, index + 1)
 	SSstatpanels.refresh_client_obj_view(parent)
-	if(!length(to_make))
+	if(!length_char(to_make))
 		return PROCESS_KILL
 
 /datum/object_window_info/proc/start_turf_tracking()

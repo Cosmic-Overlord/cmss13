@@ -258,7 +258,7 @@
 	required_surgery_skill = SKILL_SURGERY_NOVICE
 
 /datum/surgery/embedded/can_start(mob/user, mob/living/carbon/patient, obj/limb/L, obj/item/tool)
-	return length(L.implants)
+	return length_char(L.implants)
 
 //------------------------------------
 
@@ -278,12 +278,12 @@
 	log_interact(user, target, "[key_name(user)] started poking around inside the incision on [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool].")
 
 /datum/surgery_step/remove_embedded/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
-	if(length(surgery.affected_limb.implants))
+	if(length_char(surgery.affected_limb.implants))
 		var/list/shrapnel = list()
 		for(var/obj/item/shard/shrap in surgery.affected_limb.implants)
 			shrapnel += shrap
 
-		if(length(shrapnel))
+		if(length_char(shrapnel))
 			user.affected_message(target,
 				SPAN_NOTICE("You extract the shrapnel from [target]'s [surgery.affected_limb.display_name]."),
 				SPAN_NOTICE("[user] extracts the shrapnel from your [surgery.affected_limb.display_name]."),
@@ -336,7 +336,7 @@
 	log_interact(user, target, "[key_name(user)] damaged the inside of [key_name(target)]'s [surgery.affected_limb.display_name] with \the [tool], ending [surgery].")
 
 	target.apply_damage(10, BRUTE, target_zone)
-	if(length(surgery.affected_limb.implants) && prob(10 + 100 * (tools[tool_type] - 1)))
+	if(length_char(surgery.affected_limb.implants) && prob(10 + 100 * (tools[tool_type] - 1)))
 		var/obj/item/implant/imp = surgery.affected_limb.implants[1]
 		if(istype(imp))
 			target.visible_message(SPAN_WARNING("Something beeps inside [target]'s [surgery.affected_limb.display_name]!"))

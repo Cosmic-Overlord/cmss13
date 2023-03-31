@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY_TYPED(transmitters, /obj/structure/transmitter)
 	var/list/transmitters = get_transmitters()
 	transmitters -= phone_id
 
-	if(!length(transmitters) || !(calling_phone_id in transmitters))
+	if(!length_char(transmitters) || !(calling_phone_id in transmitters))
 		to_chat(user, SPAN_PURPLE("[icon2html(src, user)] No transmitters could be located to call!"))
 		return
 

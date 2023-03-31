@@ -8,7 +8,7 @@
 	//// MANDATORY vars
 	var/name = "set this" // Make this a copy of display name unless theres a good reason
 	var/display_name = "set this" // The "display name" of this event
-	var/length = 0 // Length of the event
+	var/length_char = 0 // length_char of the event
 
 	//// Optional vars
 	var/fullscreen_type = null  // If this is set, display a fullscreen type to mobs

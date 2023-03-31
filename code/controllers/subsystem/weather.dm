@@ -65,8 +65,8 @@ SUBSYSTEM_DEF(weather)
 
 /datum/controller/subsystem/weather/stat_entry(msg)
 	var/time_left = 0
-	if(weather_event_instance?.length)
-		time_left = (current_event_start_time + weather_event_instance.length - world.time) / 10
+	if(weather_event_instance?.length_char)
+		time_left = (current_event_start_time + weather_event_instance.length_char - world.time) / 10
 	if (is_weather_event && weather_event_instance.display_name)
 		msg = "P: Current event: [weather_event_instance.display_name] - [time_left] seconds left"
 	else if (is_weather_event)
@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(weather)
 		return
 
 	// End our current event if we must
-	if (is_weather_event && current_event_start_time + weather_event_instance.length < world.time)
+	if (is_weather_event && current_event_start_time + weather_event_instance.length_char < world.time)
 		end_weather_event()
 		return
 
@@ -139,9 +139,9 @@ SUBSYSTEM_DEF(weather)
 	current_event_start_time = world.time
 
 	if (weather_event_instance.display_name)
-		message_admins(SPAN_BLUE("Weather Event of type [weather_event_instance.display_name] starting with duration of [DisplayTimeText(weather_event_instance.length)]."))
+		message_admins(SPAN_BLUE("Weather Event of type [weather_event_instance.display_name] starting with duration of [DisplayTimeText(weather_event_instance.length_char)]."))
 	else
-		message_admins(SPAN_BLUE("Weather Event of unknown type [weather_event_type] starting with duration of [DisplayTimeText(weather_event_instance.length)]."))
+		message_admins(SPAN_BLUE("Weather Event of unknown type [weather_event_type] starting with duration of [DisplayTimeText(weather_event_instance.length_char)]."))
 
 	curr_master_turf_overlay.icon_state = weather_event_instance.turf_overlay_icon_state
 	curr_master_turf_overlay.alpha = weather_event_instance.turf_overlay_alpha

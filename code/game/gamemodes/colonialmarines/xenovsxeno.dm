@@ -231,7 +231,7 @@
 	var/living_hives = 0
 
 	for(var/H in living_player_list)
-		if(length(living_player_list[H]) > 0)
+		if(length_char(living_player_list[H]) > 0)
 			living_hives++
 			last_living_hive = H
 		else if (H in current_hives)

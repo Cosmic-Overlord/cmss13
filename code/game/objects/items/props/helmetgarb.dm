@@ -502,7 +502,7 @@
 
 /obj/item/prop/helmetgarb/trimmed_wire
 	name = "trimmed barbed wire"
-	desc = "It is a length of barbed wire that's had most of the sharp points filed down so that it is safe to handle."
+	desc = "It is a length_char of barbed wire that's had most of the sharp points filed down so that it is safe to handle."
 	icon_state = "trimmed_wire"
 
 /obj/item/prop/helmetgarb/bullet_pipe

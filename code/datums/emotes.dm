@@ -201,14 +201,14 @@
  * Returns the modified msg string.
  */
 /datum/emote/proc/replace_pronoun(mob/user, msg)
-	if(findtext(msg, "their"))
-		msg = replacetext(msg, "their", user.p_their())
-	if(findtext(msg, "them"))
-		msg = replacetext(msg, "them", user.p_them())
-	if(findtext(msg, "they"))
-		msg = replacetext(msg, "they", user.p_they())
-	if(findtext(msg, "%s"))
-		msg = replacetext(msg, "%s", user.p_s())
+	if(findtext_char(msg, "their"))
+		msg = replacetext_char(msg, "their", user.p_their())
+	if(findtext_char(msg, "them"))
+		msg = replacetext_char(msg, "them", user.p_them())
+	if(findtext_char(msg, "they"))
+		msg = replacetext_char(msg, "they", user.p_they())
+	if(findtext_char(msg, "%s"))
+		msg = replacetext_char(msg, "%s", user.p_s())
 	return msg
 
 /**
@@ -235,7 +235,7 @@
  * Returns the modified string.
  */
 /datum/emote/proc/select_param(mob/user, params)
-	return replacetext(message_param, "%t", params)
+	return replacetext_char(message_param, "%t", params)
 
 /**
  * Check to see if the user is allowed to run the emote.

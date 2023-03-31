@@ -27,7 +27,7 @@
 	var/mob/living/carbon/human/H = user
 
 	var/list/upgrade_list = D.get_upgrade_list()
-	if(!length(upgrade_list))
+	if(!length_char(upgrade_list))
 		return
 
 	var/chosen_upgrade = show_radial_menu(user, target, upgrade_list, require_near = TRUE)

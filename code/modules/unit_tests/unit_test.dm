@@ -93,7 +93,7 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 			arguments[1] = run_loc_floor_bottom_left
 	var/instance
 	// Byond will throw an index out of bounds if arguments is empty in that arglist call. Sigh
-	if(length(arguments))
+	if(length_char(arguments))
 		instance = new type(arglist(arguments))
 	else
 		instance = new type()
@@ -105,8 +105,8 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 		TEST_FAIL("[icon] is not an icon.")
 		return
 
-	var/path_prefix = replacetext(replacetext("[type]", "/datum/unit_test/", ""), "/", "_")
-	name = replacetext(name, "/", "_")
+	var/path_prefix = replacetext_char(replacetext_char("[type]", "/datum/unit_test/", ""), "/", "_")
+	name = replacetext_char(name, "/", "_")
 
 	var/filename = "code/modules/unit_tests/screenshots/[path_prefix]_[name].png"
 
@@ -139,8 +139,8 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 	var/map_name = SSmapping.configs[GROUND_MAP]
 
 	// Need to escape the text to properly support newlines.
-	var/annotation_text = replacetext(text, "%", "%25")
-	annotation_text = replacetext(annotation_text, "\n", "%0A")
+	var/annotation_text = replacetext_char(text, "%", "%25")
+	annotation_text = replacetext_char(annotation_text, "\n", "%0A")
 
 	log_world("::[priority] file=[file],line=[line],title=[map_name]: [type]::[annotation_text]")
 
@@ -198,7 +198,7 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 		var/datum/unit_test/test_to_run = _test_to_run
 		if (initial(test_to_run.focus))
 			focused_tests += test_to_run
-	if(length(focused_tests))
+	if(length_char(focused_tests))
 		tests_to_run = focused_tests
 
 	tests_to_run = sortTim(tests_to_run, GLOBAL_PROC_REF(cmp_unit_test_priority))

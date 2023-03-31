@@ -381,7 +381,7 @@ var/const/MAX_SAVE_SLOTS = 10
 			if(!islist(gear))
 				gear = list()
 
-			if(length(gear))
+			if(length_char(gear))
 				dat += "<br>"
 				for(var/i = 1; i <= gear.len; i++)
 					var/datum/gear/G = gear_datums[gear[i]]
@@ -799,7 +799,7 @@ var/const/MAX_SAVE_SLOTS = 10
 	return 1
 
 /datum/preferences/proc/ResetJobs()
-	if(length(job_preference_list))
+	if(length_char(job_preference_list))
 		for(var/job in job_preference_list)
 			job_preference_list[job] = NEVER_PRIORITY
 		return
@@ -816,7 +816,7 @@ var/const/MAX_SAVE_SLOTS = 10
 	if(!J)
 		return FALSE
 
-	if(!length(job_preference_list))
+	if(!length_char(job_preference_list))
 		ResetJobs()
 
 	return job_preference_list[J]
@@ -826,7 +826,7 @@ var/const/MAX_SAVE_SLOTS = 10
 		return FALSE
 
 
-	if(!length(job_preference_list))
+	if(!length_char(job_preference_list))
 		ResetJobs()
 
 	// Need to set old HIGH priority to 2
@@ -918,13 +918,13 @@ var/const/MAX_SAVE_SLOTS = 10
 				if("general")
 					var/msg = input(usr,"Give a physical description of your character. This will be shown regardless of clothing.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
 					if(msg != null)
-						msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+						msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 						msg = html_encode(msg)
 					flavor_texts[href_list["task"]] = msg
 				else
 					var/msg = input(usr,"Set the flavor text for your [href_list["task"]].","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
 					if(msg != null)
-						msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+						msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 						msg = html_encode(msg)
 					flavor_texts[href_list["task"]] = msg
 			SetFlavorText(user)
@@ -942,7 +942,7 @@ var/const/MAX_SAVE_SLOTS = 10
 					var/medmsg = input(usr,"Set your medical notes here.","Medical Records",html_decode(med_record)) as message
 
 					if(medmsg != null)
-						medmsg = copytext(medmsg, 1, MAX_PAPER_MESSAGE_LEN)
+						medmsg = copytext_char(medmsg, 1, MAX_PAPER_MESSAGE_LEN)
 						medmsg = html_encode(medmsg)
 
 						med_record = medmsg
@@ -952,7 +952,7 @@ var/const/MAX_SAVE_SLOTS = 10
 					var/secmsg = input(usr,"Set your security notes here.","Security Records",html_decode(sec_record)) as message
 
 					if(secmsg != null)
-						secmsg = copytext(secmsg, 1, MAX_PAPER_MESSAGE_LEN)
+						secmsg = copytext_char(secmsg, 1, MAX_PAPER_MESSAGE_LEN)
 						secmsg = html_encode(secmsg)
 
 						sec_record = secmsg
@@ -961,7 +961,7 @@ var/const/MAX_SAVE_SLOTS = 10
 					var/genmsg = input(usr,"Set your employment notes here.","Employment Records",html_decode(gen_record)) as message
 
 					if(genmsg != null)
-						genmsg = copytext(genmsg, 1, MAX_PAPER_MESSAGE_LEN)
+						genmsg = copytext_char(genmsg, 1, MAX_PAPER_MESSAGE_LEN)
 						genmsg = html_encode(genmsg)
 
 						gen_record = genmsg
@@ -1253,7 +1253,7 @@ var/const/MAX_SAVE_SLOTS = 10
 					var/new_xeno_prefix = input(user, "Choose your xenomorph prefix. One or two letters capitalized. Put empty text if you want to default it to 'XX'", "Xenomorph Prefix") as text|null
 					new_xeno_prefix = uppertext(new_xeno_prefix)
 
-					var/prefix_length = length(new_xeno_prefix)
+					var/prefix_length = length_char(new_xeno_prefix)
 
 					if(prefix_length>3)
 						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("Invalid Xeno Prefix. Your Prefix can only be up to 3 letters long.")))
@@ -1268,11 +1268,11 @@ var/const/MAX_SAVE_SLOTS = 10
 							to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("You can't use three letter prefix with any postfix.")))
 							return
 
-					if(length(new_xeno_prefix)==0)
+					if(length_char(new_xeno_prefix)==0)
 						xeno_prefix = "XX"
 					else
 						var/all_ok = TRUE
-						for(var/i=1, i<=length(new_xeno_prefix), i++)
+						for(var/i=1, i<=length_char(new_xeno_prefix), i++)
 							var/ascii_char = text2ascii(new_xeno_prefix,i)
 							switch(ascii_char)
 								// A  .. Z
@@ -1294,27 +1294,27 @@ var/const/MAX_SAVE_SLOTS = 10
 						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("You need to play [time_left_until(24 HOURS, playtime, 1 HOURS)] more hours to unlock xeno postfix.")))
 						return
 
-					if(length(xeno_prefix)==3)
+					if(length_char(xeno_prefix)==3)
 						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("You can't use three letter prefix with any postfix.")))
 						return
 
 					var/new_xeno_postfix = input(user, "Choose your xenomorph postfix. One capital letter with or without a digit at the end. Put empty text if you want to remove postfix", "Xenomorph Postfix") as text|null
 					new_xeno_postfix = uppertext(new_xeno_postfix)
-					if(length(new_xeno_postfix)>2)
+					if(length_char(new_xeno_postfix)>2)
 						to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("Invalid Xeno Postfix. Your Postfix can only be up to 2 letters long.")))
 						return
-					else if(length(new_xeno_postfix)==0)
+					else if(length_char(new_xeno_postfix)==0)
 						xeno_postfix = ""
 					else
 						var/all_ok = TRUE
 						var/first_char = TRUE
-						for(var/i=1, i<=length(new_xeno_postfix), i++)
+						for(var/i=1, i<=length_char(new_xeno_postfix), i++)
 							var/ascii_char = text2ascii(new_xeno_postfix,i)
 							switch(ascii_char)
 								// A  .. Z
 								if(65 to 90) //Uppercase Letters will work on first char
 
-									if(length(xeno_prefix)!=2)
+									if(length_char(xeno_prefix)!=2)
 										to_chat(user, SPAN_WARNING(FONT_SIZE_BIG("You can't use three letter prefix with any postfix.")))
 										return
 
@@ -1347,9 +1347,9 @@ var/const/MAX_SAVE_SLOTS = 10
 					if(species == "Human")
 						var/new_hair = input(user, "Choose your character's hair color:", "Character Preference", rgb(r_hair, g_hair, b_hair)) as color|null
 						if(new_hair)
-							r_hair = hex2num(copytext(new_hair, 2, 4))
-							g_hair = hex2num(copytext(new_hair, 4, 6))
-							b_hair = hex2num(copytext(new_hair, 6, 8))
+							r_hair = hex2num(copytext_char(new_hair, 2, 4))
+							g_hair = hex2num(copytext_char(new_hair, 4, 6))
+							b_hair = hex2num(copytext_char(new_hair, 6, 8))
 
 				if("h_style")
 					var/list/valid_hairstyles = list()
@@ -1371,9 +1371,9 @@ var/const/MAX_SAVE_SLOTS = 10
 					if(species == "Human")
 						var/new_hair_grad = input(user, "Choose your character's hair gradient color:", "Character Preference", rgb(r_gradient, g_gradient, b_gradient)) as color|null
 						if(new_hair_grad)
-							r_gradient = hex2num(copytext(new_hair_grad, 2, 4))
-							g_gradient = hex2num(copytext(new_hair_grad, 4, 6))
-							b_gradient = hex2num(copytext(new_hair_grad, 6, 8))
+							r_gradient = hex2num(copytext_char(new_hair_grad, 2, 4))
+							g_gradient = hex2num(copytext_char(new_hair_grad, 4, 6))
+							b_gradient = hex2num(copytext_char(new_hair_grad, 6, 8))
 
 				if("grad_style")
 					var/list/valid_hair_gradients = list()
@@ -1405,9 +1405,9 @@ var/const/MAX_SAVE_SLOTS = 10
 				if("facial")
 					var/new_facial = input(user, "Choose your character's facial-hair color:", "Character Preference", rgb(r_facial, g_facial, b_facial)) as color|null
 					if(new_facial)
-						r_facial = hex2num(copytext(new_facial, 2, 4))
-						g_facial = hex2num(copytext(new_facial, 4, 6))
-						b_facial = hex2num(copytext(new_facial, 6, 8))
+						r_facial = hex2num(copytext_char(new_facial, 2, 4))
+						g_facial = hex2num(copytext_char(new_facial, 4, 6))
+						b_facial = hex2num(copytext_char(new_facial, 6, 8))
 
 				if("f_style")
 					var/list/valid_facialhairstyles = list()
@@ -1452,9 +1452,9 @@ var/const/MAX_SAVE_SLOTS = 10
 				if("eyes")
 					var/new_eyes = input(user, "Choose your character's eye color:", "Character Preference", rgb(r_eyes, g_eyes, b_eyes)) as color|null
 					if(new_eyes)
-						r_eyes = hex2num(copytext(new_eyes, 2, 4))
-						g_eyes = hex2num(copytext(new_eyes, 4, 6))
-						b_eyes = hex2num(copytext(new_eyes, 6, 8))
+						r_eyes = hex2num(copytext_char(new_eyes, 2, 4))
+						g_eyes = hex2num(copytext_char(new_eyes, 4, 6))
+						b_eyes = hex2num(copytext_char(new_eyes, 6, 8))
 
 
 				if("ooccolor")
@@ -1819,8 +1819,8 @@ var/const/MAX_SAVE_SLOTS = 10
 		real_name = random_name(gender)
 
 	if(CONFIG_GET(flag/humans_need_surnames))
-		var/firstspace = findtext(real_name, " ")
-		var/name_length = length(real_name)
+		var/firstspace = findtext_char(real_name, " ")
+		var/name_length = length_char(real_name)
 		if(!firstspace) //we need a surname
 			real_name += " [pick(last_names)]"
 		else if(firstspace == name_length)
@@ -2002,8 +2002,8 @@ var/const/MAX_SAVE_SLOTS = 10
 		real_name = random_name(gender)
 
 	if(CONFIG_GET(flag/humans_need_surnames))
-		var/firstspace = findtext(real_name, " ")
-		var/name_length = length(real_name)
+		var/firstspace = findtext_char(real_name, " ")
+		var/name_length = length_char(real_name)
 		if(!firstspace) //we need a surname
 			real_name += " [pick(last_names)]"
 		else if(firstspace == name_length)

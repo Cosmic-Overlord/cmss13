@@ -115,16 +115,16 @@
 
 /mob/living/carbon/xenomorph/carrier/proc/update_icon_maths(number)
 	var/funny_list = list(1,2,3,4)
-	if(length(hugger_image_index) != number)
-		if(length(hugger_image_index) > number)
-			while(length(hugger_image_index) != number)
-				hugger_image_index -= hugger_image_index[length(hugger_image_index)]
+	if(length_char(hugger_image_index) != number)
+		if(length_char(hugger_image_index) > number)
+			while(length_char(hugger_image_index) != number)
+				hugger_image_index -= hugger_image_index[length_char(hugger_image_index)]
 		else
-			while(length(hugger_image_index) != number)
+			while(length_char(hugger_image_index) != number)
 				for(var/i in hugger_image_index)
 					if(locate(i) in funny_list)
 						funny_list -= i
-				hugger_image_index += funny_list[rand(1,length(funny_list))]
+				hugger_image_index += funny_list[rand(1,length_char(funny_list))]
 
 /mob/living/carbon/xenomorph/carrier/Initialize(mapload, mob/living/carbon/xenomorph/oldxeno, h_number)
 	. = ..()

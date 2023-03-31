@@ -70,7 +70,7 @@
 
 		if(!current_step.tool_check(user, tool, surgeryloop))
 			valid_steps += current_step
-			if(current_step.skip_step_criteria(user, target, target_zone, tool, surgeryloop) && length(surgeryloop.steps) > 1)
+			if(current_step.skip_step_criteria(user, target, target_zone, tool, surgeryloop) && length_char(surgeryloop.steps) > 1)
 				var/datum/surgery_step/next_step = GLOB.surgery_step_list[surgeryloop.steps[2]]
 				if(!next_step.tool_check(user, tool, surgeryloop))
 					valid_steps += next_step
@@ -80,7 +80,7 @@
 
 		available_surgeries[surgeryloop.name] = surgeryloop //Add it to the list.
 
-	if(!length(available_surgeries))
+	if(!length_char(available_surgeries))
 		if(!tool)
 			return FALSE
 
@@ -90,7 +90,7 @@
 					[target_zone == "r_hand"||target_zone == "l_hand" ? "hand":"arm"] you're using!"))
 				return FALSE
 
-			if(!length(valid_steps))
+			if(!length_char(valid_steps))
 				var/limbname = affecting?.status & LIMB_DESTROYED ? "the stump of [target]'s [affecting.display_name]" : "[target]'s [parse_zone(target_zone)]"
 				if(target.incision_depths[target_zone] != SURGERY_DEPTH_SURFACE)
 					to_chat(user, SPAN_WARNING("You don't know of any operations you could perform in the [target.incision_depths[target_zone]] incision on [limbname]."))
@@ -101,7 +101,7 @@
 			var/hint_msg
 			for(var/datum/surgery_step/current_step as anything in valid_steps)
 				if(hint_msg)
-					if(current_step == valid_steps[length(valid_steps)])
+					if(current_step == valid_steps[length_char(valid_steps)])
 						hint_msg += ", or [current_step.desc]"
 					else
 						hint_msg += ", [current_step.desc]"
@@ -111,7 +111,7 @@
 		return FALSE
 
 	var/datum/surgery/surgeryinstance
-	if(length(available_surgeries) == 1)
+	if(length_char(available_surgeries) == 1)
 		surgeryinstance = available_surgeries[available_surgeries[1]]
 	else
 		surgeryinstance = available_surgeries[tgui_input_list(user, "Begin which procedure?", "Surgery", sortList(available_surgeries))]

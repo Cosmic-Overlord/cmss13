@@ -23,9 +23,9 @@ SUBSYSTEM_DEF(tracking)
 
 
 /datum/controller/subsystem/tracking/stat_entry(msg)
-	var/mobs = length(misc_tracking_mobs)
+	var/mobs = length_char(misc_tracking_mobs)
 	for(var/tracked_group in tracked_mobs)
-		mobs += length(tracked_mobs[tracked_group])
+		mobs += length_char(tracked_mobs[tracked_group])
 	msg = "P:[mobs]"
 	return ..()
 

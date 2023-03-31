@@ -169,7 +169,7 @@ Additional game mode variables.
 
 	if(pred_candidate) pred_candidate.moveToNullspace() //Nullspace it for garbage collection later.
 
-#define calculate_pred_max (Floor(length(GLOB.player_list) / pred_per_players) + pred_additional_max + pred_start_count)
+#define calculate_pred_max (Floor(length_char(GLOB.player_list) / pred_per_players) + pred_additional_max + pred_start_count)
 
 /datum/game_mode/proc/check_predator_late_join(mob/pred_candidate, show_warning = 1)
 
@@ -566,7 +566,7 @@ Additional game mode variables.
 	if(hive.living_xeno_queen || !original || !original.client)
 		return
 
-	if(!length(GLOB.queen_spawns))
+	if(!length_char(GLOB.queen_spawns))
 		transform_queen(ghost_mind, get_turf(pick(GLOB.xeno_spawns)), hivenumber)
 		return
 
@@ -640,7 +640,7 @@ Additional game mode variables.
 		picked_spawn = xeno_turf
 	else
 		for(var/priority = 1 to LOWEST_SPAWN_PRIORITY)
-			if(length(GLOB.survivor_spawns_by_priority["[priority]"]))
+			if(length_char(GLOB.survivor_spawns_by_priority["[priority]"]))
 				picked_spawn = pick(GLOB.survivor_spawns_by_priority["[priority]"])
 				break
 	if(istype(picked_spawn, /obj/effect/landmark/survivor_spawner))
@@ -659,9 +659,9 @@ Additional game mode variables.
 			preferred_variant = ANY_SURVIVOR
 
 	if(is_synth)
-		survivor_types = preferred_variant != ANY_SURVIVOR && length(SSmapping.configs[GROUND_MAP].synth_survivor_types_by_variant[preferred_variant]) ? SSmapping.configs[GROUND_MAP].synth_survivor_types_by_variant[preferred_variant] : SSmapping.configs[GROUND_MAP].synth_survivor_types
+		survivor_types = preferred_variant != ANY_SURVIVOR && length_char(SSmapping.configs[GROUND_MAP].synth_survivor_types_by_variant[preferred_variant]) ? SSmapping.configs[GROUND_MAP].synth_survivor_types_by_variant[preferred_variant] : SSmapping.configs[GROUND_MAP].synth_survivor_types
 	else
-		survivor_types = preferred_variant != ANY_SURVIVOR && length(SSmapping.configs[GROUND_MAP].survivor_types_by_variant[preferred_variant]) ? SSmapping.configs[GROUND_MAP].survivor_types_by_variant[preferred_variant] : SSmapping.configs[GROUND_MAP].survivor_types
+		survivor_types = preferred_variant != ANY_SURVIVOR && length_char(SSmapping.configs[GROUND_MAP].survivor_types_by_variant[preferred_variant]) ? SSmapping.configs[GROUND_MAP].survivor_types_by_variant[preferred_variant] : SSmapping.configs[GROUND_MAP].survivor_types
 	if(is_CO)
 		survivor_types = SSmapping.configs[GROUND_MAP].CO_survivor_types
 
@@ -778,12 +778,12 @@ Additional game mode variables.
 				if(!istype(another_survivor)) continue//If somehow this thing screwed up, we're going to run another pass.
 				story = pick(survivor_multi_story)
 				survivor_multi_story -= story
-				story = replacetext(story, "{name}", "[random_name]")
+				story = replacetext_char(story, "{name}", "[random_name]")
 				spawn(6)
-					var/temp_story = "<b>Your story thus far</b>: " + replacetext(story, "{surv}", "[another_survivor.current.real_name]")
+					var/temp_story = "<b>Your story thus far</b>: " + replacetext_char(story, "{surv}", "[another_survivor.current.real_name]")
 					to_chat(survivor.current, temp_story)
 					survivor.memory += temp_story //Add it to their memories.
-					temp_story = "<b>Your story thus far</b>: " + replacetext(story, "{surv}", "[survivor.current.real_name]")
+					temp_story = "<b>Your story thus far</b>: " + replacetext_char(story, "{surv}", "[survivor.current.real_name]")
 					to_chat(another_survivor.current, temp_story)
 					another_survivor.memory += temp_story
 		else
@@ -791,7 +791,7 @@ Additional game mode variables.
 				story = pick(survivor_story)
 				survivor_story -= story
 				spawn(6)
-					var/temp_story = "<b>Your story thus far</b>: " + replacetext(story, "{name}", "[random_name]")
+					var/temp_story = "<b>Your story thus far</b>: " + replacetext_char(story, "{name}", "[random_name]")
 					to_chat(survivor.current, temp_story)
 					survivor.memory += temp_story
 
@@ -819,7 +819,7 @@ Additional game mode variables.
 /datum/game_mode/proc/get_scaling_value()
 	//We take the number of marine players, deduced from other lists, and then get a scale multiplier from it, to be used in arbitrary manners to distribute equipment
 	//This might count players who ready up but get kicked back to the lobby
-	var/marine_pop_size = length(GLOB.alive_human_list)
+	var/marine_pop_size = length_char(GLOB.alive_human_list)
 
 	//This gives a decimal value representing a scaling multiplier. Cannot go below 1
 	return max(marine_pop_size / MARINE_GEAR_SCALING_NORMAL, 1)

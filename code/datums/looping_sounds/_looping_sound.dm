@@ -6,7 +6,7 @@
 	var/atom/parent
 	/// (list or soundfile) Since this can be either a list or a single soundfile you can have random sounds. May contain further lists but must contain a soundfile at the end.
 	var/mid_sounds
-	/// The length of time to wait between playing mid_sounds.
+	/// The length_char of time to wait between playing mid_sounds.
 	var/mid_length
 	/// Override for volume of start sound.
 	var/start_volume

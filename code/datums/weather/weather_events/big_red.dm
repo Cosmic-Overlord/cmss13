@@ -1,7 +1,7 @@
 /datum/weather_event/dust
 	name = "Duststorm"
 	display_name = "Duststorm"
-	length = 10 MINUTES
+	length_char = 10 MINUTES
 	fullscreen_type = /atom/movable/screen/fullscreen/weather/low
 	turf_overlay_icon_state = "bigred_dust"
 
@@ -16,7 +16,7 @@
 /datum/weather_event/sand
 	name = "Sandstorm"
 	display_name = "Sandstorm"
-	length = 6 MINUTES
+	length_char = 6 MINUTES
 	fullscreen_type = /atom/movable/screen/fullscreen/weather/medium
 	turf_overlay_icon_state = "bigred_sand"
 
@@ -31,7 +31,7 @@
 /datum/weather_event/rock
 	name = "Rockstorm"
 	display_name = "Rockstorm"
-	length = 4 MINUTES
+	length_char = 4 MINUTES
 	fullscreen_type = /atom/movable/screen/fullscreen/weather/high
 	turf_overlay_icon_state = "bigred_rocks"
 

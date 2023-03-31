@@ -38,13 +38,13 @@
 		if(!user.can_see_reagents())
 			if(get_dist(user, src) > 2 && user != loc) //we have a distance check with this
 				return SPAN_WARNING("It's too far away for you to see what's in it!")
-			if(!length(reagents.reagent_list))
+			if(!length_char(reagents.reagent_list))
 				reagent_desc += "nothing."
 			else
 				reagent_desc += "[reagents.total_volume] units of liquid."
 			return SPAN_INFO("[reagent_desc]")
 		else //when wearing science goggles, you can see what's in something from any range
-			if(!length(reagents.reagent_list))
+			if(!length_char(reagents.reagent_list))
 				reagent_desc += "nothing."
 			else
 				for(var/datum/reagent/current_reagent as anything in reagents.reagent_list)

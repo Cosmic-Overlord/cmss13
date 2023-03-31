@@ -38,9 +38,9 @@ var/list/squad_colors_chat = list(rgb(230,125,125), rgb(255,230,80), rgb(255,150
 
 /proc/initialize_marine_armor()
 	var/i
-	for(i=1, i<(length(squad_colors) + 1), i++)
+	for(i=1, i<(length_char(squad_colors) + 1), i++)
 		var/squad_color = squad_colors[i]
-		var/armor_color = rgb(hex2num(copytext(squad_color, 2, 4)), hex2num(copytext(squad_color, 4, 6)), hex2num(copytext(squad_color, 6, 8)), 125)
+		var/armor_color = rgb(hex2num(copytext_char(squad_color, 2, 4)), hex2num(copytext_char(squad_color, 4, 6)), hex2num(copytext_char(squad_color, 6, 8)), 125)
 
 		var/image/armor
 		var/image/helmet
@@ -143,7 +143,7 @@ var/list/squad_colors_chat = list(rgb(230,125,125), rgb(255,230,80), rgb(255,150
 		else
 			name += " armor"
 	if(armor_variation)
-		icon_state = replacetext(icon_state,"1","[rand(1,armor_variation)]")
+		icon_state = replacetext_char(icon_state,"1","[rand(1,armor_variation)]")
 
 	if(!(flags_atom & NO_SNOW_TYPE))
 		select_gamemode_skin(type)

@@ -34,7 +34,7 @@
 	update_icon()
 
 /obj/item/storage/firstaid/update_icon()
-	if(content_watchers || !length(contents))
+	if(content_watchers || !length_char(contents))
 		icon_state = "kit_empty"
 	else
 		icon_state = icon_full
@@ -303,7 +303,7 @@
 	if(!bottle_lid)
 		return
 	overlays.Cut()
-	if(content_watchers || !length(contents))
+	if(content_watchers || !length_char(contents))
 		overlays += "pills_open"
 	else
 		overlays += "pills_closed"
@@ -432,8 +432,8 @@
 	set src in usr
 
 	if(src && ishuman(usr))
-		var/str = copytext(reject_bad_text(input(usr,"Label text? (2 CHARACTERS MAXIMUM)", "Set \the [src]'s on-sprite label", "")), 1, 3)
-		if(!str || !length(str))
+		var/str = copytext_char(reject_bad_text(input(usr,"Label text? (2 CHARACTERS MAXIMUM)", "Set \the [src]'s on-sprite label", "")), 1, 3)
+		if(!str || !length_char(str))
 			to_chat(usr, SPAN_NOTICE("You clear the label off \the [src]."))
 			maptext_label = null
 			update_icon()

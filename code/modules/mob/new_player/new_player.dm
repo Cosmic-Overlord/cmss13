@@ -266,7 +266,7 @@
 		var/datum/hive_status/HS
 		for(var/hivenumber in GLOB.hive_datum)
 			HS = GLOB.hive_datum[hivenumber]
-			if(length(HS.totalXenos))
+			if(length_char(HS.totalXenos))
 				HS.stored_larva++
 				HS.hive_ui.update_burrowed_larva()
 
@@ -276,7 +276,7 @@
 			msg_admin_niche("NEW JOIN: <b>[key_name(character, 1, 1, 0)] (<A HREF='?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];ahelp=adminmoreinfo;extra=\ref[character]'>?</A>)</b>. IP: [character.lastKnownIP], CID: [character.computer_id]")
 		if(character.client)
 			var/client/C = character.client
-			if(C.player_data && C.player_data.playtime_loaded && length(C.player_data.playtimes) == 0)
+			if(C.player_data && C.player_data.playtime_loaded && length_char(C.player_data.playtimes) == 0)
 				msg_admin_niche("NEW PLAYER: <b>[key_name(character, 1, 1, 0)] (<A HREF='?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];ahelp=adminmoreinfo;extra=\ref[C]'>?</A>)</b>. IP: [character.lastKnownIP], CID: [character.computer_id]")
 			if(C.player_data && C.player_data.playtime_loaded && ((round(C.get_total_human_playtime() DECISECONDS_TO_HOURS, 0.1)) <= 5))
 				msg_sea("NEW PLAYER: <b>[key_name(character, 0, 1, 0)]</b> only has [(round(C.get_total_human_playtime() DECISECONDS_TO_HOURS, 0.1))] hours as a human. Current role: [get_actual_job_name(character)] - Current location: [get_area(character)]")

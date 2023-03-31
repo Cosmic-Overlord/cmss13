@@ -231,7 +231,7 @@
 			to_chat(possible_target, SPAN_XENO("You hear a strange, alien voice in your head. \"[msg]\""))
 		else
 			to_chat(possible_target, SPAN_XENO("You hear the voice of [X] resonate in your head. \"[msg]\""))
-	if(!length(target_list))
+	if(!length_char(target_list))
 		return
 	var/targetstring = english_list(target_list)
 	to_chat(X, SPAN_XENONOTICE("You said: \"[msg]\" to [targetstring]"))

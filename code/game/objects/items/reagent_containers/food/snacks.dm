@@ -2808,7 +2808,7 @@
 /obj/item/pizzabox/attack_self(mob/user)
 	..()
 
-	if(length(boxes) > 0)
+	if(length_char(boxes) > 0)
 		return
 
 	open = !open

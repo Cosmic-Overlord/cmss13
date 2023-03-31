@@ -89,7 +89,7 @@
 		if(is_living)
 			concurrent_users += user_ref
 		// Turn on the console
-		if(length(concurrent_users) == 1 && is_living)
+		if(length_char(concurrent_users) == 1 && is_living)
 			update_use_power(USE_POWER_ACTIVE)
 		// Register map objects
 		user.client.register_map_obj(cam_screen)
@@ -212,7 +212,7 @@
 	// Unregister map objects
 	user.client.clear_map(map_name)
 	// Turn off the console
-	if(length(concurrent_users) == 0 && is_living)
+	if(length_char(concurrent_users) == 0 && is_living)
 		current = null
 		last_camera_turf = null
 		range_turfs = list()

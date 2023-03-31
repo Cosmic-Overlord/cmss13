@@ -697,8 +697,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			to_chat(user, SPAN_NOTICE("\The [src] is already engraved."))
 			return
 
-		var/str = copytext(reject_bad_text(input(user,"Engrave text?", "Set engraving", "")), 1)
-		if(length(str) == 0 || length(str) > 32)
+		var/str = copytext_char(reject_bad_text(input(user,"Engrave text?", "Set engraving", "")), 1)
+		if(length_char(str) == 0 || length_char(str) > 32)
 			to_chat(user, SPAN_NOTICE("You fumble [W], maybe try again?"))
 			return
 		desc += "\nEngraved with \"[str]\""

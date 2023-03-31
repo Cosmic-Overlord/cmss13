@@ -231,7 +231,7 @@
 		var/filter = FALSE
 		for(var/obj/item/reagent_container/V in vials)
 			if(V.reagents.has_reagent(R.id))
-				if(length(V.reagents.reagent_list) > 1 || V.reagents.total_volume == V.reagents.maximum_volume) //If the reagent is in an impure vial, or a full vial, we skip it
+				if(length_char(V.reagents.reagent_list) > 1 || V.reagents.total_volume == V.reagents.maximum_volume) //If the reagent is in an impure vial, or a full vial, we skip it
 					filter = 1
 					break
 		if(filter)
@@ -239,7 +239,7 @@
 
 		for(var/obj/item/reagent_container/V in vials)
 			//Check the vial
-			if(length(V.reagents.reagent_list) > 1) //We don't work with impure vials
+			if(length_char(V.reagents.reagent_list) > 1) //We don't work with impure vials
 				continue
 			if(V.reagents.get_reagents() && !V.reagents.has_reagent(R.id)) //We only add to vials with the same reagent
 				continue

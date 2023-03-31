@@ -133,7 +133,7 @@
 		if(A == src)
 			continue
 
-		if(length(contents) >= max_hold_items)
+		if(length_char(contents) >= max_hold_items)
 			break
 
 		if(ismob(A))

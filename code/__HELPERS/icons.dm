@@ -281,7 +281,7 @@ world
 	if(text2ascii(rgb) == 35) ++start // skip opening #
 	var/ch,which=0,r=0,g=0,b=0,alpha=0,usealpha
 	var/digits=0
-	for(i=start, i<=length(rgb), ++i)
+	for(i=start, i<=length_char(rgb), ++i)
 		ch = text2ascii(rgb, i)
 		if(ch < 48 || (ch > 57 && ch < 65) || (ch > 70 && ch < 97) || ch > 102) break
 		++digits
@@ -405,7 +405,7 @@ world
 		var/exist = FALSE
 		var/static/list/checkdirs = list(NORTH, EAST, WEST)
 		for(var/i in checkdirs) //Not using GLOB for a reason.
-			if(length(icon_states(icon(curicon, curstate, i))))
+			if(length_char(icon_states(icon(curicon, curstate, i))))
 				exist = TRUE
 				break
 		if(!exist)
@@ -419,7 +419,7 @@ world
 	var/curblend = A.blend_mode || defblend
 
 	var/atom/movable/AM = A
-	if(length(A.overlays) || length(A.underlays) || (istype(AM) && AM.vis_contents))
+	if(length_char(A.overlays) || length_char(A.underlays) || (istype(AM) && AM.vis_contents))
 		var/icon/flat = BLANK
 		// Layers will be a sorted list of icons/overlays, based on the order in which they are displayed
 		var/list/layers = list()
@@ -685,7 +685,7 @@ world
 	/* Debugguing due to gamebreaking performance in the Blend calls made by getFlatIcon (think 200ms+ per icon) and overtimes */
 	if(istype(thing, /atom))
 		var/atom/D = thing
-		log_debug("costly_icon2html called on ref=[REF(D)], instance=[D], type=[D.type], with [length(D.overlays)] overlays, finished in [(REALTIMEOFDAY-start_time) / 10]s")
+		log_debug("costly_icon2html called on ref=[REF(D)], instance=[D], type=[D.type], with [length_char(D.overlays)] overlays, finished in [(REALTIMEOFDAY-start_time) / 10]s")
 	else if(isicon(thing))
 		var/icon/D = thing
 		log_debug("costly_icon2html called on icon ref=[REF(D)], instance=[D] finished in [(REALTIMEOFDAY-start_time) / 10]s")
@@ -724,11 +724,11 @@ world
 	var/list/RGB2 = ReadRGB(rgb2)
 
 	// add missing alpha if needed
-	if(length(RGB1) < length(RGB2))
+	if(length_char(RGB1) < length_char(RGB2))
 		RGB1 += 255
-	else if(length(RGB2) < length(RGB1))
+	else if(length_char(RGB2) < length_char(RGB1))
 		RGB2 += 255
-	var/usealpha = length(RGB1) > 3
+	var/usealpha = length_char(RGB1) > 3
 
 	var/r = round(RGB1[1] + (RGB2[1] - RGB1[1]) * amount, 1)
 	var/g = round(RGB1[2] + (RGB2[2] - RGB1[2]) * amount, 1)
@@ -743,8 +743,8 @@ world
 	var/savefile/dummySave = new("tmp/dummySave.sav")
 	dummySave["dummy"] << icon
 	var/iconData = dummySave.ExportText("dummy")
-	var/list/partial = splittext(iconData, "{")
-	. = replacetext(copytext_char(partial[2], 3, -5), "\n", "")  //if cleanup fails we want to still return the correct base64
+	var/list/partial = splittext_char(iconData, "{")
+	. = replacetext_char(copytext_char(partial[2], 3, -5), "\n", "")  //if cleanup fails we want to still return the correct base64
 	dummySave.Unlock()
 	dummySave = null
 	fdel("tmp/dummySave.sav")  //if you get the idea to try and make this more optimized, make sure to still call unlock on the savefile after every write to unlock it.

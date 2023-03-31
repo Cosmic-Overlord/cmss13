@@ -458,7 +458,7 @@ GLOBAL_LIST_INIT(airlock_wire_descriptions, list(
 	. = list()
 	var/list/payload = list()
 
-	for(var/wire in 1 to length(GLOB.airlock_wire_descriptions))
+	for(var/wire in 1 to length_char(GLOB.airlock_wire_descriptions))
 		payload.Add(list(list(
 			"number" = wire,
 			"cut" = isWireCut(wire),

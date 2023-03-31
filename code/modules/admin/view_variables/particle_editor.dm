@@ -133,7 +133,7 @@
 			if(!target.particles.transform)
 				target.particles.transform = new /list(new_size)
 				return
-			var/size = length(target.particles.transform)
+			var/size = length_char(target.particles.transform)
 			if(size < new_size)
 				target.particles.transform += new /list(new_size-size)
 				return

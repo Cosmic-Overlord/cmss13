@@ -121,7 +121,7 @@
 
 /obj/item/weapon/unathiknife
 	name = "duelling knife"
-	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
+	desc = "A length_char of leather-bound wood studded with razor-sharp teeth. How crude."
 	icon = 'icons/obj/items/weapons/weapons.dmi'
 	icon_state = "unathiknife"
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -193,7 +193,7 @@
 		user.count_niche_stat(STATISTICS_NICHE_SURGERY_SHRAPNEL)
 		QDEL_IN(S, 300)
 
-	if(length(removed_limbs))
+	if(length_char(removed_limbs))
 		var/duglimbs = english_list(removed_limbs, final_comma_text = ",")
 		user.affected_message(embedded_human,
 			SPAN_NOTICE("You dig the shrapnel [address_mode] [duglimbs] with your [src.name]."),

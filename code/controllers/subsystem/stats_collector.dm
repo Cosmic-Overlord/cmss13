@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(stats_collector)
 	var/players_counter = 0
 
 /datum/controller/subsystem/stats_collector/fire(resumed = FALSE)
-	players_counter += length(GLOB.clients)
+	players_counter += length_char(GLOB.clients)
 	stat_ticks++
 
 /datum/controller/subsystem/stats_collector/proc/get_avg_players()

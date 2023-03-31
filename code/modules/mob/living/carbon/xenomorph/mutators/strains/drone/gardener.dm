@@ -97,7 +97,7 @@
 		return
 
 	if (check_and_use_plasma_owner())
-		if(length(xeno.current_fruits) >= xeno.max_placeable)
+		if(length_char(xeno.current_fruits) >= xeno.max_placeable)
 			to_chat(xeno, SPAN_XENOWARNING("You cannot sustain another fruit, one will wither away to allow this one to live!"))
 			var/obj/effect/alien/resin/fruit/old_fruit = xeno.current_fruits[1]
 			xeno.current_fruits.Remove(old_fruit)
@@ -115,7 +115,7 @@
 		playsound(xeno.loc, "alien_resin_build", 25)
 		xeno.current_fruits.Add(fruit)
 
-		var/number_of_fruit = length(xeno.current_fruits)
+		var/number_of_fruit = length_char(xeno.current_fruits)
 		button.set_maptext(SMALL_FONTS_COLOR(7, number_of_fruit, "#e69d00"), 19, 2)
 		update_button_icon()
 		xeno.update_icons()
@@ -165,7 +165,7 @@
 
 		entry["name"] = initial(fruit.name)
 		entry["desc"] = initial(fruit.desc)
-		entry["image"] = replacetext(initial(fruit.mature_icon_state), " ", "-")
+		entry["image"] = replacetext_char(initial(fruit.mature_icon_state), " ", "-")
 		entry["id"] = "[fruit]"
 		fruits += list(entry)
 

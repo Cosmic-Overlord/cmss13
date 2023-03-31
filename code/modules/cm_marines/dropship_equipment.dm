@@ -1179,7 +1179,7 @@
 			continue
 		valid_turfs += T
 
-	if(!length(valid_turfs))
+	if(!length_char(valid_turfs))
 		to_chat(user, SPAN_WARNING("There's nowhere safe for you to land, the landing zone is too congested."))
 		return
 

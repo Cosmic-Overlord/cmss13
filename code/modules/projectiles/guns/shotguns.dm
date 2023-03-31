@@ -92,7 +92,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	if(!current_mag.current_rounds && !in_chamber) update_icon()
 
 /obj/item/weapon/gun/shotgun/proc/unload_shell(mob/user)
-	if(isnull(current_mag) || !length(current_mag.chamber_contents))
+	if(isnull(current_mag) || !length_char(current_mag.chamber_contents))
 		return
 	var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(current_mag.chamber_contents[current_mag.chamber_position])
 
@@ -143,7 +143,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	empty_chamber(user)
 
 /obj/item/weapon/gun/shotgun/proc/ready_shotgun_tube()
-	if(isnull(current_mag) || !length(current_mag.chamber_contents))
+	if(isnull(current_mag) || !length_char(current_mag.chamber_contents))
 		return
 	if(current_mag.current_rounds > 0)
 		ammo = GLOB.ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]
@@ -1031,10 +1031,10 @@ can cause issues with ammo types getting mixed up during the burst.
 	//Pick a turf to throw into.
 	var/throw_turf
 	var/throw_strength = 1
-	if(length(throw_turfs)) //If there's any ideal throwpaths, pick one.
+	if(length_char(throw_turfs)) //If there's any ideal throwpaths, pick one.
 		throw_turf = pick(throw_turfs)
 		throw_strength = suicide ? 1 : 2
-	else if(length(bad_turfs)) //Otherwise, pick from blocked paths.
+	else if(length_char(bad_turfs)) //Otherwise, pick from blocked paths.
 		throw_turf = pick(bad_turfs)
 	else //If there's nowhere to put it, throw it to the same place we're putting the shooter.
 		throw_turf = behind_turf

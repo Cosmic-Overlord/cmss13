@@ -224,7 +224,7 @@
 /obj/structure/machinery/reagentgrinder/proc/eject(mob/user)
 	if(user.is_mob_incapacitated())
 		return
-	if(!length(holdingitems))
+	if(!length_char(holdingitems))
 		return
 
 	for(var/obj/item/O in holdingitems)

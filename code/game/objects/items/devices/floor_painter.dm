@@ -102,11 +102,11 @@
 				mode_nice = design
 				return
 			mode_nice = design
-			mode = "[replacetext(design, "-", "")]full"
+			mode = "[replacetext_char(design, "-", "")]full"
 		if("corner")
 			var/design = tgui_input_list(usr, "Which design?", "Floor painter", list("black", "red", "blue", "green", "yellow", "purple", "neutral", "white", "white-grey", "white-red", "white-blue", "white-green", "white-yellow", "white-purple"))
 			mode_nice = "[design] corner"
-			mode = "[replacetext(design, "-", "")]corner"
+			mode = "[replacetext_char(design, "-", "")]corner"
 			tile_dir_mode = 2
 		if("opposite corners")
 			var/design = tgui_input_list(usr, "Which design?", "Floor painter", list("bar", "cmo", "yellowpatch", "cafeteria", "red-yellow", "red-blue", "red-green", "green-yellow", "green-blue", "blue-yellow"))
@@ -114,7 +114,7 @@
 			if(design == "bar" || design == "cmo" || design == "yellowpatch" || design == "cafeteria")
 				mode = design
 			else
-				mode = "[replacetext(design, "-", "")]full"
+				mode = "[replacetext_char(design, "-", "")]full"
 			if(design == "yellowpatch")
 				tile_dir_mode = 5
 			else
@@ -127,7 +127,7 @@
 				tile_dir_mode = 1
 			else
 				mode_nice = design
-				mode = replacetext(design, "-", "")
+				mode = replacetext_char(design, "-", "")
 				tile_dir_mode = 1
 		if("special")
 			var/design = tgui_input_list(usr, "Which design?", "Floor painter", list("arrival", "escape", "caution", "warning", "white-warning", "white-blue-green", "loadingarea", "delivery", "bot", "white-delivery", "white-bot"))

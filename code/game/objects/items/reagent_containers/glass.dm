@@ -179,7 +179,7 @@
 				return
 			else
 				return
-		if(length(tmp_label) > MAX_NAME_LEN)
+		if(length_char(tmp_label) > MAX_NAME_LEN)
 			to_chat(user, SPAN_WARNING("The label can be at most [MAX_NAME_LEN] characters long."))
 		else
 			user.visible_message(SPAN_NOTICE("[user] labels [src] as \"[tmp_label]\"."), \

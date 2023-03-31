@@ -41,7 +41,7 @@
 	var/tgui_theme = "normal"
 	/// queue of items to be printed after the current one is done
 	var/list/queue = list()
-	/// max length of the queue
+	/// max length_char of the queue
 	var/queue_max = AUTOLATHE_MAX_QUEUE
 	/// the item the autolathe is currently printing. Used for tgui
 	var/list/currently_making_data = list()

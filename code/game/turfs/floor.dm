@@ -26,7 +26,7 @@
 			tool_output += SPAN_RED("crowbar")
 		if(tool_flags & REMOVE_SCREWDRIVER)
 			tool_output += SPAN_GREEN("screwdriver")
-		if(length(tool_output))
+		if(length_char(tool_output))
 			. += SPAN_NOTICE("\The [src] can be removed with \a [english_list(tool_output)].")
 
 

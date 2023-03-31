@@ -66,18 +66,18 @@
 			continue
 
 		t = trim(t)
-		if(length(t) == 0)
+		if(length_char(t) == 0)
 			continue
-		else if(copytext(t, 1, 2) == "#")
+		else if(copytext_char(t, 1, 2) == "#")
 			continue
 
-		var/pos = findtext(t, " ")
+		var/pos = findtext_char(t, " ")
 		var/command = null
 		var/data = null
 
 		if(pos)
-			command = lowertext(copytext(t, 1, pos))
-			data = copytext(t, pos + 1)
+			command = lowertext(copytext_char(t, 1, pos))
+			data = copytext_char(t, pos + 1)
 		else
 			command = lowertext(t)
 
@@ -183,15 +183,15 @@
 
 		var/lockthis = firstchar == "@"
 		if(lockthis)
-			L = copytext(L, length(firstchar) + 1)
+			L = copytext_char(L, length_char(firstchar) + 1)
 
-		var/pos = findtext(L, " ")
+		var/pos = findtext_char(L, " ")
 		var/entry = null
 		var/value = null
 
 		if(pos)
-			entry = lowertext(copytext(L, 1, pos))
-			value = copytext(L, pos + length(L[pos]))
+			entry = lowertext(copytext_char(L, 1, pos))
+			value = copytext_char(L, pos + length_char(L[pos]))
 		else
 			entry = lowertext(L)
 

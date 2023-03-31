@@ -21,9 +21,9 @@
 	stack_id = "cable coil"
 	attack_speed = 3
 
-/obj/item/stack/cable_coil/Initialize(mapload, length = MAXCOIL, param_color = null)
+/obj/item/stack/cable_coil/Initialize(mapload, length_char = MAXCOIL, param_color = null)
 	. = ..()
-	src.amount = length
+	src.amount = length_char
 	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
 		color = param_color
 	pixel_x = rand(-2,2)
@@ -99,7 +99,7 @@
 
 		else
 			var/amt = MAXCOIL - C.amount
-			to_chat(user, "You transfer [amt] length\s of cable from one coil to the other.")
+			to_chat(user, "You transfer [amt] length_char\s of cable from one coil to the other.")
 			C.add(amt)
 			src.use(amt)
 		return

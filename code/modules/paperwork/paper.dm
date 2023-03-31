@@ -45,7 +45,7 @@
 
 	if(info != initial(info))
 		info = html_encode(info)
-		info = replacetext(info, "\n", "<BR>")
+		info = replacetext_char(info, "\n", "<BR>")
 		info = parsepencode(info)
 
 	update_icon()
@@ -157,9 +157,9 @@
 			return
 
 		if(links)
-			istart = findtext(info_links, "<span class=\"paper_field\">", laststart)
+			istart = findtext_char(info_links, "<span class=\"paper_field\">", laststart)
 		else
-			istart = findtext(info, "<span class=\"paper_field\">", laststart)
+			istart = findtext_char(info, "<span class=\"paper_field\">", laststart)
 
 		if(istart==0)
 			return // No field found with matching id
@@ -169,21 +169,21 @@
 		if(locid == id)
 			var/iend = 1
 			if(links)
-				iend = findtext(info_links, "</span>", istart)
+				iend = findtext_char(info_links, "</span>", istart)
 			else
-				iend = findtext(info, "</span>", istart)
+				iend = findtext_char(info, "</span>", istart)
 
 			//textindex = istart+26
 			textindex = iend
 			break
 
 	if(links)
-		var/before = copytext(info_links, 1, textindex)
-		var/after = copytext(info_links, textindex)
+		var/before = copytext_char(info_links, 1, textindex)
+		var/after = copytext_char(info_links, textindex)
 		info_links = before + text + after
 	else
-		var/before = copytext(info, 1, textindex)
-		var/after = copytext(info, textindex)
+		var/before = copytext_char(info, 1, textindex)
+		var/after = copytext_char(info, textindex)
 		info = before + text + after
 		updateinfolinks()
 
@@ -204,70 +204,70 @@
 
 
 /obj/item/paper/proc/parsepencode(t, obj/item/tool/pen/P, mob/user as mob, iscrayon = 0)
-	t = replacetext(t, "\[center\]", "<center>")
-	t = replacetext(t, "\[/center\]", "</center>")
-	t = replacetext(t, "\[br\]", "<BR>")
-	t = replacetext(t, "\[b\]", "<B>")
-	t = replacetext(t, "\[/b\]", "</B>")
-	t = replacetext(t, "\[i\]", "<I>")
-	t = replacetext(t, "\[/i\]", "</I>")
-	t = replacetext(t, "\[u\]", "<U>")
-	t = replacetext(t, "\[/u\]", "</U>")
-	t = replacetext(t, "\[large\]", "<font size=\"4\">")
-	t = replacetext(t, "\[/large\]", "</font>")
-	t = replacetext(t, "\[sign\]", "<font face=\"[signfont]\"><i>[user ? user.real_name : "Anonymous"]</i></font>")
-	t = replacetext(t, "\[date\]", "<font face=\"[signfont]\"><i>[time2text(REALTIMEOFDAY, "Day DD Month [game_year]")]</i></font>")
-	t = replacetext(t, "\[shortdate\]", "<font face=\"[signfont]\"><i>[time2text(REALTIMEOFDAY, "DD/MM/[game_year]")]</i></font>")
-	t = replacetext(t, "\[time\]", "<font face=\"[signfont]\"><i>[worldtime2text("hh:mm")]</i></font>")
-	t = replacetext(t, "\[date+time\]", "<font face=\"[signfont]\"><i>[worldtime2text("hh:mm")], [time2text(REALTIMEOFDAY, "Day DD Month [game_year]")]</i></font>")
-	t = replacetext(t, "\[field\]", "<span class=\"paper_field\"></span>")
+	t = replacetext_char(t, "\[center\]", "<center>")
+	t = replacetext_char(t, "\[/center\]", "</center>")
+	t = replacetext_char(t, "\[br\]", "<BR>")
+	t = replacetext_char(t, "\[b\]", "<B>")
+	t = replacetext_char(t, "\[/b\]", "</B>")
+	t = replacetext_char(t, "\[i\]", "<I>")
+	t = replacetext_char(t, "\[/i\]", "</I>")
+	t = replacetext_char(t, "\[u\]", "<U>")
+	t = replacetext_char(t, "\[/u\]", "</U>")
+	t = replacetext_char(t, "\[large\]", "<font size=\"4\">")
+	t = replacetext_char(t, "\[/large\]", "</font>")
+	t = replacetext_char(t, "\[sign\]", "<font face=\"[signfont]\"><i>[user ? user.real_name : "Anonymous"]</i></font>")
+	t = replacetext_char(t, "\[date\]", "<font face=\"[signfont]\"><i>[time2text(REALTIMEOFDAY, "Day DD Month [game_year]")]</i></font>")
+	t = replacetext_char(t, "\[shortdate\]", "<font face=\"[signfont]\"><i>[time2text(REALTIMEOFDAY, "DD/MM/[game_year]")]</i></font>")
+	t = replacetext_char(t, "\[time\]", "<font face=\"[signfont]\"><i>[worldtime2text("hh:mm")]</i></font>")
+	t = replacetext_char(t, "\[date+time\]", "<font face=\"[signfont]\"><i>[worldtime2text("hh:mm")], [time2text(REALTIMEOFDAY, "Day DD Month [game_year]")]</i></font>")
+	t = replacetext_char(t, "\[field\]", "<span class=\"paper_field\"></span>")
 
-	t = replacetext(t, "\[h1\]", "<H1>")
-	t = replacetext(t, "\[/h1\]", "</H1>")
-	t = replacetext(t, "\[h2\]", "<H2>")
-	t = replacetext(t, "\[/h2\]", "</H2>")
-	t = replacetext(t, "\[h3\]", "<H3>")
-	t = replacetext(t, "\[/h3\]", "</H3>")
+	t = replacetext_char(t, "\[h1\]", "<H1>")
+	t = replacetext_char(t, "\[/h1\]", "</H1>")
+	t = replacetext_char(t, "\[h2\]", "<H2>")
+	t = replacetext_char(t, "\[/h2\]", "</H2>")
+	t = replacetext_char(t, "\[h3\]", "<H3>")
+	t = replacetext_char(t, "\[/h3\]", "</H3>")
 
 	if(!iscrayon)
-		t = replacetext(t, "\[*\]", "<li>")
-		t = replacetext(t, "\[hr\]", "<HR>")
-		t = replacetext(t, "\[small\]", "<font size = \"1\">")
-		t = replacetext(t, "\[/small\]", "</font>")
-		t = replacetext(t, "\[list\]", "<ul>")
-		t = replacetext(t, "\[/list\]", "</ul>")
-		t = replacetext(t, "\[table\]", "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'>")
-		t = replacetext(t, "\[/table\]", "</td></tr></table>")
-		t = replacetext(t, "\[grid\]", "<table>")
-		t = replacetext(t, "\[/grid\]", "</td></tr></table>")
-		t = replacetext(t, "\[row\]", "</td><tr>")
-		t = replacetext(t, "\[cell\]", "<td>")
-		t = replacetext(t, "\[logo\]", "<img src = wylogo.png>")
-		t = replacetext(t, "\[wy\]", "<img src = wylogo.png>")
-		t = replacetext(t, "\[uscm\]", "<img src = uscmlogo.png>")
+		t = replacetext_char(t, "\[*\]", "<li>")
+		t = replacetext_char(t, "\[hr\]", "<HR>")
+		t = replacetext_char(t, "\[small\]", "<font size = \"1\">")
+		t = replacetext_char(t, "\[/small\]", "</font>")
+		t = replacetext_char(t, "\[list\]", "<ul>")
+		t = replacetext_char(t, "\[/list\]", "</ul>")
+		t = replacetext_char(t, "\[table\]", "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'>")
+		t = replacetext_char(t, "\[/table\]", "</td></tr></table>")
+		t = replacetext_char(t, "\[grid\]", "<table>")
+		t = replacetext_char(t, "\[/grid\]", "</td></tr></table>")
+		t = replacetext_char(t, "\[row\]", "</td><tr>")
+		t = replacetext_char(t, "\[cell\]", "<td>")
+		t = replacetext_char(t, "\[logo\]", "<img src = wylogo.png>")
+		t = replacetext_char(t, "\[wy\]", "<img src = wylogo.png>")
+		t = replacetext_char(t, "\[uscm\]", "<img src = uscmlogo.png>")
 
 		t = "<font face=\"[deffont]\" color=[P ? P.pen_colour : "black"]>[t]</font>"
 	else // If it is a crayon, and he still tries to use these, make them empty!
-		t = replacetext(t, "\[*\]", "")
-		t = replacetext(t, "\[hr\]", "")
-		t = replacetext(t, "\[small\]", "")
-		t = replacetext(t, "\[/small\]", "")
-		t = replacetext(t, "\[list\]", "")
-		t = replacetext(t, "\[/list\]", "")
-		t = replacetext(t, "\[table\]", "")
-		t = replacetext(t, "\[/table\]", "")
-		t = replacetext(t, "\[row\]", "")
-		t = replacetext(t, "\[cell\]", "")
-		t = replacetext(t, "\[logo\]", "")
+		t = replacetext_char(t, "\[*\]", "")
+		t = replacetext_char(t, "\[hr\]", "")
+		t = replacetext_char(t, "\[small\]", "")
+		t = replacetext_char(t, "\[/small\]", "")
+		t = replacetext_char(t, "\[list\]", "")
+		t = replacetext_char(t, "\[/list\]", "")
+		t = replacetext_char(t, "\[table\]", "")
+		t = replacetext_char(t, "\[/table\]", "")
+		t = replacetext_char(t, "\[row\]", "")
+		t = replacetext_char(t, "\[cell\]", "")
+		t = replacetext_char(t, "\[logo\]", "")
 
 		t = "<font face=\"[crayonfont]\" color=[P ? P.pen_colour : "black"]><b>[t]</b></font>"
 
-// t = replacetext(t, "#", "") // Junk converted to nothing!
+// t = replacetext_char(t, "#", "") // Junk converted to nothing!
 
 //Count the fields
 	var/laststart = 1
 	while(1)
-		var/i = findtext(t, "<span class=\"paper_field\">", laststart)
+		var/i = findtext_char(t, "<span class=\"paper_field\">", laststart)
 		if(i==0)
 			break
 		laststart = i+1
@@ -338,7 +338,7 @@
 	if(href_list["write"])
 		var/id = href_list["write"]
 		var/t =  stripped_multiline_input(usr, "Enter what you want to write:", "Write", "", MAX_MESSAGE_LEN)
-		var/shortened_t = copytext(t,1,100)
+		var/shortened_t = copytext_char(t,1,100)
 		msg_admin_niche("PAPER: [key_name(usr)] tried to write something. First 100 characters: [shortened_t]")
 
 		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
@@ -353,7 +353,7 @@
 		if(src.loc != usr && !src.Adjacent(usr) && !((istype(src.loc, /obj/item/clipboard) || istype(src.loc, /obj/item/folder)) && (src.loc.loc == usr || src.loc.Adjacent(usr)) ) )
 			return
 
-		t = replacetext(t, "\n", "<BR>")
+		t = replacetext_char(t, "\n", "<BR>")
 		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
 
 		if(id!="end")
@@ -744,7 +744,7 @@
 /obj/item/paper/research_notes/unique/Initialize()
 	//Each one of these get a new unique chem
 	var/datum/reagent/generated/C = new /datum/reagent/generated
-	C.id = "tau-[length(chemical_gen_classes_list["tau"])]"
+	C.id = "tau-[length_char(chemical_gen_classes_list["tau"])]"
 	C.generate_name()
 	C.chemclass = CHEM_CLASS_RARE
 	if(gen_tier)

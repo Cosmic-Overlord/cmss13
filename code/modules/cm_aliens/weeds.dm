@@ -95,7 +95,7 @@
 		PF.flags_pass = PASS_FLAGS_WEEDS
 
 /obj/effect/alien/weeds/proc/on_weed_expand(obj/effect/alien/weeds/spread_from, list/new_weeds)
-	if(!length(new_weeds) && parent)
+	if(!length_char(new_weeds) && parent)
 		SEND_SIGNAL(parent, COMSIG_WEEDNODE_CANNOT_EXPAND_FURTHER)
 
 /obj/effect/alien/weeds/weak

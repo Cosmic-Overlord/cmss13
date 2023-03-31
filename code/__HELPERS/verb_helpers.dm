@@ -24,8 +24,8 @@
 	else
 		var/list/verb_listref = verb_or_list_to_add
 		var/list/elements_to_process = verb_listref.Copy()
-		while(length(elements_to_process))
-			var/element_or_list = elements_to_process[length(elements_to_process)] //Last element
+		while(length_char(elements_to_process))
+			var/element_or_list = elements_to_process[length_char(elements_to_process)] //Last element
 			elements_to_process.len--
 			if(islist(element_or_list))
 				elements_to_process += element_or_list //list/a += list/b adds the contents of b into a, not the reference to the list itself
@@ -71,8 +71,8 @@
 	else
 		var/list/verb_listref = verb_or_list_to_remove
 		var/list/elements_to_process = verb_listref.Copy()
-		while(length(elements_to_process))
-			var/element_or_list = elements_to_process[length(elements_to_process)] //Last element
+		while(length_char(elements_to_process))
+			var/element_or_list = elements_to_process[length_char(elements_to_process)] //Last element
 			elements_to_process.len--
 			if(islist(element_or_list))
 				elements_to_process += element_or_list //list/a += list/b adds the contents of b into a, not the reference to the list itself

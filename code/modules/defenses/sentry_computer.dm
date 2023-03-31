@@ -120,7 +120,7 @@
  */
 /obj/item/device/sentry_computer/proc/handle_engaged(obj/structure/machinery/defenses/sentry/sentrygun)
 	var/displayname = sentrygun.name
-	if(length(sentrygun.nickname))
+	if(length_char(sentrygun.nickname))
 		displayname = sentrygun.nickname
 	var/message = "[displayname]:[get_area(sentrygun)] Engaged"
 	if(can_identify_target)
@@ -135,7 +135,7 @@
 	if(!sentrygun.ammo)
 		return
 	var/displayname = sentrygun.name
-	if(length(sentrygun.nickname))
+	if(length_char(sentrygun.nickname))
 		displayname = sentrygun.nickname
 	var/areaname = get_area(sentrygun)
 	var/message = "[displayname]:[areaname] Low ammo [sentrygun.ammo.current_rounds]/[sentrygun.ammo.max_rounds]."
@@ -147,7 +147,7 @@
  */
 /obj/item/device/sentry_computer/proc/handle_empty_ammo(obj/structure/machinery/defenses/sentry/sentrygun)
 	var/displayname = sentrygun.name
-	if(length(sentrygun.nickname))
+	if(length_char(sentrygun.nickname))
 		displayname = sentrygun.nickname
 	var/areaname = get_area(sentrygun)
 	var/message = "[displayname]:[areaname] out of ammo."
@@ -189,7 +189,7 @@
 	if(!on || !cell)
 		return
 
-	var/energy_cost = length(paired_sentry) * power_consumption * CELLRATE
+	var/energy_cost = length_char(paired_sentry) * power_consumption * CELLRATE
 	if(cell.charge >= (energy_cost))
 		cell.use(energy_cost)
 	else
@@ -216,7 +216,7 @@
 				to_chat(user, SPAN_NOTICE("You unload the encryption key from \the [tool]."))
 				registered_tools -= list(id)
 		else
-			if(length(tool.encryption_keys))
+			if(length_char(tool.encryption_keys))
 				to_chat(user, SPAN_NOTICE("Removing existing encryption keys."))
 				if (do_after(usr, 1 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_GENERIC))
 					for(var/key_id in tool.encryption_keys)
@@ -276,7 +276,7 @@
 	if(sentry.linked_laptop == src)
 		unpair_sentry(sentry)
 	var/displayname = sentry.name
-	if(length(sentry.nickname))
+	if(length_char(sentry.nickname))
 		displayname = sentry.nickname
 	var/areaname = get_area(sentry)
 	var/message = "[displayname]:[areaname] lost contact."
@@ -380,7 +380,7 @@
 			var/obj/structure/machinery/defenses/sentry/sentrygun = defense
 			sentry_holder["rounds"] = sentrygun.ammo.current_rounds
 			sentry_holder["max_rounds"] = sentrygun.ammo.max_rounds
-			sentry_holder["engaged"] = length(sentrygun.targets)
+			sentry_holder["engaged"] = length_char(sentrygun.targets)
 
 		.["sentry"] += list(sentry_holder)
 

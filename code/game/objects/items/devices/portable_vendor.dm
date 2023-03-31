@@ -152,7 +152,7 @@
 
 
 			var/turf/T = get_turf(loc)
-			if(length(T.contents) > 25)
+			if(length_char(T.contents) > 25)
 				to_chat(H, SPAN_WARNING("The floor is too cluttered, make some space."))
 				return
 

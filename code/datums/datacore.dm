@@ -193,8 +193,8 @@ GLOBAL_DATUM_INIT(data_core, /datum/datacore, new)
 
 
 	dat += "</table></div>"
-	dat = replacetext(dat, "\n", "") // so it can be placed on paper correctly
-	dat = replacetext(dat, "\t", "")
+	dat = replacetext_char(dat, "\n", "") // so it can be placed on paper correctly
+	dat = replacetext_char(dat, "\t", "")
 	return dat
 
 /datum/datacore/proc/manifest(nosleep = 0)

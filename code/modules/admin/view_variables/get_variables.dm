@@ -9,9 +9,9 @@
 			. = VV_NUM
 
 	else if(istext(var_value))
-		if(findtext(var_value, "\n"))
+		if(findtext_char(var_value, "\n"))
 			. = VV_MESSAGE
-		else if(findtext(var_value, GLOB.is_color))
+		else if(findtext_char(var_value, GLOB.is_color))
 			. = VV_COLOR
 		else
 			. = VV_TEXT
@@ -373,11 +373,11 @@
 	if(!isnull(value) && value != "")
 		matches = filter_fancy_list(matches, value)
 
-	if(!length(matches))
+	if(!length_char(matches))
 		return
 
 	var/chosen
-	if(length(matches) == 1)
+	if(length_char(matches) == 1)
 		chosen = matches[1]
 	else
 		chosen = tgui_input_list(usr, "Select a type", "Pick Type", matches)
@@ -389,13 +389,13 @@
 /proc/filter_fancy_list(list/L, filter as text)
 	var/list/matches = new
 	var/end_len = -1
-	var/list/endcheck = splittext(filter, "!")
+	var/list/endcheck = splittext_char(filter, "!")
 	if(endcheck.len > 1)
 		filter = endcheck[1]
 		end_len = length_char(filter)
 
 	for(var/key in L)
 		var/value = L[key]
-		if(findtext("[key]", filter, -end_len) || findtext("[value]", filter, -end_len))
+		if(findtext_char("[key]", filter, -end_len) || findtext_char("[value]", filter, -end_len))
 			matches[key] = value
 	return matches

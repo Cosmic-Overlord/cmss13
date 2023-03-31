@@ -37,11 +37,11 @@
 		return
 
 	//Focus Chat failsafe. Overrides movement checks to prevent WASD.
-	if(!prefs.hotkeys && length(_key) == 1 && _key != "Alt" && _key != "Ctrl" && _key != "Shift")
+	if(!prefs.hotkeys && length_char(_key) == 1 && _key != "Alt" && _key != "Ctrl" && _key != "Shift")
 		winset(src, null, "input.focus=true ; input.text=[url_encode(_key)]")
 		return
 
-	if(length(keys_held) >= HELD_KEY_BUFFER_LENGTH && !keys_held[_key])
+	if(length_char(keys_held) >= HELD_KEY_BUFFER_LENGTH && !keys_held[_key])
 		keyUp(keys_held[1]) //We are going over the number of possible held keys, so let's remove the first one.
 
 	//the time a key was pressed isn't actually used anywhere (as of 2019-9-10) but this allows easier access usage/checking
@@ -64,7 +64,7 @@
 	if(_key in GLOB.keybind_combos)
 		full_key = combos.Join("+")
 	else
-		if(length(combos))
+		if(length_char(combos))
 			full_key = "[combos.Join("+")]+[_key]"
 			key_combos_held[_key] = full_key
 		else

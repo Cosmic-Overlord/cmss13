@@ -281,7 +281,7 @@
 /obj/item/weapon/gun/flamer/M240T/retrieval_check(mob/living/carbon/human/user, retrieval_slot)
 	if(retrieval_slot == WEAR_IN_SCABBARD)
 		var/obj/item/storage/large_holster/fuelpack/FP = user.back
-		if(istype(FP) && !length(FP.contents))
+		if(istype(FP) && !length_char(FP.contents))
 			return TRUE
 		return FALSE
 	return ..()

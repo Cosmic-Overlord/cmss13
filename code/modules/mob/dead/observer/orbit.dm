@@ -91,7 +91,7 @@
 				misc += list(serialized)
 			continue
 
-		var/number_of_orbiters = length(M.get_all_orbiters())
+		var/number_of_orbiters = length_char(M.get_all_orbiters())
 		if(number_of_orbiters)
 			serialized["orbiters"] = number_of_orbiters
 

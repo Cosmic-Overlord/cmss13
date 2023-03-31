@@ -87,16 +87,16 @@ SUBSYSTEM_DEF(vote)
 
 		if(current_votes > greatest_votes)
 			greatest_votes = current_votes
-	if(!CONFIG_GET(flag/default_no_vote) && length(choices))
+	if(!CONFIG_GET(flag/default_no_vote) && length_char(choices))
 		var/list/non_voters = GLOB.directory.Copy()
 		non_voters -= voted
 		for (var/non_voter_ckey in non_voters)
 			var/client/C = non_voters[non_voter_ckey]
 			if(!C || C.is_afk())
 				non_voters -= non_voter_ckey
-		if(length(non_voters) > 0)
+		if(length_char(non_voters) > 0)
 			if(mode == "restart")
-				choices["Continue Playing"] += length(non_voters)
+				choices["Continue Playing"] += length_char(non_voters)
 				if(choices["Continue Playing"] >= greatest_votes)
 					greatest_votes = choices["Continue Playing"]
 	. = list()
@@ -110,12 +110,12 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/announce_result()
 	var/list/winners = get_result()
 	var/text
-	if(length(winners) > 0)
+	if(length_char(winners) > 0)
 		if(question)
 			text += "<b>[question]</b>"
 		else
 			text += "<b>[capitalize(mode)] Vote</b>"
-		for(var/i = 1 to length(choices))
+		for(var/i = 1 to length_char(choices))
 			var/choice = choices[i]
 			var/votes = choices[choice]
 			if(!votes)
@@ -132,18 +132,18 @@ SUBSYSTEM_DEF(vote)
 				if(adjustment)
 					msg += "[abs(adjustment)] vote[abs(adjustment) > 1 ? "s" : ""] [adjustment < 0 ? "removed" : "added"] for adjustment; "
 				// Remove the trailing "; "
-				msg = copytext(msg, 1, length(msg)-1)
+				msg = copytext_char(msg, 1, length_char(msg)-1)
 				msg += ")"
 			text += msg
 		if(mode != "custom")
-			if(length(winners) > 1)
+			if(length_char(winners) > 1)
 				text = "<br><b>Vote Tied Between:</b>"
 				for(var/option in winners)
 					text += "<br>[FOURSPACES][option]"
 			. = pick(winners)
 			text += "<br><b>Vote Result: [.]</b>"
 		else
-			text += "<br><b>Did not vote:</b> [length(GLOB.clients) - length(voted)]"
+			text += "<br><b>Did not vote:</b> [length_char(GLOB.clients) - length_char(voted)]"
 	else
 		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 	log_vote(text)
@@ -295,7 +295,7 @@ SUBSYSTEM_DEF(vote)
 					if(text2num(SSperf_logging?.round?.id) % VM.vote_cycle != 0)
 						continue
 					if(VM.config_max_users || VM.config_min_users)
-						var/players = length(GLOB.clients)
+						var/players = length_char(GLOB.clients)
 						if(VM.config_max_users && players > VM.config_max_users)
 							continue
 						if(VM.config_min_users && players < VM.config_min_users)
@@ -303,7 +303,7 @@ SUBSYSTEM_DEF(vote)
 					maps += i
 
 				choices.Add(maps)
-				if(!length(choices))
+				if(!length_char(choices))
 					return FALSE
 				SSentity_manager.filter_then(/datum/entity/map_vote, null, CALLBACK(src, PROC_REF(carry_over_callback)))
 
@@ -318,14 +318,14 @@ SUBSYSTEM_DEF(vote)
 					if(!VM.voteweight)
 						continue
 					if(VM.config_max_users || VM.config_min_users)
-						var/players = length(GLOB.clients)
+						var/players = length_char(GLOB.clients)
 						if(players > VM.config_max_users)
 							continue
 						if(players < VM.config_min_users)
 							continue
 					maps += i
 				choices.Add(maps)
-				if(length(choices) < 2)
+				if(length_char(choices) < 2)
 					return FALSE
 			if("custom")
 				question = input(usr, "What is the vote for?")

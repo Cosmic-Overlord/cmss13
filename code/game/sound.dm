@@ -391,7 +391,7 @@
 	var/datum/sound_template/S
 	for(var/i = 1, i <= ammount, i++)
 		S = new
-		S.file = get_sfx("male_warcry") // warcry has variable length, lots of variations
+		S.file = get_sfx("male_warcry") // warcry has variable length_char, lots of variations
 		S.channel = get_free_channel() // i'm convinced this is bad, but it's here to mirror playsound() behaviour
 		S.range = range
 		S.x = x

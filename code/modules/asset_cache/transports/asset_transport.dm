@@ -42,7 +42,7 @@
 			var/error_msg = "ERROR: new asset added to the asset cache with the same name as another asset: [asset_name] existing asset hash: [OACI.hash] new asset hash:[ACI.hash]"
 			log_asset(error_msg)
 		else
-			if (length(ACI.namespace))
+			if (length_char(ACI.namespace))
 				return ACI
 			return OACI
 

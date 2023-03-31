@@ -42,7 +42,7 @@
 		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 			if("Title")
 				var/str = trim(strip_html(input(usr,"Label text?","Set label","")))
-				if(!str || !length(str))
+				if(!str || !length_char(str))
 					to_chat(usr, SPAN_WARNING(" Invalid text."))
 					return
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
@@ -56,7 +56,7 @@
 					nameset = 1
 			if("Description")
 				var/str = trim(strip_html(input(usr,"Label text?","Set label","")))
-				if(!str || !length(str))
+				if(!str || !length_char(str))
 					to_chat(usr, SPAN_DANGER("Invalid text."))
 					return
 				if(!examtext && !nameset)
@@ -149,7 +149,7 @@
 		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 			if("Title")
 				var/str = trim(strip_html(input(usr,"Label text?","Set label","")))
-				if(!str || !length(str))
+				if(!str || !length_char(str))
 					to_chat(usr, SPAN_WARNING(" Invalid text."))
 					return
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
@@ -164,7 +164,7 @@
 
 			if("Description")
 				var/str = trim(strip_html(input(usr,"Label text?","Set label","")))
-				if(!str || !length(str))
+				if(!str || !length_char(str))
 					to_chat(usr, SPAN_DANGER("Invalid text."))
 					return
 				if(!examtext && !nameset)

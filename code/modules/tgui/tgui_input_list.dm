@@ -31,7 +31,7 @@
 /proc/tgui_input_list(mob/user, message, title, list/buttons, timeout = 0, theme = null)
 	if (!user)
 		user = usr
-	if(!length(buttons))
+	if(!length_char(buttons))
 		return
 	if (!istype(user))
 		if (istype(user, /client))
@@ -62,7 +62,7 @@
 /proc/tgui_input_list_async(mob/user, message, title, list/buttons, datum/callback/callback, timeout = 60 SECONDS, theme = null)
 	if (!user)
 		user = usr
-	if(!length(buttons))
+	if(!length_char(buttons))
 		return
 	if (!istype(user))
 		if (istype(user, /client))

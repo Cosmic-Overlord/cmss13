@@ -44,10 +44,10 @@ GLOBAL_DATUM_INIT(bioscan_data, /datum/bioscan_data, new)
 		larva += GLOB.hive_datum[hivenumber].stored_larva
 
 	/// Keeping track of peak numbers to determine when a side is "losing"
-	if(GLOB.peak_humans < length(GLOB.alive_human_list))
-		GLOB.peak_humans = length(GLOB.alive_human_list)
-	if(GLOB.peak_xenos < length(GLOB.living_xeno_list))
-		GLOB.peak_xenos = length(GLOB.living_xeno_list)
+	if(GLOB.peak_humans < length_char(GLOB.alive_human_list))
+		GLOB.peak_humans = length_char(GLOB.alive_human_list)
+	if(GLOB.peak_xenos < length_char(GLOB.living_xeno_list))
+		GLOB.peak_xenos = length_char(GLOB.living_xeno_list)
 
 	for(var/mob/current_mob as anything in GLOB.living_xeno_list)
 		if(current_mob.mob_flags & NOBIOSCAN)

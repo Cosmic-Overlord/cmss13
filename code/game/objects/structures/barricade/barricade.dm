@@ -53,7 +53,7 @@
 	. = ..()
 	. += SPAN_INFO("It is recommended to stand flush to a barricade or more than four tiles away for maximum efficiency.")
 	if(is_wired)
-		. += SPAN_INFO("There is a length of wire strewn across the top of this barricade.")
+		. += SPAN_INFO("There is a length_char of wire strewn across the top of this barricade.")
 	switch(damage_state)
 		if(BARRICADE_DMG_NONE)
 			. += SPAN_INFO("It appears to be in good shape.")
@@ -412,7 +412,7 @@
 	return ..()
 
 /obj/structure/barricade/proc/try_nailgun_usage(obj/item/W, mob/user)
-	if(length(repair_materials) == 0 || health >= maxhealth || !istype(W, /obj/item/weapon/gun/smg/nailgun))
+	if(length_char(repair_materials) == 0 || health >= maxhealth || !istype(W, /obj/item/weapon/gun/smg/nailgun))
 		return FALSE
 
 	var/obj/item/weapon/gun/smg/nailgun/NG = W
