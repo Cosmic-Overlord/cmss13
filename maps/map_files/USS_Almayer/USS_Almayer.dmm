@@ -11463,6 +11463,10 @@
 	dir = 6
 	},
 /obj/structure/surface/table/almayer,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/alpha)
 "aNT" = (
@@ -22904,6 +22908,7 @@
 /obj/item/reagent_container/food/condiment/hotsauce/sriracha{
 	pixel_x = 4
 	},
+/obj/item/toy/farwadoll/pig,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -22916,6 +22921,14 @@
 	dir = 4
 	},
 /obj/structure/surface/table/almayer,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -26188,6 +26201,12 @@
 /area/almayer/squads/bravo)
 "chq" = (
 /obj/structure/surface/table/almayer,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -41788,6 +41807,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
 /turf/open/floor/almayer,
 /area/almayer/squads/delta)
 "iWd" = (
@@ -44267,6 +44294,7 @@
 /obj/item/reagent_container/food/condiment/hotsauce/tabasco{
 	pixel_x = 11
 	},
+/obj/item/toy/farwadoll/pig,
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "red"
@@ -47597,6 +47625,22 @@
 	dir = 4
 	},
 /obj/structure/surface/table/almayer,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
 /turf/open/floor/almayer{
 	icon_state = "plate"
 	},
@@ -47635,6 +47679,12 @@
 /area/almayer/hallways/stern_hallway)
 "lLC" = (
 /obj/structure/surface/table/almayer,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
 /turf/open/floor/almayer,
 /area/almayer/squads/charlie)
 "lLS" = (
@@ -52737,6 +52787,14 @@
 	pixel_x = 8;
 	pixel_y = 8
 	},
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/charlie)
 "onQ" = (
@@ -60683,6 +60741,7 @@
 	pixel_x = 8;
 	pixel_y = 8
 	},
+/obj/item/toy/farwadoll/pig,
 /turf/open/floor/almayer{
 	icon_state = "blue"
 	},
@@ -60939,6 +60998,15 @@
 /area/almayer/squads/req)
 "snR" = (
 /obj/structure/surface/table/almayer,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
 /turf/open/floor/almayer{
 	icon_state = "blue"
 	},
@@ -71851,6 +71919,14 @@
 /area/almayer/hallways/port_hallway)
 "xlk" = (
 /obj/structure/surface/table/almayer,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
+/obj/item/toy/farwadoll/pig,
 /turf/open/floor/almayer,
 /area/almayer/squads/bravo)
 "xlC" = (

@@ -280,6 +280,7 @@ var/world_topic_spam_protect_time = world.timeofday
 var/failed_db_connections = 0
 var/failed_old_db_connections = 0
 
+
 // /hook/startup/proc/connectDB()
 // if(!setup_database_connection())
 // world.log << "Your server failed to establish a connection with the feedback database."

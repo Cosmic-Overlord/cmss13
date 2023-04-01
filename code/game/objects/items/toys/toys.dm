@@ -479,6 +479,22 @@
 	w_class = SIZE_TINY
 	icon_state = "predplush"
 
+/obj/item/toy/pig
+	name = "pig toy"
+	desc = "Captain Dementy! Bring the pigs! Marines demand pigs!."
+	w_class = SIZE_TINY
+	icon_state = "pig"
+	COOLDOWN_DECLARE(last_hug_time)
+
+/obj/item/toy/pig/attack_self(mob/user)
+	..()
+
+	if(COOLDOWN_FINISHED(src, last_hug_time))
+		user.visible_message(SPAN_NOTICE("[user] hugs [src] tightly!"), SPAN_NOTICE("You hug [src]. You feel safe."))
+		playsound(user, 'sound/items/pig.ogg', 25, TRUE)
+		COOLDOWN_START(src, last_hug_time, 0.5 SECONDS)
+
+
 /obj/item/toy/plushie_cade
 	name = "plushie barricade"
 	desc = "Great for squeezing whenever you're scared. Or lightly hurt. Or in any other situation."
