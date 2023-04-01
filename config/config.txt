@@ -185,11 +185,11 @@ AUTOOOCMUTE
 
 #RECORD_ROUNDS
 
-# LOBBY_MUSIC 1 path/to/sound.ogg
-# LOBBY_MUSIC 2 path/to/sound.ogg
-# LOBBY_MUSIC 3 path/to/sound.ogg
-# LOBBY_MUSIC 4 path/to/sound.ogg
-# LOBBY_MUSIC 5 path/to/sound.ogg
+LOBBY_MUSIC 1 config/lobby_themes/Carmen_Mirandas_Ghost_04_-_Bomber-OlkH687M4YM.ogg
+LOBBY_MUSIC 2 config/lobby_themes/Carmen_Mirandas_Ghost_10_-_Space_Hero-fNdMC6_eUGk.ogg
+LOBBY_MUSIC 3 config/lobby_themes/carmen-mirandas-ghost-02-dawsons-christian-hq.ogg
+LOBBY_MUSIC 4 config/lobby_themes/Pushin_the_Speed_of_Light_-_Julia_Ecklar__Anne_Prather-ud6LiVJkwyA.ogg
+LOBBY_MUSIC 5 config/lobby_themes/Praise_the_Lord_and_Pass_the_Ammunition.ogg
 
 ## LOBBY ART IMAGES
 ## LOBBY_ART_IMAGES <icon_state>
