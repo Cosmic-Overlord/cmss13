@@ -128,7 +128,7 @@ GUEST_BAN
 #SERVER server.net:port
 
 ## forum address
-FORUMURL https://forum.cm-ss13.com/
+FORUMURL https://discord.gg/ru-tgmc
 
 ## Wiki address
 WIKIURL https://cm-ss13/wiki/
