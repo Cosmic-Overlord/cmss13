@@ -265,20 +265,24 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/proc/update_status()
 	//Note: Hub content is limited to 254 characters, including limited HTML/CSS.
+	var/s = ""
 
-	var/new_status = ""
-	new_status += "<b><a href='[CONFIG_GET(string/forumurl)]'>[CONFIG_GET(string/servername)]</a></b>"
-	new_status += "<br>Map: <b>Big Red</b>"
-	new_status += "<br>Ship: <b>Talos</b>"
-	new_status += "<br>Mode: <b>Nuclear War</b>"
-	new_status += "<br>Round time: <b>[gameTimestamp("hh:mm")]</b>"
+	if(CONFIG_GET(string/servername))
+		s += "<a href=\"[CONFIG_GET(string/forumurl)]\"><b>[CONFIG_GET(string/servername)]</b></a>"
 
-	// Finally set the new status
-	status = new_status
+	if(SSmapping?.configs)
+		var/datum/map_config/MG = SSmapping.configs[GROUND_MAP]
+		s += "<br>Map: [MG?.map_name ? "<b>[MG.map_name]</b>" : ""]"
+	if(SSticker?.mode)
+		s += "<br>Mode: <b>[SSticker.mode.name]</b>"
+		s += "<br>Round time: <b>[duration2text()]</b>"
+
+	world.status = s
 
 #define FAILED_DB_CONNECTION_CUTOFF 1
 var/failed_db_connections = 0
 var/failed_old_db_connections = 0
+
 
 
 // /hook/startup/proc/connectDB()
